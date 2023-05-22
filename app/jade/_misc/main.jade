@@ -1,0 +1,40 @@
+doctype html
+html(lang='ru')
+	head
+		meta(charset='utf-8')
+		title
+			block title
+		meta(name="description" content="")
+		link(rel="icon" href="img/favicon.png")
+		meta(name="viewport" content="width=device-width")
+		
+		//- убрать "зуммирование" на safari ios:
+		//- meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no")
+		
+		//- фикс подсветки телефонов на safari ios:
+		//- meta(content="telephone=no" name="format-detection")
+
+		link(rel="stylesheet" href="css/main.css")
+	
+	body
+		include _mixins
+		include _vars
+
+		//- html for use slideOut.js--------------------
+		//- include _body-html-for-slideout 
+
+		//- footer-to-bottom--------------------
+		//- include _footer-to-bottom
+		
+		//- при использовании _body-html-for-slideout или _footer-to-bottom  -- закомментировать:
+		include ../_sections/header
+		block content
+		include ../_sections/footer
+		
+
+		include _scripts
+
+		block page-scripts
+		
+		script(src='js/common.js')
+		//- script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_NAmCu9dm16a9i0oeX0T6rBQFgObeiZA&amp;callback=initMap" async defer>)

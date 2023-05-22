@@ -1,0 +1,20 @@
+.formhandler{
+	position: relative;
+}
+.formhandler__notices,
+.formhandler__notice{
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	margin: 0;
+}
+.formhandler__field{
+	box-shadow: none;
+	margin: 0;
+	height: inherit;
+}
+.formhandler__notices{
+	bottom: auto;
+	top: 100%;
+	display: none;
+}

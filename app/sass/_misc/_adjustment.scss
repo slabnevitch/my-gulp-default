@@ -1,0 +1,275 @@
+/*--------------------adjustment----------------------*/
+*{
+	box-sizing: border-box;
+}
+html, body{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: $reg;
+	font-weight: normal;
+	font-size: 15px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	color: $text;
+
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overflow-behavior: none;
+	}
+}
+
+// компенсация ширины скроллбара при появлении ванильных поапов
+// все содержимое страницы оборачивается в #wrapper-for-scroll-fix
+// использовать совместно с libs-vanilla/service-functions/scrollWidth.js 
+
+// #wrapper-for-scroll-fix{
+// 	overflow: hidden;
+// }
+// #wrapper-for-scroll-fix.modal-open {
+//     padding-right: var(--scroll-width);
+// }
+// .header { // в случае position: fixed у хедера
+//    .modal-open &{
+//     	padding-right: var(--scroll-width);
+//    }
+// }
+// .modal__container{//компенсация сдвига модалки при анимации исчезновения
+// 	margin-left: var(--scroll-width);
+//   .modal-open & {
+//   	margin-left: 0;
+//   }
+
+// }
+// END компенсация ширины скроллбара при появлении ванильных поапов
+
+
+// Прижать футер к низу
+
+// html, body{
+// 	height: 100%;
+// }
+// .main{
+// 	display: flex;
+// 	flex-direction: column;
+// 	height: 100%;
+// 	.header{
+// 		flex: 0 0 auto;
+// 	}
+// 	.main-content{
+// 		flex: 1 1 auto;
+// 	}
+// 	.footer{
+// 		flex: 0 0 auto;
+// 		// margin-top: auto;
+// 	}
+// }
+
+// END Прижать футер к низу
+
+// стиль для отключения скролла стр-цы. при помощи libs-vanilla/service-functions/scrollDisable.js
+// .disable-scroll {
+// 	position: relative;
+// 	overflow: hidden;
+// 	height: 100vh;
+// 	position: fixed;
+// 	left: 0;
+// 	top: 0;
+// 	width: 100%;
+// }
+
+ul, li{
+	margin: 0;
+	padding: 0;
+}
+input
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea{
+	appearance: none;
+}
+.input,
+input{
+	outline: none;
+	display: block;
+	width: 100%;
+}
+textarea.input{
+	resize: none;
+	padding: 0 0;
+}
+//END input
+.wrapper{
+	margin: 0 auto;
+	padding-left: $containerPaddings / 2 + px;
+	padding-right: $containerPaddings / 2 + px;
+	max-width: $maxContainerWidth + px;
+	// @include row-flex();
+	// @include wrapper();
+}
+// classes for smartgrid(c) structure
+// .wrapper-smart{
+// 	@include wrapper();
+// }
+// .wrapper-flex{
+// 	@include row-flex();
+// }
+// .column{
+// 	@include col();
+// 	@include size(1);	
+// }
+
+.hidden{
+	display: none;
+}
+
+.ibg{
+background-position: center; 
+background-size: cover; 
+background-repeat: no-repeat; 
+position: relative;
+padding-bottom: 52.25%;
+}
+
+.ibg img{
+	width: 100%; 
+	height: 100%; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	opacity: 0; 
+	// visibility: hidden;
+}
+._prod-img {
+	position: relative;
+	padding-bottom: 80%;
+	img{
+		@include absolute-center;
+	}
+}
+._fit{
+	padding-bottom: 80%;
+	position: relative;
+}
+._fit ._fit-img{//_fit - class for object-fit
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	object-fit: cover; 
+	object-position: center center;
+}
+
+.bd-filter-fallback{// определение поддержки блюра без джаваскрипт
+	@supports (backdrop-filter: blur(10px)) or (--webkit-backdrop-filter: blur(10px)){// определение поддержки блюра без джаваскрипт
+			background-color: rgba(255, 255, 255, .72);
+			backdrop-filter: blur(31px);
+		}
+}
+// tabs-pure base styles
+// .tabs__buttons{
+// 	display: flex;
+// }
+// .tabs__container{
+// }
+// .tab-content,
+// .tabs__buttons li{
+// 	list-style-type: none;
+// }
+// .tab{
+// 	text-decoration: none;
+// 	display: block;
+// 	&.active{
+// 		background-color: pink;
+// 	}
+// }
+
+// показ спойлеров на определенном разрешении. Включать только при установленном аттрибуте data-breakpoint="" у .accordion
+// .accordion:not(.combine){
+// 	.accordion__content.hidden{
+// 		@include min-screen($md){
+// 			display: block;
+// 		}
+// 	}
+// }
+
+// service ui elements styles
+// @import "_misc/_tabs-accordion";
+// @import "_misc/_form";
+// @import "_misc/font-rating";//подключить, если для звез рейтинга исп-я. icomoon
+// @import "_misc/_rating";
+// @import "_misc/_noUiSlider-base";
+// @import "_misc/_counter";
+// @import "_misc/multilevel-dropdown.scss";
+
+// .toggle-mnu{
+// 	position: fixed;
+// 	right: 30px;
+// 	top: 15px;
+//   display: block;
+//   width: 28px;
+//   height: 28px;
+//   margin-top: 14px;
+//   padding: 0;
+//   background-color: transparent;
+//   border: none;
+
+//   span:after, span:before{
+
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 9px;
+//   } 
+
+//   span:after{
+
+//     top: 18px;
+//   }
+
+//   span{
+
+//     position: relative;
+//     display: block;
+//   } 
+
+//   span, span:after, span:before{
+
+//     width: 100%;
+//     height: 2px;
+//     background-color: #000;
+//     transition: all 0.3s;
+//     backface-visibility: hidden;
+//     border-radius: 2px;
+//   }
+
+
+//   &.on span{
+
+//     background-color: transparent;
+//   } 
+
+//   &.on span:before{
+
+//     transform: rotate(45deg) translate(-1px, 0px);
+//   } 
+
+//   &.on span:after{
+
+//     transform: rotate(-45deg) translate(6px, -7px);
+//   } 
+// } 
+// исправление бага отсутствия прозрачности при fade--переходах с/у слайдами
+// .swiper-container-fade{
+// 	.swiper-slide{
+// 		transition: opacity .5s !important;
+// 	}
+// }
+/*--------------------END adjustment----------------------*/ 

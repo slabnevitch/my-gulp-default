@@ -1,0 +1,51 @@
+.tns-nav{
+	text-align: center;
+	button{
+		@include but-null();
+		width: 7px;
+		height: 7px;
+		margin-left: 3px;
+		margin-right: 3px;
+		border-radius: 50%;
+		background-color: gray;
+
+		&.tns-nav-active{
+			background-color: $accent;
+		}
+	}
+}
+.tns-controls{
+	button{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1;
+
+		&[data-controls="prev"]{
+			left: 0;
+		}
+		&[data-controls="next"]{
+			right: 0;
+		}
+	}
+}
+// кастомные кнопки навигации
+.tiny-carousel{
+	position: relative;
+}
+.tiny-carousel__nav{
+}
+.tns-prev,
+.tns-next{
+	@include but-null();
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+}
+.tns-prev{
+	left: 0;
+}
+.tns-next{
+	right: 0;
+}

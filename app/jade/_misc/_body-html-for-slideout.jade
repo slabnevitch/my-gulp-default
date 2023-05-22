@@ -1,0 +1,127 @@
+nav.mob-nav#menu
+	//- include _multilevel-panel
+	
+	//-for dlmenu plugin with dynamic adaptive replacement 
+	//- #dl-menu.dl-menuwrapper
+		ul.dl-menu.dl-menuopen("='')
+			li
+				a(href='#') Fashion
+				ul.dl-submenu
+					li
+						a(href='#') Men
+						ul.dl-submenu
+							li
+								a(href='#') Shirts
+							li
+								a(href='#') Jackets
+							li
+								a(href='#') Chinos & Trousers
+							li
+								a(href='#') Jeans
+							li
+								a(href='#') T-Shirts
+							li
+								a(href='#') Underwear
+					li
+						a(href='#') Women
+						ul.dl-submenu
+							li
+								a(href='#') Jackets
+							li
+								a(href='#') Knits
+							li
+								a(href='#') Jeans
+							li
+								a(href='#') Dresses
+							li
+								a(href='#') Blouses
+							li
+								a(href='#') T-Shirts
+							li
+								a(href='#') Underwear
+					li
+						a(href='#') Children
+						ul.dl-submenu
+							li
+								a(href='#') Boys
+							li
+								a(href='#') Girls
+			li
+				a(href='#') Electronics
+				ul.dl-submenu
+					li
+						a(href='#') Camera & Photo
+					li
+						a(href='#') TV & Home Cinema
+					li
+						a(href='#') Phones
+					li
+						a(href='#') PC & Video Games
+			li
+				a(href='#') Furniture
+				ul.dl-submenu
+					li
+						a(href='#') Living Room
+						ul.dl-submenu
+							li
+								a(href='#') Sofas & Loveseats
+							li
+								a(href='#') Coffee & Accent Tables
+							li
+								a(href='#') Chairs & Recliners
+							li
+								a(href='#') Bookshelves
+					li
+						a(href='#') Bedroom
+						ul.dl-submenu
+							li
+								a(href='#') Beds
+								ul.dl-submenu
+									li
+										a(href='#') Upholstered Beds
+									li
+										a(href='#') Divans
+									li
+										a(href='#') Metal Beds
+									li
+										a(href='#') Storage Beds
+									li
+										a(href='#') Wooden Beds
+									li
+										a(href='#') Children's Beds
+							li
+								a(href='#') Bedroom Sets
+							li
+								a(href='#') Chests & Dressers
+					li
+						a(href='#') Home Office
+					li
+						a(href='#') Dining & Bar
+					li
+						a(href='#') Patio
+			li
+				a(href='#') Jewelry & Watches
+				ul.dl-submenu
+					li
+						a(href='#') Fine Jewelry
+					li
+						a(href='#') Fashion Jewelry
+					li
+						a(href='#') Watches
+					li
+						a(href='#') Wedding Jewelry
+						ul.dl-submenu
+							li
+								a(href='#') Engagement Rings
+							li
+								a(href='#') Bridal Sets
+							li
+								a(href='#') Women's Wedding Bands
+							li
+								a(href='#') Men's Wedding Bands
+
+main.main#panel
+	include ../_sections/header
+	.main-content
+		block content
+	include ../_sections/footer

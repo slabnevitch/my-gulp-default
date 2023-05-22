@@ -1,0 +1,105 @@
+// Внимание! При импорте css-файлов с указанием расширения .css
+// в результирующий main.css будет перенесено не содержимое импортируемого файла,
+// а его импорт (@import: url(path_to_file.css)).
+// Если в папке, окуда будет происходить импорт, лежат .css и .scss файлы с одинаковым имененем,
+// нужно удалить один из них.
+
+
+	// Bootstrap 4
+// @import "../libs/bootstrap/css/bootstrap-grid.min";
+// @import "../libs/bootstrap-4/scss/bootstrap-reboot.scss";
+// @import "../libs/bootstrap-4/scss/bootstrap-grid.scss";
+// @import "../libs/bootstrap-4/scss/utilities/_sizing.scss";
+
+	//magnific-popup	
+// /*-----------magnific-popup-----------*/
+// @import "../js/libs/magnific-popup/dist/magnific-popup";
+// /*-----------END magnific-popup-------*/
+
+	//jquery-ui	
+// /*--end jquery-ui-dropdown--*/
+// @import "../js/libs/jquery-ui/jquery-ui.min";
+// @import "../js/libs/jquery-ui/jquery-ui.theme";
+// @import "../js/libs/jquery-ui/jquery-ui.structure.min";
+// /*--end jquery-ui-dropdown--*/
+	
+	// slick
+// /*--slick--*/
+// @import "../js/libs/slick/slick";
+// @import "../js/libs/slick/slick-theme";
+// /*--end slick--*/
+
+	// slick-master
+// /*--slick-master--*/
+// @import "../js/libs/slick-master/slick";
+// @import "../js/libs/slick-master/slick-theme";
+// /*--end slick-master--*/
+	
+	// superfish
+// /*--superfish--*/
+// @import "../js/libs/superfish/dist/css/superfish";
+// @import "../js/libs/superfish/dist/css/superfish-navbar";
+// @import "../js/libs/superfish/dist/css/superfish-vertical";
+// @import "../js/libs/superfish/dist/css/megafish";
+// /*--end superfish--*/
+
+	// slideout
+// /*--slideout--*/
+// @import "../js/libs/slideout/index";
+// /*--end slideout--*/
+	
+	// multilevel-panel
+// /*--multilevel-panel--*/
+// @import "../js/libs/multilevel-panel/multilevel-panel";
+// /*--end multilevel-panel--*/
+
+	// micromodal
+// /*--micromodal--*/
+// @import "../js/libs/micromodal/micromodal";
+// /*--end micromodal--*/
+
+	// swiper
+// /*--swiper--*/
+// @import "../js/libs/swiper/swiper-bundle.min";
+// /*--end swiper--*/
+
+	// tiny-slider
+// /*--tiny-slider--*/
+// @import "../js/libs/tiny-slider/dist/tiny-slider";
+// /*--end tiny-slider--*/
+	
+	// fstdropdown
+// /*--fstdropdown--*/
+// @import "../js/libs/fstdropdown/fstdropdown.min";
+// @import "../js/libs/fstdropdown/fstdropdown-custom";
+// /*--end fstdropdown--*/
+
+	// noUiSlider
+// /*--noUiSlider--*/
+// @import "../libs-vanilla/noUiSlider/nouislider.min";
+// /*--end noUiSlider--*/
+
+	// tippy
+// /*--tippy--*/
+// @import "../js/libs/tippy/tippy";
+// /*--end tippy--*/
+
+	// simplebar
+// /*--simplebar-*/
+// @import "../js/libs/simplebar/simplebar";
+// /*--end simplebar--*/
+
+	// FormHandler
+// /*--FormHandler-*/
+// @import "../js/libs/formhandler.js-1.1.2/dist/css/formHandler.min";
+// /*--end FormHandler--*/
+
+	// baguetteBox
+// /*--baguetteBox-*/
+// @import "../js/libs/baguetteBox/dist/baguetteBox.min";
+///*--end baguetteBox--*/
+
+	// dl-menu
+// /*--dl-menu-*/
+// @import "../js/libs/dlmenu/css/component";
+///*--end dl-menu--*/

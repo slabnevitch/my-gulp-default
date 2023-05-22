@@ -1,0 +1,142 @@
+.menu-list{
+	@include min-screen($multilevelPoint){
+		display: flex;
+	}
+	
+	li{
+		list-style-type: none;
+	}
+	a{
+		text-decoration: none;
+	}
+
+}
+.menu-list__item{
+
+  	@include min-screen($multilevelPoint){
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+	&:not(:last-child){
+ 
+		@include min-screen($multilevelPoint){
+			margin-right: 10px;
+		}
+	}
+	.submenu-list{
+		@include min-screen($multilevelPoint){
+			left: 0;
+			top: 100%;
+			background-color: gray;
+		}
+	}
+
+	@media (any-hover: hover) { //только для устройств с ховером
+		&:hover{
+			& > .submenu-list{
+				display: block;
+
+			}
+			& > .menu-list__icon{
+				transform: rotate(180deg);
+			}
+		}
+
+	}
+
+	&.active{
+		& > .menu-list__icon{
+			transform: rotate(180deg);
+		}
+
+		& > .submenu-list{
+			display: block;
+
+		}
+	}
+
+}
+.submenu-list__item{
+
+	@include min-screen($multilevelPoint){
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	} 
+
+	a{
+		@include min-screen($multilevelPoint){
+			display: block;
+			padding: 5px 10px;
+			flex: 1 0 auto;
+		}
+	}
+	.submenu-list{
+		@include min-screen($multilevelPoint){
+			left: 100%;
+			top: 0;
+		}
+	}
+
+	@media (any-hover: hover) { //только для устройств с ховером
+		&:hover{
+			& >.submenu-list{
+				display: block;
+			}
+			& > .menu-list__icon{
+				transform: rotate(90deg);
+			}
+		}
+	}
+	&.active{
+		& > .menu-list__icon{
+			transform: rotate(90deg);
+		}
+
+		& > .submenu-list{
+			display: block;
+
+		}
+	}
+
+}
+.menu-list__icon{
+	width: 20px;
+	height: 20px;
+	margin: 0 5px;
+	// outline: 1px solid red;
+	position: relative;
+	display: inline-block;
+	@include max-screen($multilevelPoint){
+		display: none;
+	}
+
+	&:after{
+		content: '';
+		@include absolute-center;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 10px 7.5px 0 7.5px;
+		border-color: #000 transparent transparent transparent;
+	}
+}
+.submenu-list{
+	@include min-screen($multilevelPoint){
+		position: absolute;
+		display: none;
+		min-width: 200px;
+	}
+
+	&.opened{
+		display: block;
+	}
+	a{
+		@include max-screen($sm){
+			font-size: 12px;
+		}  
+	}
+}
+

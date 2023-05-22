@@ -1,0 +1,26 @@
+.fstdropdown{
+	position: relative;
+	overflow: visible;
+}
+.fstdiv.open>.fstdropdown{
+	position: relative;
+}
+.fstdropdown>.fstselected{
+	max-width: 374px;
+}
+.fstdropdown>.fstselected{
+
+}
+
+.fstdropdown.open:hover{
+	box-shadow: none;
+}
+.fstdropdown>.fstlist{
+	background-color: #fff;
+	position: absolute;
+	top: calc(100% + 2px);
+	box-shadow: none;
+}
+.fstdropdown.open:hover{
+	overflow: visible;
+}

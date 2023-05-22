@@ -1,0 +1,154 @@
+
+.menu-list{
+	display: flex;
+
+	@include max-screen($multilevelPoint){
+		display: block;
+	}  
+	li{
+		list-style-type: none;
+	}
+	a{
+		text-decoration: none;
+	}
+
+}
+.menu-list__item{
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	@include max-screen($multilevelPoint){
+		display: block;
+	}  
+	&:not(:last-child){
+		margin-right: 10px;
+
+		@include max-screen($multilevelPoint){
+			margin-right: 0;
+		}  
+
+	}
+	.submenu-list{
+		left: 0;
+		top: 100%;
+		background-color: gray;
+	}
+
+	@media (any-hover: hover) { //только для устройств с ховером
+		&:hover{
+			& > .submenu-list{
+				display: block;
+
+			}
+			& > .menu-list__icon{
+				transform: rotate(180deg);
+			}
+		}
+
+	}
+
+	&.active{
+		& > .menu-list__icon{
+			transform: rotate(180deg);
+		}
+
+		& > .submenu-list{
+			display: block;
+
+		}
+	}
+
+}
+.submenu-list__item{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@include max-screen($multilevelPoint){
+		display: block;
+	}  
+
+	a{
+		display: block;
+		padding: 5px 10px;
+		flex: 1 0 auto;
+	}
+	.submenu-list{
+		left: 100%;
+		top: 0;
+
+		@include max-screen($multilevelPoint){
+			position: relative;
+			left: 0;
+		}
+	}
+
+	@media (any-hover: hover) { //только для устройств с ховером
+		&:hover{
+			& >.submenu-list{
+				display: block;
+			}
+			& > .menu-list__icon{
+				transform: rotate(90deg);
+			}
+		}
+	}
+	&.active{
+		& > .menu-list__icon{
+			transform: rotate(90deg);
+		}
+
+		& > .submenu-list{
+			display: block;
+
+		}
+	}
+
+}
+.menu-list__icon{
+	width: 20px;
+	height: 20px;
+	margin: 0 5px;
+	// outline: 1px solid red;
+	position: relative;
+	display: inline-block;
+
+	&:after{
+		content: '';
+		@include absolute-center;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 10px 7.5px 0 7.5px;
+		border-color: #000 transparent transparent transparent;
+	}
+
+	@include max-screen($sm){
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		margin: 0;
+	}  
+}
+.submenu-list{
+	position: absolute;
+	display: none;
+	min-width: 200px;
+
+	@include max-screen($sm){
+		position: relative;
+		padding-left: 10px;
+	}  
+
+	&.opened{
+		display: block;
+	}
+	a{
+		@include max-screen($multilevelPoint){
+			font-size: 12px;
+		}  
+	}
+}
+

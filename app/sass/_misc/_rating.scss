@@ -1,0 +1,246 @@
+@mixin star-rating($baseColor: #000, $activeColor: gold, $ratingStarWidth: 10px, $ratingStarGap: 5px, $icomoon: false) {
+//статичный звезный рейтинг без возможности выбора полтзователем
+// $ratingStarWidth - ширина и высота отдельной звезды (передавать в миксин в px!!)
+// $ratingStarGap - расстояние м/у звездами (передавать в миксин в px!!)
+// $icomoon - символ из шрифта icomoon при использовании в роли звездочки кастомной svg-иконки. Передавать в виде строки: '\e900'
+	// при отсутствии icomoon - передавать значение  false
+	$kef: 1.4;
+  
+  display: flex;
+  width: ($ratingStarWidth + $ratingStarGap) * 5;
+  margin-left: -$ratingStarGap / 2 ;
+  margin-right: -$ratingStarGap / 2  ;
+  font-size: $ratingStarWidth * $kef;
+  
+  &__star{
+    flex: 0 0 calc(20% - #{$ratingStarGap});
+    margin: 0 $ratingStarGap / 2;
+    height: $ratingStarWidth;
+    display: block;
+    position: relative;
+    
+    &:before{
+      display: block;
+      color: $baseColor;
+      // position: absolute;
+      @if $icomoon != false { 
+      		content: $icomoon;
+      		font-family: 'rating' !important;
+			    speak: never;
+			    font-style: normal;
+			    font-weight: normal;
+			    font-variant: normal;
+			    text-transform: none;
+			    -webkit-font-smoothing: antialiased;
+			    -moz-osx-font-smoothing: grayscale;
+
+  		}@else{
+      		content: '★';
+
+  		}
+      line-height: $ratingStarWidth;
+      // left: 50%;
+      // transform: translateX(-50%);
+    }
+    &.active{
+      &:before{
+        color: $activeColor;
+        // для использования с кастомной иконкой вместо шрифтового символа
+     //  	color: transparent;
+     //  	background-image: url(https://lh5.googleusercontent.com/-DZ5jyR2NRfk/AAAAAAAAAAI/AAAAAAAAACk/I8BNLS9vfCs/photo.jpg?sz=50);
+	    // background-size: contain;
+	    // background-repeat: no-repeat;
+      }
+    }
+  }
+}
+@mixin simple-rating($baseColor: #000, $activeColor: gold, $ratingStarWidth: 20px, $ratingStarGap: 5px, $icomoon: false) {
+	//звезный рейтинг с возможностью выбора пользователем по клику, только целые числа
+	// $ratingStarWidth - ширина и высота отдельной звезды (передавать в миксин в px!!)
+	// $ratingStarGap - расстояние м/у звездами (передавать в миксин в px!!)
+	// $icomoon - символ из шрифта icomoon при использовании в роли звездочки кастомной svg-иконки. Передавать в виде строки: '\e900'
+	$kef: 1.4;
+	display: flex;
+	width: ($ratingStarWidth + $ratingStarGap) * 5;
+	margin-left: -$ratingStarGap /2;
+	margin-right: -$ratingStarGap /2;
+	flex-direction: row-reverse;
+	font-size: $ratingStarWidth * $kef;
+	label{
+		width: calc(20% - #{$ratingStarGap});
+		// flex: 0 0 calc(20% - #{$ratingStarGap});//старый вариант
+		margin: 0 $ratingStarGap / 2;
+		height: $ratingStarWidth;
+		display: block;
+		position: relative;
+		&:before{
+			display: block;
+			width: 100%;
+			// margin: 0 -7px;
+			position: absolute;
+			@if $icomoon != false { 
+      		content: $icomoon;
+      		font-family: 'rating' !important;
+			    speak: never;
+			    font-style: normal;
+			    font-weight: normal;
+			    font-variant: normal;
+			    text-transform: none;
+			    -webkit-font-smoothing: antialiased;
+			    -moz-osx-font-smoothing: grayscale;
+
+  		}@else{
+      		content: '★';
+  		}
+			line-height: $ratingStarWidth;
+			left: 50%;
+			transform: translateX(-50%);
+			color: $baseColor;
+		}
+		&:hover{
+			&:before{
+				color: $activeColor;
+			}
+			& ~ label:before{
+				color: $activeColor;
+				// для использования с кастомной иконкой вместо шрифтового символа
+				     // color: transparent;
+				     // background-image: url(https://lh5.googleusercontent.com/-DZ5jyR2NRfk/AAAAAAAAAAI/AAAAAAAAACk/I8BNLS9vfCs/photo.jpg?sz=50);
+				    // background-size: contain;
+				    // background-repeat: no-repeat;
+			}
+		}
+
+	}
+	input{
+		position: absolute;
+		left: -9999px;
+
+		&:checked ~ label{
+			&:before{
+				color: $activeColor; 
+				// для использования с кастомной иконкой вместо шрифтового символа
+			     	//color: transparent;
+			     	// background-image: url(https://lh5.googleusercontent.com/-DZ5jyR2NRfk/AAAAAAAAAAI/AAAAAAAAACk/I8BNLS9vfCs/photo.jpg?sz=50);
+				    // background-size: contain;
+				    // background-repeat: no-repeat;
+			}
+		}
+	}
+
+}
+
+@mixin crystal-rating($baseColor: #000, $activeColor: gold, $fontSize: 40, $spacing: 0,  $icomoon: false) {
+	// $spacing передавать без 'px'
+	// $icomoon - символ из шрифта icomoon при использовании в роли звездочки кастомной svg-иконки. Передавать в виде строки: '\e900'
+	  display: flex;
+	  align-items: center;
+	  display: flex;
+	  position: relative;
+	  font-size: $fontSize + px;
+	  @if $icomoon != false { 
+	  	line-height: 0.8;
+
+  	}@else{
+	  	line-height: 0.75;
+  	}
+	  letter-spacing: $spacing + px;
+	  // outline: 1px solid pink;
+	  
+	  &__body{
+	  	position: relative;
+	    // width: ($fontSize * 5 * 0.833) + $spacing * 5 * 0.833 + px;
+	    // outline: 1px solid;
+	    &:before{
+	    	display: block;
+	    	@if $icomoon != false { 
+	    		content: $icomoon $icomoon $icomoon $icomoon $icomoon;
+	    		font-family: 'rating' !important;
+	    		speak: never;
+	    		font-style: normal;
+	    		font-weight: normal;
+	    		font-variant: normal;
+	    		text-transform: none;
+	    		-webkit-font-smoothing: antialiased;
+	    		-moz-osx-font-smoothing: grayscale;
+	    		color: $baseColor;
+
+	    	}@else{
+	    		content: '★★★★★';
+	    	}
+	    }
+	  }
+	  &__items{
+	    position: absolute;
+	    display: flex;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    
+	    input{
+	      flex: 0 0 20%;
+	      display: block;
+	      height: 100%;
+	      opacity: 0;
+	      margin: 0;
+	    }
+	  }
+		.crystal-rating__active{
+		  position: absolute;
+		  width: 0;
+		  display: block;
+		  height: 100%;
+		  top: 0;
+		  left: 0;
+		  transition: width 0.2s ease-in;
+		 
+		  &:before{
+		  	@if $icomoon != false { 
+	    		content: $icomoon $icomoon $icomoon $icomoon $icomoon;
+	    		font-family: 'rating' !important;
+	    		speak: never;
+	    		font-style: normal;
+	    		font-weight: normal;
+	    		font-variant: normal;
+	    		text-transform: none;
+	    		-webkit-font-smoothing: antialiased;
+	    		-moz-osx-font-smoothing: grayscale;
+
+	    	}@else{
+	    		content: '★★★★★';
+	    	}
+		    position: absolute;
+		    display: block;
+		    height: 100%;
+		    width: 100%;
+		    top: 0;
+		    left: 0;
+		    color: $activeColor;
+		    overflow: hidden;
+		  }
+		}
+		.crystal-rating__value{
+		  display: inline-block;
+		  font-size: .7em;
+		  margin-left: 15px;
+		  letter-spacing: normal;
+		}
+}
+.star-rating{
+	@include star-rating(red, gold, 50px, 20px, false);
+}
+.simple-rating{
+	// @include simple-rating(#000, gold, 50px, 30px, false);
+	@include simple-rating(red, gold, 35px, 25px, false);
+}
+.crystal-rating{
+	@include crystal-rating(gray, gold, 50, 8, false);
+}
+// для кастомизации иконки звездочек можно использовать шрифт Icomoon (https://icomoon.io/app/#/select)
+// 1. экспортировать иконку в .svg
+// 2. На https://icomoon.io/app/#/select создать шрифт из одной этой иконки, получить архив с иконочным шрифтом
+// 3. содержимое архива положить в fonts/rating-font
+// 4. В sass/misc/adjustment расскомментировать:
+	// @import "_misc/font-rating";
+	// @import "_misc/_rating";

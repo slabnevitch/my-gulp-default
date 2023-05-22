@@ -1,0 +1,29 @@
+@import "_misc/_mixins";
+@import "fonts";
+@import "fonts-auto";
+
+// основные стили икомун
+// @import "../fonts/icomoon/style";
+// измеенен путь до файлов. Архив, полученный с сайта icomoon, распоковывать в fonts
+@import "_misc/_icomoon-custom";
+
+// svg-sprite
+// @import "_misc/_sprite-svg.scss";
+
+@import "_misc/_media-mixins";
+@import "libs";
+@import "_misc/_vars";
+
+@import "_misc/_functions";
+// @import "_misc/smart-grid";
+// @import "_misc/_counter";
+// @import "_misc/multilevel-panel"; //только multilevel-panel
+// @import "_misc/multilevel-dropdown-panel"; //multilevel-panel совместно с multilevel-dropdown
+// @import "_misc/multilevel-dropdown";
+
+@import "_misc/_adjustment";
+@import "_misc/_ui";
+
+@import "_sections/**/*";
+
+// @import "_media";

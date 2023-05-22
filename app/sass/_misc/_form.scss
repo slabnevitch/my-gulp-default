@@ -1,0 +1,65 @@
+.form__input {
+	height: 50px;
+	padding-left: 24px;
+	padding-right: 24px;
+	border: 1px solid #000;
+	padding-right: 55px;
+	background: #fff ;
+	border-radius: 3px 0 0 3px;
+	@include placecolor(rgba(#fff, 0.5));
+	color: #fff;
+}
+.form__custom-policy {
+	display: flex;
+	align-items: flex-start;
+
+}
+.form__custom {
+	position: relative;
+	flex-shrink: 0;
+	margin-right: 20px;
+}
+.form__check {
+	@include checkbox;
+	&:checked + .form__custom-chek {
+		&:before{
+			display: block;
+		}
+	}
+}
+.form__custom-chek {
+	display: block;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #000;
+	border-radius: 2px;
+
+	@media (any-hover: hover) { //только для устройств с ховером
+				&:hover{
+				cursor: pointer;
+			}
+		}
+	&:before{
+		@include absolute-center-old;
+		display: none;
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background-color: #000;
+		content: '';
+	}
+}
+.form__area{
+	width: 100%;
+	height: 100px;
+	padding:20px;
+    resize: none;
+	border: none;
+	background: #fff;
+	padding-left: 20px;
+	color: #222222;
+}
+.form__policy {
+
+}

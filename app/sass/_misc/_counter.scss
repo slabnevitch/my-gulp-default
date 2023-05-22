@@ -1,0 +1,51 @@
+.counter {
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
+	width: 200px;
+	height: 60px;
+	border: 1px solid #EFEFEF;
+}
+.counter__button,
+.counter__count{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	text-align: center;
+	// outline: 1px solid;
+	font-size: em(30);
+}
+.counter__button {
+	flex: 1 0 30%;
+	max-width: 30%;
+	cursor: pointer;
+	color: gray;
+	outline: none;
+	border: none;
+	user-select: none;
+	
+	@include min-screen($md){
+		cursor: pointer;
+		
+	}
+}
+
+.counter__count {
+	// flex: 0 1 auto;
+	outline: none;
+	border: none;
+}
+
+.counter__block{
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	overflow: hidden;
+}
+.counter__measures{
+	margin-left: 5px;
+	font-size: em(30);
+
+}

@@ -1,0 +1,86 @@
+/*--------------------cart-page__left----------------------*/
+.praongallery{
+		@include bz();
+	*{
+		@include bz();
+
+	}
+}
+.praongallery__slider{
+	&.slick-dotted{
+		margin-bottom: -7px;
+
+	}
+	.slick-prev,
+	.slick-next{
+		width: 32px;
+		height: 32px;
+		top: 190px;
+	}
+	.slick-prev{
+		left: -30px;
+	}
+	.slick-next{
+		right: -30px;
+	}
+	.slick-prev:before, .slick-next:before{
+		content: '';
+		width: 32px;
+		height: 32px;
+		display: block;
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+	.slick-next:before{
+		background-image: url(../img/static/knportal_base/img/a-next.png);
+
+	}
+	.slick-prev:before{
+		background-image: url(../img/static/knportal_base/img/a-prev.png);
+
+	}
+	.slick-dots{
+		margin-top: 14px;
+		position: static;
+		display: flex;
+		margin-left: -3.5px;
+		margin-right: -3.5px;
+		// width: 100%;
+
+		li{
+			width: auto;
+			height: auto;
+			margin: 0;
+			display: block;
+			margin-left: 3.4px;
+			margin-right: 3.4px;
+			margin-bottom: 7px;
+			a{
+				width: 98px;
+    		height: 80px;
+    		display: block;
+
+    		img{
+			    width: 100%;
+			    cursor: pointer;
+			    object-fit: cover;
+			    object-position: center;
+			    height: 100%;
+			    border-radius: 5px;
+    		}
+			}
+		}
+	}
+}
+.praongallery__slide{
+	height: 379px;
+	text-align: center;
+	img{
+		max-height: 100%;
+		max-width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+/*--------------------END cart-page__left----------------------*/ 

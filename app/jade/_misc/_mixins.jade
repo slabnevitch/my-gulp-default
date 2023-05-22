@@ -1,0 +1,94 @@
+mixin icon(name,mod)
+	- mod = mod || ''
+	svg(class="icon icon-" + name + ' ' + mod)
+		use(xlink:href="img/icons-svg/symbol/sprite.svg#" + name)
+
+mixin menu(className, items)
+	ul(class=className)
+		each item in items
+			li(class=className + '__item')
+				a(href="#" class=className + '__link')= item
+
+//- вызов: +crumbs('breadcrumbs', ['', ''], false)
+mixin crumbs(className = 'breadcrumbs', items, schema = false)
+	ul(class=className itemscope=schema ? true : false itemtype=schema ? "https://schema.org/BreadcrumbList" : false)
+		each item, i in items
+			li(class=className + '__item' itemprop=schema?"itemListElement":false itemscope=schema?true:false itemtype=schema?"https://schema.org/ListItem":false)
+				a(itemprop=schema?"item":false href=schema?"https://example.com/dresses":"#" class=className + '__link')
+					span(itemprop=schema?"name":false)= item
+				meta(itemprop=schema?'position':false content=schema?(i+1):false)
+
+//- вызов, например: +swiper('my-swiper', true, false, true)
+mixin swiper(classname, pagination, scrollbar, navigation)
+	div(class="swiper-container swiper" + " " + classname)
+		.swiper-wrapper
+			if block
+				block
+			else
+				.swiper-slide Only one slide
+		if pagination
+			.swiper-pagination
+
+		if navigation
+			.swiper-button-prev
+			.swiper-button-next
+
+		if scrollbar
+			.swiper-scrollbar
+
+//- Пагинация
+//- items: Array, arrowClass: String
+//- вызов: +pagination(items, 'icon-chev-down', 'chev-left', 'chev-right')
+mixin pagination(items = [1, 2, 3, '...', 15], arrowClass = '', iconPrev = false, iconNext = false)
+	.pagination
+		button(class=arrowClass ? "pagination__arrow pagination__arrow--prev" + ' ' + arrowClass : "pagination__arrow pagination__arrow--prev" disabled='')
+				if iconPrev
+					+icon(iconPrev)
+		ul.pagination__list
+			each item, i in items
+				li.pagination__item
+					a(class=i==3 ? "pagination__link active" : "pagination__link" href='#')= item
+		button(class=arrowClass ? "pagination__arrow pagination__arrow--next" + ' ' + arrowClass : "pagination__arrow pagination__arrow--next")
+				if iconNext
+					+icon(iconNext)
+
+//- статичный звезный рейтинг без возможности выбора полтзователем
+//- rate - кол-во "золотых" звезд в строке
+mixin starRating(rate)
+	.star-rating
+		if rate > 0
+			-for(var i=0; i<rate; i++)
+				.star-rating__star.active 
+			-for(var i=rate; i<5; i++)
+				.star-rating__star
+		else
+			-for(var i=0; i<5; i++)
+				.star-rating__star
+
+//- звезный рейтинг с возможностью выбора пользователем по клику, только целые числа
+//- value - велиичина рейтинга, целое число
+//- каждый такой рейтинг должен быть обернут в тег form
+mixin simpleRating(value)
+	.simple-rating
+		- for (var i=5; i > 0 ; i--)
+			if value === i
+				input(id="inp" + i type='radio' checked name='rating' value=i)
+				label(for="inp" + i)
+			else
+				input(id="inp" + i type='radio' name='rating' value=i)
+				label(for="inp" + i)
+
+//- звезный рейтинг с возможностью выбора пользователем по клику с демонстрацией значения рейтинга, может прнимать целые и дробные числа
+//- value - велиичина рейтинга, целое или дробное число
+//- для работы нужен js-скрипт ratings.js
+mixin crystalRating(rating)
+	.crystal-rating
+		.crystal-rating__body
+			.crystal-rating__active
+			.crystal-rating__items
+				input(value='1' type='radio' name='crystal')
+				input(value='2' type='radio' name='crystal')
+				input(value='3' type='radio' name='crystal')
+				input(value='4' type='radio' name='crystal')
+				input(value='5' type='radio' name='crystal')
+		.crystal-rating__value= rating

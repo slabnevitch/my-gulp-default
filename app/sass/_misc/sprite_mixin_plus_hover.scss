@@ -1,0 +1,12 @@
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+
+      &:hover{
+        @extend .#{$sprite-name}-hover !optional;
+      }
+    }
+  }
+}

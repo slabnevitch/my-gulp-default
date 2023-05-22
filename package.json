@@ -1,0 +1,48 @@
+{
+  "name": "first-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-cheerio": "^1.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-svgmin": "^2.2.0",
+    "gulp-ttf2eot": "^1.1.2",
+    "gulp-ttf2woff": "^1.1.1",
+    "gulp-ttf2woff2": "^3.0.0",
+    "gulp-uglify": "^2.0.1",
+    "gulp-watch": "^4.3.11",
+    "gulp-webp": "^4.0.1",
+    "gulp-webpcss": "^1.1.1",
+    "gulp.spritesmith": "^6.3.0",
+    "smart-grid": "^2.1.2",
+    "webp-converter": "^2.2.3"
+  },
+  "dependencies": {
+    "del": "^2.2.2",
+    "gulp-sass": "^5.1.0",
+    "imagemin-pngquant": "^5.0.0",
+    "sass": "^1.57.0",
+    "ttf2woff2": "^4.0.4"
+  }
+}

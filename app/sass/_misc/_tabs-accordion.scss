@@ -1,0 +1,35 @@
+@mixin tabs-acc($checkpoint){ // $checkpoint должен сответствовать атрибуту data-point в хтмл, например data-point="sm"
+	.tabs-buttons{
+		@media screen and (min-width: $checkpoint){
+			display: flex;
+		}
+		li{
+			list-style-type: none;
+		}
+		.accordion__link{
+			&:hover, &:active, &:focus{
+				text-decoration: none;
+			}
+			
+		}
+	}
+	.tab{
+		&.active{
+			background-color: pink;
+		}
+	}
+	.tab-content{
+		list-style-type: none;
+		@media screen and (max-width: $checkpoint){
+			display: none;
+		}
+	}
+	.accordion__content{
+		@media screen and (min-width: $checkpoint){
+			display: none;
+		}
+	}
+}
+.combine{
+	@include tabs-acc($sm);
+}

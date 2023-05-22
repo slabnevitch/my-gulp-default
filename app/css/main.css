@@ -1,0 +1,283 @@
+@font-face {
+  font-family: "RobotoRegular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/RobotoRegular/RobotoRegular.woff2") format("woff2"), url("../fonts/RobotoRegular/RobotoRegular.woff") format("woff");
+}
+@font-face {
+  font-family: "raleway-v22-latin_cyrillic-600";
+  font-display: swap;
+  src: url("../fonts/raleway-v22-latin_cyrillic-600.woff2") format("woff2"), url("../fonts/raleway-v22-latin_cyrillic-600.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "raleway-v22-latin_cyrillic-900";
+  font-display: swap;
+  src: url("../fonts/raleway-v22-latin_cyrillic-900.woff2") format("woff2"), url("../fonts/raleway-v22-latin_cyrillic-900.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "raleway-v22-latin_cyrillic-regular";
+  font-display: swap;
+  src: url("../fonts/raleway-v22-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/raleway-v22-latin_cyrillic-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "icomoon";
+  src: url("../fonts/icomoon/fonts/icomoon.eot?za5w69");
+  src: url("../fonts/icomoon/fonts/icomoon.eot?za5w69#iefix") format("embedded-opentype"), url("../fonts/icomoon/fonts/icomoon.ttf?za5w69") format("truetype"), url("../fonts/icomoon/fonts/icomoon.woff?za5w69") format("woff"), url("../fonts/icomoon/fonts/icomoon.svg?za5w69#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+/*--------------------adjustment----------------------*/
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "raleway-v22-latin_cyrillic-regular", sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  color: #000;
+}
+.lock body {
+  overflow: hidden;
+  -ms-touch-action: none;
+  touch-action: none;
+  overflow-behavior: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+input input[type=text],
+input[type=email],
+input[type=tel],
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input,
+input {
+  outline: none;
+  display: block;
+  width: 100%;
+}
+
+textarea.input {
+  resize: none;
+  padding: 0 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1200px;
+}
+
+.hidden {
+  display: none;
+}
+
+.ibg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-bottom: 52.25%;
+}
+
+.ibg img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+._prod-img {
+  position: relative;
+  padding-bottom: 80%;
+}
+._prod-img img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+._fit {
+  padding-bottom: 80%;
+  position: relative;
+}
+
+._fit ._fit-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) or (--webkit-backdrop-filter: blur(10px)) {
+  .bd-filter-fallback {
+    background-color: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(31px);
+    backdrop-filter: blur(31px);
+  }
+}
+
+/*--------------------END adjustment----------------------*/
+/*--------------------ui----------------------*/
+/*--------------------END ui----------------------*/
+/*--------------------cart-page__left----------------------*/
+.praongallery {
+  box-sizing: border-box;
+}
+.praongallery * {
+  box-sizing: border-box;
+}
+
+.praongallery__slider.slick-dotted {
+  margin-bottom: -7px;
+}
+.praongallery__slider .slick-prev,
+.praongallery__slider .slick-next {
+  width: 32px;
+  height: 32px;
+  top: 190px;
+}
+.praongallery__slider .slick-prev {
+  left: -30px;
+}
+.praongallery__slider .slick-next {
+  right: -30px;
+}
+.praongallery__slider .slick-prev:before, .praongallery__slider .slick-next:before {
+  content: "";
+  width: 32px;
+  height: 32px;
+  display: block;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.praongallery__slider .slick-next:before {
+  background-image: url(../img/static/knportal_base/img/a-next.png);
+}
+.praongallery__slider .slick-prev:before {
+  background-image: url(../img/static/knportal_base/img/a-prev.png);
+}
+.praongallery__slider .slick-dots {
+  margin-top: 14px;
+  position: static;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -3.5px;
+  margin-right: -3.5px;
+}
+.praongallery__slider .slick-dots li {
+  width: auto;
+  height: auto;
+  margin: 0;
+  display: block;
+  margin-left: 3.4px;
+  margin-right: 3.4px;
+  margin-bottom: 7px;
+}
+.praongallery__slider .slick-dots li a {
+  width: 98px;
+  height: 80px;
+  display: block;
+}
+.praongallery__slider .slick-dots li a img {
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.praongallery__slide {
+  height: 379px;
+  text-align: center;
+}
+.praongallery__slide img {
+  max-height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*--------------------END cart-page__left----------------------*/
+.header .sidebar-menu {
+  display: -ms-flexbox;
+  display: flex;
+}
+.header .sidebar-menu .dl-submenu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/*--------------------_right-sidebar----------------------*/
+.right-info .author div {
+  font-size: 12px;
+}
+.right-info .num-short .btn {
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 180px;
+  background-color: rgba(0, 42, 147, 0.7);
+  color: #fff;
+  font-weight: 900;
+}
+
+.wrap-new-main__second-box ul li {
+  margin-top: 0;
+}
+.wrap-new-main__second-box ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.wrap-new-main__second-box ul li a {
+  color: #3E3E3E;
+}
+
+.map-toggle {
+  margin-top: 11px;
+  font-size: 14px;
+  color: #139E19;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/*--------------------END _right-sidebar----------------------*/
+/*# sourceMappingURL=maps/main.css.map */
