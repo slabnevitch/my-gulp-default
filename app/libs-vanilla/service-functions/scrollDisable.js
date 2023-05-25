@@ -1,5 +1,5 @@
-(function scrollDisabler(){
-	var body = document.body;
+export default (function scrollDisabler(){
+	const body = document.body;
 	
 	return {
 		disableScroll: function () {

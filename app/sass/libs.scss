@@ -5,6 +5,7 @@
 // нужно удалить один из них.
 
 
+// ==== NO WEBPACK import =====
 	// Bootstrap 4
 // @import "../libs/bootstrap/css/bootstrap-grid.min";
 // @import "../libs/bootstrap-4/scss/bootstrap-reboot.scss";
@@ -13,7 +14,7 @@
 
 	//magnific-popup	
 // /*-----------magnific-popup-----------*/
-// @import "../js/libs/magnific-popup/dist/magnific-popup";
+// @import "../libs/magnific-popup/dist/magnific-popup";
 // /*-----------END magnific-popup-------*/
 
 	//jquery-ui	
@@ -64,9 +65,9 @@
 // /*--end swiper--*/
 
 	// tiny-slider
-// /*--tiny-slider--*/
-// @import "../js/libs/tiny-slider/dist/tiny-slider";
-// /*--end tiny-slider--*/
+/*--tiny-slider--*/
+// @import "../libs-vanilla/tiny-slider/dist/tiny-slider";
+/*--end tiny-slider--*/
 	
 	// fstdropdown
 // /*--fstdropdown--*/
@@ -103,3 +104,109 @@
 // /*--dl-menu-*/
 // @import "../js/libs/dlmenu/css/component";
 ///*--end dl-menu--*/
+
+// ==== END NO WEBPACK import =====
+
+
+// ==== WEBPACK import =====
+
+	// Bootstrap 4
+// @import "../libs/bootstrap/css/bootstrap-grid.min";
+// @import "../libs/bootstrap-4/scss/bootstrap-reboot.scss";
+// @import "../libs/bootstrap-4/scss/bootstrap-grid.scss";
+// @import "../libs/bootstrap-4/scss/utilities/_sizing.scss";
+
+	//magnific-popup	
+// /*-----------magnific-popup-----------*/
+// @import "../libs/magnific-popup/dist/magnific-popup";
+// /*-----------END magnific-popup-------*/
+
+	//jquery-ui	
+// /*--end jquery-ui-dropdown--*/
+// @import "../libs/jquery-ui/jquery-ui.min";
+// @import "../libs/jquery-ui/jquery-ui.theme";
+// @import "../libs/jquery-ui/jquery-ui.structure.min";
+// /*--end jquery-ui-dropdown--*/
+	
+	// slick
+// /*--slick--*/
+// @import "../libs/slick/slick";
+// @import "../libs/slick/slick-theme";
+// /*--end slick--*/
+
+	// slick-master
+// /*--slick-master--*/
+// @import "../libs/slick-master/slick";
+// @import "../libs/slick-master/slick-theme";
+// /*--end slick-master--*/
+	
+	// superfish
+// /*--superfish--*/
+// @import "../libs/superfish/dist/css/superfish";
+// @import "../libs/superfish/dist/css/superfish-navbar";
+// @import "../libs/superfish/dist/css/superfish-vertical";
+// @import "../libs/superfish/dist/css/megafish";
+// /*--end superfish--*/
+
+	// slideout
+// /*--slideout--*/
+// @import "../libs-vanilla/slideout/index";
+// /*--end slideout--*/
+	
+	// multilevel-panel
+// /*--multilevel-panel--*/
+// @import "../libs-vanilla/multilevel-panel/multilevel-panel";
+// /*--end multilevel-panel--*/
+
+	// micromodal
+// /*--micromodal--*/
+// @import "../libs-vanilla/micromodal/micromodal";
+// /*--end micromodal--*/
+
+	// swiper
+// /*--swiper--*/
+// @import "../libs-vanilla/swiper/swiper-bundle.min";
+// /*--end swiper--*/
+
+	// tiny-slider
+/*--tiny-slider--*/
+// @import "../libs-vanilla/tiny-slider/dist/tiny-slider";
+/*--end tiny-slider--*/
+	
+	// fstdropdown
+// /*--fstdropdown--*/
+// @import "../libs-vanilla/fstdropdown/fstdropdown.min";
+// @import "../libs-vanilla/fstdropdown/fstdropdown-custom";
+// /*--end fstdropdown--*/
+
+	// noUiSlider
+// /*--noUiSlider--*/
+// @import "../libs-vanilla/noUiSlider/nouislider.min";
+// /*--end noUiSlider--*/
+
+	// tippy
+// /*--tippy--*/
+// @import '/node_modules/tippy.js/dist/tippy';
+// /*--end tippy--*/
+
+	// simplebar
+// /*--simplebar-*/
+// @import "../libs-vanilla/simplebar/simplebar";
+// /*--end simplebar--*/
+
+	// FormHandler
+/*--FormHandler-*/
+// @import "../libs-vanilla/formhandler.js-1.1.2/dist/css/formHandler.min";
+/*--end FormHandler--*/
+
+	// baguetteBox
+// /*--baguetteBox-*/
+// @import "../libs-vanilla/baguetteBox/dist/baguetteBox.min";
+///*--end baguetteBox--*/
+
+	// dl-menu
+// /*--dl-menu-*/
+// @import "../libs/dlmenu/css/component";
+///*--end dl-menu--*/
+
+// ==== END WEBPACK import =====

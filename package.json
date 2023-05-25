@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-root-import": "^6.6.0",
     "browser-sync": "^2.26.7",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
@@ -22,6 +25,7 @@
     "gulp-group-css-media-queries": "^1.2.0",
     "gulp-imagemin": "^3.1.1",
     "gulp-jade": "^1.1.0",
+    "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^2.4.1",
@@ -36,13 +40,16 @@
     "gulp-webpcss": "^1.1.1",
     "gulp.spritesmith": "^6.3.0",
     "smart-grid": "^2.1.2",
-    "webp-converter": "^2.2.3"
+    "webp-converter": "^2.2.3",
+    "webpack-stream": "^6.1.2"
   },
   "dependencies": {
     "del": "^2.2.2",
     "gulp-sass": "^5.1.0",
     "imagemin-pngquant": "^5.0.0",
+    "jquery": "^3.6.0",
     "sass": "^1.57.0",
+    "tippy.js": "^6.3.7",
     "ttf2woff2": "^4.0.4"
   }
 }
