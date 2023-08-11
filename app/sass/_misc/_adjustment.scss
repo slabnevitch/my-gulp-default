@@ -1,5 +1,7 @@
 /*--------------------adjustment----------------------*/
-*{
+*,
+*::before,
+*::after{
 	box-sizing: border-box;
 }
 html, body{
@@ -58,6 +60,7 @@ body{
 // 	display: flex;
 // 	flex-direction: column;
 // 	height: 100%;
+// overflow: clip;
 // 	.header{
 // 		flex: 0 0 auto;
 // 	}
@@ -82,10 +85,18 @@ body{
 // 	top: 0;
 // 	width: 100%;
 // }
-
+a{
+	color: inherit;
+img{
+	vertical-align: top;
+}
 ul, li{
 	margin: 0;
 	padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight: inherit;
+	font-size: inherit;
 }
 input
 input[type="text"],
