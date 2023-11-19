@@ -1,4 +1,4 @@
-@mixin star-rating($baseColor: #000, $activeColor: gold, $ratingStarWidth: 10px, $ratingStarGap: 5px, $icomoon: false) {
+@mixin star-rating($baseColor: #000, $activeColor: gold, $ratingStarWidth: 10, $ratingStarGap: 5, $icomoon: false) {
 //статичный звезный рейтинг без возможности выбора полтзователем
 // $ratingStarWidth - ширина и высота отдельной звезды (передавать в миксин в px!!)
 // $ratingStarGap - расстояние м/у звездами (передавать в миксин в px!!)
@@ -7,15 +7,15 @@
 	$kef: 1.4;
   
   display: flex;
-  width: ($ratingStarWidth + $ratingStarGap) * 5;
-  margin-left: -$ratingStarGap / 2 ;
-  margin-right: -$ratingStarGap / 2  ;
-  font-size: $ratingStarWidth * $kef;
+  width: rem($ratingStarWidth + $ratingStarGap) * 5;
+  margin-left: rem(math.div(-$ratingStarGap, 2));
+  margin-right: rem(math.div(-$ratingStarGap, 2));
+  font-size: rem($ratingStarWidth) * $kef;
   
   &__star{
-    flex: 0 0 calc(20% - #{$ratingStarGap});
-    margin: 0 $ratingStarGap / 2;
-    height: $ratingStarWidth;
+    flex: 0 0 calc(20% - rem($ratingStarGap));
+    margin: 0 rem(math.div($ratingStarGap,2));
+    height: rem($ratingStarWidth);
     display: block;
     position: relative;
     
@@ -38,7 +38,7 @@
       		content: '★';
 
   		}
-      line-height: $ratingStarWidth;
+      line-height: rem($ratingStarWidth);
       // left: 50%;
       // transform: translateX(-50%);
     }
@@ -61,16 +61,16 @@
 	// $icomoon - символ из шрифта icomoon при использовании в роли звездочки кастомной svg-иконки. Передавать в виде строки: '\e900'
 	$kef: 1.4;
 	display: flex;
-	width: ($ratingStarWidth + $ratingStarGap) * 5;
-	margin-left: -$ratingStarGap /2;
-	margin-right: -$ratingStarGap /2;
+	width: rem($ratingStarWidth + $ratingStarGap) * 5;
+	margin-left: rem(math.div(-$ratingStarGap ,2));
+	margin-right: rem(math.div(-$ratingStarGap ,2));
 	flex-direction: row-reverse;
-	font-size: $ratingStarWidth * $kef;
+	font-size: rem($ratingStarWidth) * $kef;
 	label{
-		width: calc(20% - #{$ratingStarGap});
+		width: calc(20% - rem($ratingStarGap));
 		// flex: 0 0 calc(20% - #{$ratingStarGap});//старый вариант
-		margin: 0 $ratingStarGap / 2;
-		height: $ratingStarWidth;
+		margin: 0 rem(math.div($ratingStarGap, 2));
+		height: rem($ratingStarWidth);
 		display: block;
 		position: relative;
 		&:before{
@@ -92,7 +92,7 @@
   		}@else{
       		content: '★';
   		}
-			line-height: $ratingStarWidth;
+			line-height: rem($ratingStarWidth);
 			left: 50%;
 			transform: translateX(-50%);
 			color: $baseColor;
@@ -114,7 +114,7 @@
 	}
 	input{
 		position: absolute;
-		left: -9999px;
+		left: rem(-9999);
 
 		&:checked ~ label{
 			&:before{
@@ -133,18 +133,17 @@
 @mixin crystal-rating($baseColor: #000, $activeColor: gold, $fontSize: 40, $spacing: 0,  $icomoon: false) {
 	// $spacing передавать без 'px'
 	// $icomoon - символ из шрифта icomoon при использовании в роли звездочки кастомной svg-иконки. Передавать в виде строки: '\e900'
-	  display: flex;
 	  align-items: center;
 	  display: flex;
 	  position: relative;
-	  font-size: $fontSize + px;
+	  font-size: rem($fontSize);
 	  @if $icomoon != false { 
 	  	line-height: 0.8;
 
   	}@else{
 	  	line-height: 0.75;
   	}
-	  letter-spacing: $spacing + px;
+	  letter-spacing: rem($spacing);
 	  // outline: 1px solid pink;
 	  
 	  &__body{
@@ -223,20 +222,20 @@
 		.crystal-rating__value{
 		  display: inline-block;
 		  font-size: .7em;
-		  margin-left: 15px;
+		  margin-left: rem(15);
 		  letter-spacing: normal;
 		}
 }
-.star-rating{
-	@include star-rating(red, gold, 50px, 20px, false);
-}
-.simple-rating{
+// .star-rating{
+// 	@include star-rating(red, gold, 50, 20, false);
+// }
+// .simple-rating{
 	// @include simple-rating(#000, gold, 50px, 30px, false);
-	@include simple-rating(red, gold, 35px, 25px, false);
-}
-.crystal-rating{
-	@include crystal-rating(gray, gold, 50, 8, false);
-}
+// 	@include simple-rating(red, gold, 35, 25, false);
+// }
+// .crystal-rating{
+// 	@include crystal-rating(gray, gold, 50, 8, false);
+// }
 // для кастомизации иконки звездочек можно использовать шрифт Icomoon (https://icomoon.io/app/#/select)
 // 1. экспортировать иконку в .svg
 // 2. На https://icomoon.io/app/#/select создать шрифт из одной этой иконки, получить архив с иконочным шрифтом

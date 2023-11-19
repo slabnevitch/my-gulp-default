@@ -46,7 +46,8 @@
     
     return {
       init: function(){
-        cyclingRatings()
+        console.log('init!')
+        cyclingRatings();
       }
     }
   }

@@ -4,8 +4,9 @@
 *::after{
 	box-sizing: border-box;
 }
+
 html{
-	font-size: ($rootFontSize / 16px) * 100%;
+	font-size: math.div($rootFontSize, 16px) * 100%;
 }
 html, body{
 	margin: 0;
@@ -15,7 +16,7 @@ html, body{
 body{
 	font-family: $reg;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: rem($baseFontSize);
 	min-width: $minWidth;
 	position: relative;
 	// line-height: 1.6;

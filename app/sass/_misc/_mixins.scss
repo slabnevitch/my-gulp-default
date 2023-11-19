@@ -288,7 +288,7 @@ $mins: '')) {
 	box-sizing: border-box;
 }
 
-$baseFontSize : 16;
+$rootFontSize: 16px;
 @function rem($pixels, $context: $baseFontSize) {
   @if (unitless($pixels)) {
     $pixels: $pixels * 1px;

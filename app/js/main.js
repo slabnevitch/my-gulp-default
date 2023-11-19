@@ -154,10 +154,10 @@
 	
 //- end VANILLA JS===================================
 
-jQuery(document).ready(function() {
-	console.log('jQuery document ready');
+// jQuery(document).ready(function() {
+// 	console.log('jQuery document ready');
 
-});
+// });
 
 // console.log(magnificPopup)
 
