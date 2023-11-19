@@ -139,14 +139,18 @@ textarea{
 	padding: 0 0;
 }
 //END input
-// .wrapper{
-// 	margin: 0 auto;
-// 	padding-left: $containerPaddings / 2 + px;
-// 	padding-right: $containerPaddings / 2 + px;
-// 	max-width: $maxContainerWidth + px;
-// 	// @include row-flex();
-// 	// @include wrapper();
-// }
+.wrapper{
+	margin: 0 auto;
+	padding-left: math.div($containerPaddings, 2) + px;
+	padding-right: math.div($containerPaddings, 2) + px;
+	max-width: $maxContainerWidth + px;
+	// @include row-flex();
+	// @include wrapper();
+}
+.wrapper-flex{
+	// padding: 0 rem(15);
+	@include flex-cols(30, 4, ($lg: 3, $md: 2, $sm: 1));
+}
 [class*="__container"]{
 	margin: 0 auto;
 	padding-left: rem(math.div($containerPaddings, 2));
@@ -314,4 +318,5 @@ padding-bottom: 52.25%;
 // 		transition: opacity .5s !important;
 // 	}
 // }
+
 /*--------------------END adjustment----------------------*/ 

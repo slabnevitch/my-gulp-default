@@ -2,10 +2,10 @@
 	text-align: center;
 	button{
 		@include but-null();
-		width: 7px;
-		height: 7px;
-		margin-left: 3px;
-		margin-right: 3px;
+		width: rem(7);
+		height: rem(7);
+		margin-left: rem(3);
+		margin-right: rem(3);
 		border-radius: 50%;
 		background-color: gray;
 

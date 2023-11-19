@@ -6,7 +6,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 320px;
+    width: rem(320);
     height: 100%;
     overflow-y: auto;
     background-color: #000;
@@ -22,7 +22,7 @@
 .multilevel-panel .toggle-mnu{
   position: absolute;
   margin-top: 0;
-  right: 10px;
+  right: rem(10);
   top: 0;  
   z-index: 100; 
 }
@@ -41,17 +41,17 @@
 
   @include max-screen($multilevelPoint){
     margin-left: 0;
-    padding-top: 40px;
-    padding-left: 15px;
-    padding-right: 15px; 
+    padding-top: rem(40);
+    padding-left: rem(15);
+    padding-right: rem(15); 
   }
 }
 .multilevel-panel .multilevel-menu li {
 
   @include max-screen($multilevelPoint){
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+    padding-top: rem(5);
+    padding-bottom: rem(5);
+    border-bottom: rem(1) solid rgba(255, 255, 255, 0.5); 
   }
 }
 .multilevel-panel .multilevel-menu li a {
@@ -65,20 +65,20 @@
 .catalog > a:after {
   content: ">";
   display: inline-block;
-  margin-left: 15px;
-  font-size: 30px;
+  margin-left: rem(15);
+  font-size: rem(30);
   vertical-align: middle;
 }
 
 .multilevel-panel .multilevel-menu ul {
 
   @include max-screen($multilevelPoint){
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: rem(10);
+    padding-right: rem(10);
     transition: all 0.3s ease-out;
     transform: translate3D(-100%, 0, 0);
     position: absolute;
-    padding-top: 40px;
+    padding-top: rem(40);
     top: 0;
     left: 0;
     width: 100%;
@@ -115,7 +115,7 @@
   @include max-screen($multilevelPoint){
     content: ">";
     display: inline-block;
-    margin-left: 15px;
+    margin-left: rem(15);
     vertical-align: middle;
   }
 }
@@ -123,8 +123,8 @@
 .multilevel-panel__back {
   display: flex;
   justify-content: space-between;
-  padding: 10px 40px 0 10px;
-  height: 40px;
+  padding: rem(10) rem(40) 0 rem(10);
+  height: rem(40);
   display: none;
   position: fixed;
   top: 0;
@@ -146,7 +146,7 @@
 .multilevel-panel__back button:before {
   content: "<";
   display: inline-block;
-  margin-right: 10px;
+  margin-right: rem(10);
   vertical-align: middle;
 }
 #multilevel-panel-open.toggle-mnu{
@@ -170,7 +170,7 @@
 
 /*--------------------superfis styles reset----------------------*/
 .multilevel-panel .sf-menu {
-  padding-top: 30px;
+  padding-top: rem(30);
   float:none;
   display: block;
 }
@@ -183,7 +183,7 @@
   background-color: transparent;
 }
 .multilevel-panel .sf-menu a{
-  padding: 0 10px 0 10px;
+  padding: 0 rem(10) 0 rem(10);
   font-size: inherit;
 }
 .multilevel-panel .sf-menu li:hover a,

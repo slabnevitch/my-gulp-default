@@ -22,7 +22,7 @@
 		display: block;
 	}  
 	&:not(:last-child){
-		margin-right: 10px;
+		margin-right: rem(10);
 
 		@include max-screen($multilevelPoint){
 			margin-right: 0;
@@ -72,7 +72,7 @@
 
 	a{
 		display: block;
-		padding: 5px 10px;
+		padding: rem(5) rem(10);
 		flex: 1 0 auto;
 	}
 	.submenu-list{
@@ -108,9 +108,9 @@
 
 }
 .menu-list__icon{
-	width: 20px;
-	height: 20px;
-	margin: 0 5px;
+	width: rem(20);
+	height: rem(20);
+	margin: 0 rem(5);
 	// outline: 1px solid red;
 	position: relative;
 	display: inline-block;
@@ -127,19 +127,19 @@
 
 	@include max-screen($sm){
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: rem(5);
+		right: rem(5);
 		margin: 0;
 	}  
 }
 .submenu-list{
 	position: absolute;
 	display: none;
-	min-width: 200px;
+	min-width: rem(200);
 
 	@include max-screen($sm){
 		position: relative;
-		padding-left: 10px;
+		padding-left: rem(10);
 	}  
 
 	&.opened{
@@ -147,7 +147,7 @@
 	}
 	a{
 		@include max-screen($multilevelPoint){
-			font-size: 12px;
+			font-size: rem(12);
 		}  
 	}
 }

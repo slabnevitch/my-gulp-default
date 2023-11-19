@@ -4,7 +4,11 @@ block title
 	| Главная страница
 
 block content
-
+	.wrapper
+		.wrapper-flex
+			- for (var i=0; i < 12; i++)
+				._flex-col 
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod sunt in culpa qui officia deserunt mollit anim id est laborum.
 block page-scripts
 	//- SERVIVE FUNCTIONS==================
 
