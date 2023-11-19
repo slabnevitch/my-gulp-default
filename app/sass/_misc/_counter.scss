@@ -2,9 +2,9 @@
 	display: inline-flex;
 	align-items: center;
 	flex-shrink: 0;
-	width: 200px;
-	height: 60px;
-	border: 1px solid #EFEFEF;
+	width: rem(200);
+	height: rem(60);
+	border: rem(1) solid #EFEFEF;
 }
 .counter__button,
 .counter__count{
@@ -45,7 +45,7 @@
 	overflow: hidden;
 }
 .counter__measures{
-	margin-left: 5px;
+	margin-left: rem(5);
 	font-size: em(30);
 
 }

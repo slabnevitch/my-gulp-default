@@ -252,12 +252,12 @@ padding-bottom: 52.25%;
 
 // .toggle-mnu{
 // 	position: fixed;
-// 	right: 30px;
-// 	top: 15px;
+// 	right: rem(30);
+// 	top: rem(15);
 //   display: block;
-//   width: 28px;
-//   height: 28px;
-//   margin-top: 14px;
+//   width: rem(28);
+//   height: rem(28);
+//   margin-top: rem(14);
 //   padding: 0;
 //   background-color: transparent;
 //   border: none;
@@ -267,12 +267,12 @@ padding-bottom: 52.25%;
 //     content: "";
 //     position: absolute;
 //     left: 0;
-//     top: 9px;
+//     top: rem(9);
 //   } 
 
 //   span:after{
 
-//     top: 18px;
+//     top: rem(18);
 //   }
 
 //   span{
@@ -284,11 +284,11 @@ padding-bottom: 52.25%;
 //   span, span:after, span:before{
 
 //     width: 100%;
-//     height: 2px;
+//     height: rem(2);
 //     background-color: #000;
 //     transition: all 0.3s;
 //     backface-visibility: hidden;
-//     border-radius: 2px;
+//     border-radius: rem(2);
 //   }
 
 
@@ -299,12 +299,12 @@ padding-bottom: 52.25%;
 
 //   &.on span:before{
 
-//     transform: rotate(45deg) translate(-1px, 0px);
+//     transform: rotate(45deg) translate(rem(-1), 0);
 //   } 
 
 //   &.on span:after{
 
-//     transform: rotate(-45deg) translate(6px, -7px);
+//     transform: rotate(-45deg) translate(rem(6), rem(-7));
 //   } 
 // } 
 // исправление бага отсутствия прозрачности при fade--переходах с/у слайдами

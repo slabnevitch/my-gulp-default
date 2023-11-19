@@ -142,7 +142,7 @@ $mins: '')) {
 	
 	display: flex;
 	align-items: center;
-	column-gap: #{$gap} + 'px';
+	column-gap: rem(#{$gap});
 
 	.pagination__arrow {
 		@include but-null;
@@ -163,7 +163,7 @@ $mins: '')) {
 	.pagination__list {
 		display: flex;
 		align-items: center;
-		column-gap: #{$gap} + 'px';
+		column-gap: rem(#{$gap});
 	}
 
 	.pagination__item{
@@ -174,9 +174,9 @@ $mins: '')) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: #{$width} + 'px';
-		height: #{$width} + 'px';
-		font-size:#{$fontSize} + 'px';
+		width: rem(#{$width});
+		height: rem(#{$width});
+		font-size:rem(#{$fontSize});
 		@if $round != false { 
 			border-radius: $round;
 	  }
@@ -261,8 +261,8 @@ $mins: '')) {
 @mixin checkbox{
 	position: absolute;
   box-sizing: border-box;
-  width: 1px;
-  height: 1px;
+  width: rem(1);
+  height: rem(1);
   display: block;
   left: 50%;
   top: 100%;

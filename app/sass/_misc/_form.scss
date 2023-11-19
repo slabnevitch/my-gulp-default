@@ -1,11 +1,11 @@
 .form__input {
-	height: 50px;
-	padding-left: 24px;
-	padding-right: 24px;
+	height: rem(50);
+	padding-left: rem(24);
+	padding-right: rem(24);
 	border: 1px solid #000;
 	padding-right: 55px;
 	background: #fff ;
-	border-radius: 3px 0 0 3px;
+	border-radius: rem(3) 0 0 rem(3);
 	@include placecolor(rgba(#fff, 0.5));
 	color: #fff;
 }
@@ -17,7 +17,7 @@
 .form__custom {
 	position: relative;
 	flex-shrink: 0;
-	margin-right: 20px;
+	margin-right: rem(20);
 }
 .form__check {
 	@include checkbox;
@@ -30,10 +30,10 @@
 .form__custom-chek {
 	display: block;
 	position: relative;
-	width: 16px;
-	height: 16px;
+	width: rem(16);
+	height: rem(16);
 	border: 1px solid #000;
-	border-radius: 2px;
+	border-radius: rem(2);
 
 	@media (any-hover: hover) { //только для устройств с ховером
 				&:hover{
@@ -43,21 +43,21 @@
 	&:before{
 		@include absolute-center-old;
 		display: none;
-		width: 8px;
-		height: 8px;
-		border-radius: 2px;
+		width: rem(8);
+		height: rem(8);
+		border-radius: rem(2);
 		background-color: #000;
 		content: '';
 	}
 }
 .form__area{
 	width: 100%;
-	height: 100px;
-	padding:20px;
+	height: rem(100);
+	padding:rem(20);
     resize: none;
 	border: none;
 	background: #fff;
-	padding-left: 20px;
+	padding-left: rem(20);
 	color: #222222;
 }
 .form__policy {
