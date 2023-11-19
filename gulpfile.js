@@ -142,7 +142,9 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
   gulp.watch('app/sass/**/*.scss',  gulp.series('sass'));
   gulp.watch('app/jade/**/*.jade',  gulp.series('jade'));
-  gulp.watch(['app/js/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
+  if(buildMode === 'webpack'){
+    gulp.watch(['app/js/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
+  }
   // gulp.watch('app/src/js/common.js', ['babel-js']);
   gulp.watch('app/*.html').on('change', browserSync.reload);
 });
