@@ -4,17 +4,21 @@
 *::after{
 	box-sizing: border-box;
 }
+html{
+	font-size: ($rootFontSize / 16px) * 100%;
+}
 html, body{
 	margin: 0;
 	padding: 0;
+	min-height: 100%;
 }
 body{
 	font-family: $reg;
 	font-weight: normal;
 	font-size: 15px;
-	min-width: 320px;
+	min-width: $minWidth;
 	position: relative;
-	line-height: 1.6;
+	// line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 	color: $text;
@@ -105,8 +109,12 @@ ul, li{
 	padding: 0;
 }
 h1,h2,h3,h4,h5,h6{
+	margin: 0;
 	font-weight: inherit;
 	font-size: inherit;
+}
+p{
+	margin: 0;
 }
 input
 input[type="text"],
@@ -140,11 +148,11 @@ textarea{
 // }
 [class*="__container"]{
 	margin: 0 auto;
-	padding-left: $containerPaddings / 2 + px;
-	padding-right: $containerPaddings / 2 + px;
-	max-width: $maxContainerWidth + px;
-	// @include row-flex();
-	// @include wrapper();
+	padding-left: rem(math.div($containerPaddings, 2));
+	padding-right: rem(math.div($containerPaddings, 2));
+	max-width: rem($maxContainerWidth);
+	// outline: 1px solid;
+
 }
 // classes for smartgrid(c) structure
 // .wrapper-smart{

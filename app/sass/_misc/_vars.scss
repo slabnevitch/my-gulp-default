@@ -1,4 +1,5 @@
 $maxWidth: 1920;//ширина макета в граф. редакторе
+$minWidth: 320;
 $maxWidthContainer: 1170;//ширина ограничивающего контейнера без паддингов
 $containerPaddings: 30;//сумма левого и правого паддингов ограничивающего контейнера
 $maxContainerWidth: $maxWidthContainer + $containerPaddings;// итоговая ширина ограничивающего контейнера
@@ -15,14 +16,14 @@ $svg: '../img/icons-svg/';
 
 
 // media
-$lg: 1199px;
-$md: 991px;
-$sm: 767.98px;
-$xs: 576px;
-$xss: 480px;
-$xsss: 375px;
-$min: 360px;
-$mins: 320px;
+$lg: em($maxWidthContainer);
+$md: em(991);
+$sm: em(767.98);
+$xs: em(576);
+$xss: em(480);
+$xsss: em(375);
+$min: em(360);
+$mins: em(320);
 
 // point for multilevel-pnel | размер, на котором multilevel-dropdown превращается в multilevel-panel и наоборот
 $multilevelPoint: 1100px;
@@ -35,6 +36,8 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1170px);
 
 $gutter: $grid-gutter-width;
 
+//fonts
+$baseFontSize: 18;// основной размер шрифта в макете
 $reg: 'raleway-v22-latin_cyrillic-regular', sans-serif;
 
 
