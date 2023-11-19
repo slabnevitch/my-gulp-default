@@ -70,6 +70,8 @@
 		}
 	}
 }
+// Use: @include flex-cols(30, 4, ($lg: 3, $md: 2, $sm: 1));
+// $gap - расс-е. м/у колонками, $width - кол-во. колонок в ряду
 @mixin flex-cols($gap, $width: 1, $points: ($lg: '',
 $md: '',
 $sm: '',

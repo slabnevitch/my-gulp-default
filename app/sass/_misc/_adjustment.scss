@@ -132,16 +132,16 @@ textarea{
 //END input
 // .wrapper{
 // 	margin: 0 auto;
-// 	padding-left: $containerPaddings / 2 + px;
-// 	padding-right: $containerPaddings / 2 + px;
+// 	padding-left: math.div($containerPaddings, 2) + px;
+// 	padding-right: math.div($containerPaddings, 2) + px;
 // 	max-width: $maxContainerWidth + px;
 // 	// @include row-flex();
 // 	// @include wrapper();
 // }
 [class*="__container"]{
 	margin: 0 auto;
-	padding-left: $containerPaddings / 2 + px;
-	padding-right: $containerPaddings / 2 + px;
+	padding-left: math.div($containerPaddings, 2) + px;
+	padding-right: math.div($containerPaddings, 2) + px;
 	max-width: $maxContainerWidth + px;
 	// @include row-flex();
 	// @include wrapper();
