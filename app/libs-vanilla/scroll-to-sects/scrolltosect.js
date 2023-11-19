@@ -20,6 +20,7 @@ function ScrollToSects(opts){
    
   this.init = function(){
     this.events();
+    // this.setObservers();
     if(opts.anchorSpy){this.observerInit();}
   },
   this.events = function(){
@@ -32,7 +33,7 @@ function ScrollToSects(opts){
     });
   },
   this.observerInit = function() {
-    observer = new IntersectionObserver((entries) => {
+    observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
           links.forEach(function(link) {
@@ -42,6 +43,10 @@ function ScrollToSects(opts){
               link.classList.remove('active');
             }
           });
+        }else{
+           links.forEach(function(link) {
+            link.classList.remove('active');
+           });
         }
       });
     }, {
@@ -83,6 +88,21 @@ function ScrollToSects(opts){
       top: scrollValue,
       behavior: "smooth"
     }); 
+  },
+  this.setObservers = function() {
+    sects.forEach(function(sect){
+      var headerObserver = new IntersectionObserver(this.observerCallback);
+      headerObserver.observe(sect);
+
+    });
+  },
+  this.observerCallback = function(entries, observer) {
+    console.log(entries);
+    if(entries[0].isIntersecting){
+      headerElem.classList.remove('_scroll');
+    }else{
+      headerElem.classList.add('_scroll');
+    }
   }
   this.init();
 }

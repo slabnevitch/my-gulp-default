@@ -116,6 +116,114 @@ function fadeOut(el, timeout){
     el.style.display = 'none';
   }, timeout);
 };
+
+function ScrollToSects(opts){
+  var _self = this,
+      opts = {
+        linksContainer: opts.linksContainer || 'header',
+        offset: opts.offset || 0,
+        sectsSelector: opts.sectsSelector || 'section',
+        delay: opts.delay || null,
+        anchorSpy: opts.anchorSpy || false,
+        activeClassAdding: opts.activeClassAdding
+      },
+      links = Array.prototype.slice.call(document.querySelector(opts.linksContainer)
+              .querySelectorAll('[data-anchor]')),
+      sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor]')),
+      pageHeader = document.querySelector('header'),
+      gotoBlockValue = 0,
+      observer;
+   
+  this.init = function(){
+    this.events();
+    // this.setObservers();
+    if(opts.anchorSpy){this.observerInit();}
+  },
+  this.events = function(){
+    links.forEach(function(link){
+      if(link.dataset.anchor){
+       link.addEventListener('click', _self.navClick);
+      }else{
+        console.log('nav links must have"data-anchor attribute"');
+      }
+    });
+  },
+  this.observerInit = function() {
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          console.log(entry.target);
+          links.forEach(function(link) {
+            if (link.dataset.anchor === entry.target.dataset.anchor) {
+              link.classList.add('active');
+
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }else{
+           links.forEach(function(link) {
+            link.classList.remove('active');
+           });
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    sects.forEach(section => { observer.observe(section)} );
+  },
+  this.navClick = function(e){
+      e.preventDefault();
+      sects.forEach(function(sect){
+      if(sect.dataset.anchor === e.target.dataset.anchor){
+        gotoBlockValue = sect.getBoundingClientRect().top + pageYOffset - pageHeader.offsetHeight + opts.offset;
+      }
+    });
+
+   // добавление активных классов. Требует подключения service-functions/siblings.js
+    if(opts.activeClassAdding){
+      links.forEach(function(link) {
+        link.classList.remove('active');
+      });
+      e.target.classList.add('active');
+    }
+  
+   if(opts.delay){
+     setTimeout(function(){
+       _self.scrollToTarget(gotoBlockValue);
+        // return;
+     }, opts.delay);
+    
+   }else{
+     _self.scrollToTarget(gotoBlockValue);
+   }
+    
+  },
+   this.scrollToTarget = function(scrollValue){
+    // console.log(scrollValue);
+    window.scrollTo({
+      top: scrollValue,
+      behavior: "smooth"
+    }); 
+  },
+  this.setObservers = function() {
+    sects.forEach(function(sect){
+      var headerObserver = new IntersectionObserver(this.observerCallback);
+      headerObserver.observe(sect);
+
+    });
+  },
+  this.observerCallback = function(entries, observer) {
+    console.log(entries);
+    if(entries[0].isIntersecting){
+      headerElem.classList.remove('_scroll');
+    }else{
+      headerElem.classList.add('_scroll');
+    }
+  }
+  this.init();
+}
 // КОНЕЦ Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
 module.exports.siblings = siblings;
 module.exports.removeClass = removeClass;
@@ -123,3 +231,4 @@ module.exports.addClass = addClass;
 module.exports.isMobile = isMobile;
 module.exports.fadeIn = fadeIn;
 module.exports.fadeOut = fadeOut;
+module.exports.ScrollToSects = ScrollToSects;

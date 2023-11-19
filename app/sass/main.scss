@@ -1,3 +1,5 @@
+@use "sass:math";
+@import "_misc/_functions";
 @import "_misc/_mixins";
 @import "fonts";
 @import "fonts-auto";
@@ -14,7 +16,6 @@
 @import "libs";
 @import "_misc/_vars";
 
-@import "_misc/_functions";
 // @import "_misc/smart-grid";
 // @import "_misc/_counter";
 // @import "_misc/multilevel-panel"; //только multilevel-panel

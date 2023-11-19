@@ -1,8 +1,8 @@
 // Import vendor jQuery plugin example (not module)
 // import $ from '~/app/libs/jquery/jquery.min.js';
-import $ from 'jquery'
-window.jQuery = $;
-window.$ = $;
+// import $ from 'jquery'
+// window.jQuery = $;
+// window.$ = $;
 // console.log($)
 
 // import Swiper, { Navigation, Mousewheel } from 'swiper';
@@ -11,7 +11,7 @@ window.$ = $;
 //- SERVIVE FUNCTIONS==================
 
 //- remove-class--------------------------
-require ('~/app/libs-vanilla/service-functions/ibg-class.js');
+// require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 
 //- remove-class--------------------------
 // import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
@@ -39,6 +39,9 @@ require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 
 //- scrollWidth(фикс прыгания стр-цы. при открытии модалки--------------------------
 // require ('~/app/libs-vanilla/service-functions/scrollWidth.js');
+
+//- scroll-to-sects--------------------------
+// import {ScrollToSects} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
 //- All in one file--------------------------
 // require('~/app/libs-vanilla/service-functions/all-functions.js')
@@ -87,6 +90,9 @@ require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 	
 //- accordion--------------------------
 // require('~/app/libs-vanilla/accordion/vanilla-accordion.js')
+
+//- spoilers-------------------------
+// require('~/app/libs-vanilla/spoilers/spoilers.js')
 	
 //- tabs--------------------------
 // require('~/app/libs-vanilla/tabs/tabs-pure.js')
@@ -101,7 +107,7 @@ require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 // const Swiper = require('~/app/libs-vanilla/swiper/swiper-bundle.min.js')
 
 //- tiny-slider--------------------------
-// import {tns} from '~/app/libs-vanilla/tiny-slider/dist/tiny-slider-skot.js';
+// import {tns} from '~/app/libs-vanilla/tiny-slider/dist/tiny-slider.js';
 
 //- wNumb--------------------------
 // var wNumb = require('~/app/libs-vanilla/wnumb/wNumb.js')

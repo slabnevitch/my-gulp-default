@@ -59,8 +59,17 @@ body{
 // .main{
 // 	display: flex;
 // 	flex-direction: column;
-// 	height: 100%;
-// overflow: clip;
+// 	min-height: 100%;
+// 	overflow: hidden;
+
+// 	@supports(overflow: clip){
+// 		overflow: clip;
+// 	}
+
+// 	& > *{
+// 		min-width: 0;
+// 	}
+
 // 	.header{
 // 		flex: 0 0 auto;
 // 	}
@@ -104,20 +113,32 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 textarea{
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 }
 .input,
 input{
+	border-radius: 0;
 	outline: none;
 	display: block;
 	width: 100%;
+	border: 0 none;
 }
-textarea.input{
+textarea{
 	resize: none;
 	padding: 0 0;
 }
 //END input
-.wrapper{
+// .wrapper{
+// 	margin: 0 auto;
+// 	padding-left: $containerPaddings / 2 + px;
+// 	padding-right: $containerPaddings / 2 + px;
+// 	max-width: $maxContainerWidth + px;
+// 	// @include row-flex();
+// 	// @include wrapper();
+// }
+[class*="__container"]{
 	margin: 0 auto;
 	padding-left: $containerPaddings / 2 + px;
 	padding-right: $containerPaddings / 2 + px;
