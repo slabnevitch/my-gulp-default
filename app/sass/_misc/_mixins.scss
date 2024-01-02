@@ -300,7 +300,7 @@ $rootFontSize: 16px;
     $context: $context * 1px;
   }
 
-  @return $pixels / $context * 1rem;
+    @return math.div($pixels, $context) * 1rem;
 }
 
 // Adaptive font-size
