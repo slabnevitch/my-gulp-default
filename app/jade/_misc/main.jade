@@ -32,9 +32,17 @@ html(lang='ru')
 		include ../_sections/footer
 		
 
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
 		include _scripts
 
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
 		block page-scripts
 		
-		script(src='js/common.js')
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
+		//- script(src='js/common.js')
+		
+
+		//- если в gulpfile.js buildMode = 'webpack'
+		script(src='js/main.min.js')
+		
 		//- script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_NAmCu9dm16a9i0oeX0T6rBQFgObeiZA&amp;callback=initMap" async defer>)

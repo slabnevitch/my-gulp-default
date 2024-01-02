@@ -5,8 +5,15 @@
 // window.$ = $;
 // console.log($)
 
+// Swiper----------------------------
 // import Swiper, { Navigation, Mousewheel } from 'swiper';
 // Swiper.use([Navigation, Mousewheel]);
+
+// Lazysizes--------------------------
+// import 'lazysizes'; //основной скрипт
+
+// import a plugin
+// import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 
 //- SERVIVE FUNCTIONS==================
 
@@ -84,10 +91,7 @@
 
 //- multilevel-dropdown-menu--------------------------
 // require('~/app/libs-vanilla/multilevel-dropdown/multidropdown.js')
-		
-//- lazysizes--------------------------
-// require('~/app/libs-vanilla/lazysizes/lazysizes.min.js')
-	
+
 //- accordion--------------------------
 // require('~/app/libs-vanilla/accordion/vanilla-accordion.js')
 
