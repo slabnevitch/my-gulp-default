@@ -22,13 +22,18 @@ var smartgrid = require('smart-grid');
 var gcmq = require('gulp-group-css-media-queries');
 var browserSync = require('browser-sync');
 var ttf2woff = require('gulp-ttf2woff');
-var ttf2woff2 = require('gulp-ttf2woff2');
+// var ttf2woff2 = require('gulp-ttf2woff2');
 var ttf2eot = require('gulp-ttf2eot');
 const babel = require('gulp-babel');
 const webp = require('gulp-webp');
+let webphtml = require('gulp-webp-html-nosvg');
 const webpack = require('webpack-stream');
 const rename = require('gulp-rename');
-// var webpcss = require("gulp-webpcss");
+var webpcss = require("gulp-webpcss");
+const fs = require("fs");
+const mqpacker = require("css-mqpacker");
+var postcss = require('gulp-postcss');
+const sortCSSmq = require('sort-css-media-queries');
 
 gulp.task('browser-sync', function() {
   browserSync({
@@ -110,8 +115,23 @@ gulp.task('jade', function () {
 
 gulp.task('group', function () {
     gulp.src('app/css/main.css')
-        .pipe(gcmq())
+        // .pipe(gcmq())
         .pipe(gulp.dest('app/css'));
+});
+gulp.task('media-packer', async function () {
+   const result = mqpacker.pack(fs.readFileSync("app/css/main.css", "utf8"), {
+      from: "main.css",
+      // map: {
+      //   inline: false
+      // },
+      sort: true,
+      to: "main.css"
+    });
+    fs.writeFileSync("dist/css/main.css", result.css);
+
+    // gulp.src('app/css/main.css')
+    //     // .pipe(gcmq())
+    //     .pipe(gulp.dest('app/css'));
 });
 
 gulp.task('sass', function () {
@@ -125,8 +145,8 @@ gulp.task('sass', function () {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
-    // .pipe(gcmq())
-    // .pipe(webpcss({}))
+    // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
+    .pipe(webpcss({}))
 
     .pipe(sourcemaps.write('maps/'))
     .pipe(gulp.dest('app/css'))
@@ -294,11 +314,11 @@ gulp.task('fontsConvert', function(){
 
 gulp.task('imgOptim', function() {
   return gulp.src(['!app/img/icons-svg/**', 'app/img/**/*'])
-    // .pipe(
-    //   webp({
-    //     quality: 70
-    //   })
-    // )
+    .pipe(
+      webp({
+        quality: 70
+      })
+    )
     .pipe(gulp.dest('app/img'))
     .pipe(gulp.src([ '!app/img/icons-svg/**', 'app/img/**/*']))
     .pipe(imagemin({
@@ -360,10 +380,21 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('copyCss', () => {
-   return gulp.src('app/css/*.css')
-  .pipe(gcmq())
+   // return gulp.src('app/css/*.css')
+  // .pipe(gcmq())
   // .pipe(cssnano())
-  .pipe(gulp.dest('dist/css'))
+  // .pipe(gulp.dest('dist/css'))
+
+  // док-ция. про плагин https://github.com/OlehDutchenko/sort-css-media-queries/blob/master/README-UK.md
+  var processors = [
+    mqpacker({
+      sort: sortCSSmq.desktopFirst
+    })
+  ];
+  return gulp.src('app/css/*.css')
+  .pipe(postcss(processors))
+  // .pipe(cssnano())
+  .pipe(gulp.dest('dist/css/'));
 });
 
 gulp.task('copySvgSprite', function() {
@@ -377,16 +408,18 @@ gulp.task('copyFonts', () => {
 });
 gulp.task('copyJs', () => {
   if(buildMode === 'webpack'){
-   return gulp.src(['app/js/main.js', 'app/js/main.min.js']) // Переносим скрипты в продакшен
+   return gulp.src(['app/js/main.js', 'app/js/main.min.js', '!app/js/common.js']) // Переносим скрипты в продакшен
     .pipe(gulp.dest('dist/js'));
   }
   if(buildMode === 'simple'){
     return gulp.src(['app/js/**/*', '!app/js/main.js', '!app/js/main.min.js']) // Переносим скрипты в продакшен
+      // .pipe(uglify()) // минификация
       .pipe(gulp.dest('dist/js'));
     }
 });
 gulp.task('copyHtml', () => {
    return gulp.src('app/*.html') // Переносим HTML в продакшен
+            // .pipe(webphtml()) // Автозамена картинок на .webp через <picture></picture>
             .pipe(gulp.dest('dist'));
 });
 
