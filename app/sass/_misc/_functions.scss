@@ -5,6 +5,13 @@
 @function rem($px){
   @return math.div($px, 16) + rem;
 }
-@function em($px){
-  @return math.div($px, 16) + em;
+@function em($px, $context: 16){
+  @return  math.div($px, $context) + em;
+  // Use: привязка размеров до размера шрифта родителя
+  // Пример: 
+ //  .pizdyk{
+ // 	@include adaptive-value-rem('font-size', 50, 18, $maxWidth, $minWidth, 1);
+	// &:before{
+		// top: em(-20, 50); //здесь  $context - изначальный размер шрифта родителя
+	// }
 }
