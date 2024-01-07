@@ -138,7 +138,7 @@ textarea{
 // 	// @include row-flex();
 // 	// @include wrapper();
 // }
-[class*="__container"]{
+[class*="__wrapper"]{
 	margin: 0 auto;
 	padding-left: math.div($containerPaddings, 2) + px;
 	padding-right: math.div($containerPaddings, 2) + px;
