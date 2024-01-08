@@ -1,8 +1,12 @@
 /*--------------------add/remove class to nodeLIst----------------------*/
 function removeClass(elSelector, classToRemove) {
-	var elems = document.querySelectorAll(elSelector);
-	for (var i = 0; i < elems.length; i++) {
-		elems[i].classList.remove(classToRemove);
+	if(typeof elSelector == 'string'){
+		var elems = document.querySelectorAll(elSelector);
+		for (var i = 0; i < elems.length; i++) {
+			elems[i].classList.remove(classToRemove);
+		}
+	}else{	
+		elSelector.classList.remove(classToRemove);
 	}
 }
 function addClass(elSelector, classToRemove) {

@@ -50,8 +50,15 @@
 //- scroll-to-sects--------------------------
 // import {ScrollToSects} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
-//- All in one file--------------------------
-// require('~/app/libs-vanilla/service-functions/all-functions.js')
+// import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';(don't work!)
+
+//- singleDropdown--------------------------
+// import {singleDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// console.log(singleDropdown)
+
+// if(document.querySelectorAll('[data-single-dropdown]') != null){
+// 	singleDropdown();
+// }
 
 
 //- WITH JQUERY===================================
@@ -158,10 +165,10 @@
 	
 //- end VANILLA JS===================================
 
-jQuery(document).ready(function() {
-	console.log('jQuery document ready');
+// jQuery(document).ready(function() {
+// 	console.log('jQuery document ready');
 
-});
+// });
 
 // console.log(magnificPopup)
 

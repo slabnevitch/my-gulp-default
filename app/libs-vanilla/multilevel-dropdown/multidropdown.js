@@ -1,36 +1,38 @@
 // Необходимо подключить mobileDetect.js + siblings.js либо all-functions.js
-if(isMobile.any()){
+(function() {
+	if(isMobile.any()){
 
-	document.body.classList.add('touch');
-	var arrows = document.querySelectorAll('.menu-list__icon'),
- 			mainParents = document.querySelectorAll('.menu-list__item');
+		document.body.classList.add('touch');
+		var arrows = document.querySelectorAll('[data-dropdown-icon]');
 
-		for(var i=0; i < arrows.length; i++){
-			arrows[i].addEventListener('click', function(e) {
-				var parent = this.closest('.menu-list__item, .submenu-list__item'),
-						mainParent = this.closest('.menu-list__item');
+			for(var i=0; i < arrows.length; i++){
+				arrows[i].addEventListener('click', function(e) {
+					var parent = this.closest('[data-dropdowned]'),
+							mainParent = this.closest('[data-dropdowned-parent]');
 
-				parent.classList.toggle('active');
-				Array.prototype.slice.call(parent.querySelectorAll('.submenu-list__item'))
-					.forEach(function(item) {
+					parent.classList.toggle('active');
+					Array.prototype.slice.call(parent.querySelectorAll('[data-dropdowned]'))
+						.forEach(function(item) {
+							item.classList.remove('active');
+						})
+
+					siblings(mainParent).forEach(function(item) {
 						item.classList.remove('active');
 					})
 
-				siblings(mainParent).forEach(function(item) {
-					item.classList.remove('active');
-				})
+				});
+			}
 
-			});
-		}
+			document.addEventListener('click', function(e) {
+				var targ = e.target;
 
-		document.onclick = function(e) {
-		var targ = e.target;
-		if (!targ.closest('.menu-list__item')){
-			Array.prototype.slice.call(document.querySelector('.mulilevel-nav').querySelectorAll('.menu-list__item, .submenu-list__item')).forEach(function(item) {
-				item.classList.remove('active');
+				if (!targ.closest('.menu-list__item')){
+					Array.prototype.slice.call(document.querySelector('.mulilevel-nav').querySelectorAll('[data-dropdowned]')).forEach(function(item) {
+						item.classList.remove('active');
+					});
+				}
 			});
-		}
+	}else{
+		document.body.classList.add('mouse');
 	}
-}else{
-	document.body.classList.add('mouse');
-}
+})();
