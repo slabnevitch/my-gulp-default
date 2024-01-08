@@ -10,9 +10,18 @@
 				transform: rotate(180deg);
 		}
 	}
+	@media (any-hover: hover) { //только для устройств с ховером
+		cursor: pointer;
+		&:hover{
+			.single-dropdown{
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
 }
 .single-dropdown{
-	min-width: rem(150);
+	min-width: 150px;
 	position: absolute;
 	left: 0;
 	top: 100%;
@@ -26,8 +35,8 @@
 	}
 }
 .menu__arrow{
-	width: rem(20);
-	height: rem(20);
+	width: 20px;
+	height: 20px;
 	position: relative;
 	background-color: transparent;
 	border: none;
@@ -38,7 +47,7 @@
 		width: 0;
 		height: 0;
 		border-style: solid;
-		border-width: rem(5) rem(5) 0 rem(5);
+		border-width: 5px 5px 0 5px;
 		border-color: #000000 transparent transparent transparent;
 	}
 }

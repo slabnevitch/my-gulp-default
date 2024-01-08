@@ -1,103 +1,105 @@
 // .webp browser support detection
 function testWebP(callback) {
-	var webP = new Image(); 
-	webP.onload = webP.onerror = function () {
-	 callback(webP.height == 2); 
-	}; 
-	webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+  var webP = new Image(); 
+  webP.onload = webP.onerror = function () {
+   callback(webP.height == 2); 
+  }; 
+  webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
 }
 
 testWebP(function (support) {
-	console.log('webp')
-	if (support == true) {
-	 document.querySelector('body').classList.add('webp'); 
-	}else{ 
-		document.querySelector('body').classList.add('no-webp'); 
-	}
+  console.log('webp')
+  if (support == true) {
+   document.querySelector('body').classList.add('webp'); 
+  }else{ 
+    document.querySelector('body').classList.add('no-webp'); 
+  }
 });
 // END .webp browser support detection
 
-var isMobile = {
-	Android:        function() { return navigator.userAgent.match(/Android/i) ? true : false; },
-	BlackBerry:     function() { return navigator.userAgent.match(/BlackBerry/i) ? true : false; },
-	iOS:            function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false; },
-	Windows:        function() { return navigator.userAgent.match(/IEMobile/i) ? true : false; },
-	any:            function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());  }
+const isMobile = function(){
+  Android:        function() { return navigator.userAgent.match(/Android/i) ? true : false; },
+  BlackBerry:     function() { return navigator.userAgent.match(/BlackBerry/i) ? true : false; },
+  iOS:            function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false; },
+  Windows:        function() { return navigator.userAgent.match(/IEMobile/i) ? true : false; },
+  any:            function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());  }
 };
 // Use: if(isMobile.any()){ some code here }
 
 var siblings = function ( elem ) {
-	var createSiblings = function( n, elem ) {
-		var matched = [];
+  var createSiblings = function( n, elem ) {
+    var matched = [];
 
-		for ( ; n; n = n.nextSibling ) {
-			if ( n.nodeType === 1 && n !== elem ) {
-				matched.push( n );
-			}
-		}
+    for ( ; n; n = n.nextSibling ) {
+      if ( n.nodeType === 1 && n !== elem ) {
+        matched.push( n );
+      }
+    }
 
-		return matched;
-	};
-	return createSiblings( ( elem.parentNode || {} ).firstChild, elem );
+    return matched;
+  };
+  return createSiblings( ( elem.parentNode || {} ).firstChild, elem );
 }
-/*Вызов: 	siblings(document.querySelectorAll('.sibl li')[0]); - вернет всех соседей первого li в списке*/
+/*Вызов:  siblings(document.querySelectorAll('.sibl li')[0]); - вернет всех соседей первого li в списке*/
 
 /*--------------------add/remove class to nodeLIst----------------------*/
 function removeClass(elSelector, classToRemove) {
-	var elems = document.querySelectorAll(elSelector);
-	for (var i = 0; i < elems.length; i++) {
-		elems[i].classList.remove(classToRemove);
-	}
+  if(typeof elSelector == 'string'){
+    var elems = document.querySelectorAll(elSelector);
+    for (var i = 0; i < elems.length; i++) {
+      elems[i].classList.remove(classToRemove);
+    }
+  }else{  
+    elSelector.classList.remove(classToRemove);
+  }
 }
 function addClass(elSelector, classToRemove) {
-	var elems = document.querySelectorAll(elSelector);
-	for (var i = 0; i < elems.length; i++) {
-		elems[i].classList.add(classToRemove);
-	}
+  var elems = document.querySelectorAll(elSelector);
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].classList.add(classToRemove);
+  }
 }
-/*Вызов: 	removeClass('.menu__item', 'touch-hover');*/
+/*Вызов:  removeClass('.menu__item', 'touch-hover');*/
 
 // Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
-// if(window.innerWidth > 767.98 && isMobile.any()){// определяем, что клик с тач-скрина
-// 	if(targetEl.classList.contains('menu__arrow')){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
-// 		targetEl.closest('.menu__item').classList.toggle('touch-hover');// родительскому пункту меню вешаем класс, который делает подменю открытым
-// 		siblings('.menu__item', targetEl.closest('.menu__item'), 'touch-hover');// вызов ф-ции. для удаления такого класса у соседних пунктов меню		
-// 	}
-// 	if(!targetEl.closest('.menu__item') && document.querySelector('.menu__item.touch-hover') !== null){//провереряем клик вне выпадающего меню
-// 		removeClass('.menu__item', 'touch-hover');//удаляем у всех пунктов меню активный класс
-// 	}
-// }
-// (function() {
-function singleDropdown(opts) {
-		// var arrows = document.querySelectorAll('[data-single-dropdown]')
-		// 		.querySelectorAll('.menu__arrow');
 
-		init = function() {
-			console.log('init!')
-			bindEvents();
-		}
-		
-		bindEvents = function() {
-			// for(var i=0; i<arrows.length; i++){
-			document.addEventListener('click', docClick);
-			// }
-		}
-		docClick = function(e) {
-			var targetEl = e.target;
-			if(targetEl.classList.contains('menu__arrow') || targetEl.closest('.menu__arrow') != null){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
-				targetEl.closest('[data-single-dropdown]').classList.toggle('touch-hover');// родительскому пункту меню вешаем класс, который делает подменю открытым
-				siblings('.menu__item', targetEl.closest('.menu__item'), 'touch-hover');// вызов ф-ции. для удаления такого класса у соседних пунктов меню		
-			}
-			if(!targetEl.closest('.menu__item') && document.querySelector('.menu__item.touch-hover') !== null){//провереряем клик вне выпадающего меню
-				removeClass('.menu__item', 'touch-hover');//удаляем у всех пунктов меню активный класс
-			}
-		}
+function singleDropdown() {
+    // var arrows = document.querySelectorAll('[data-single-dropdown]')
+    //    .querySelectorAll('.menu__arrow');
 
-		init();
-	}
-if(document.querySelectorAll('[data-single-dropdown]') != null){
-	singleDropdown();
-}
+    init = function() {
+      console.log('piadyuk!')
+      bindEvents();
+      console.log(multiDropdown)
+    }
+    
+    bindEvents = function() {
+      // for(var i=0; i<arrows.length; i++){
+      document.addEventListener('click', docClick);
+      // }
+    }
+    docClick = function(e) {
+      var targetEl = e.target;
+      if(window.innerWidth > 960 && isMobile.any()){// определяем, что клик с тач-скрина
+        if(targetEl.classList.contains('menu__arrow')){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
+          targetEl.closest('[data-single-dropdown]').classList.toggle('touch-hover');// родительскому пункту меню вешаем класс, который делает подменю открытым   
+          var sibls = siblings(targetEl.closest('.menu__item'));
+          for(var i=0; i < sibls.length; i++){
+              removeClass(sibls[i], 'touch-hover');// вызов ф-ции. для удаления такого класса у соседних пунктов меню
+            }
+          }
+        if(!targetEl.closest('.menu__item') && document.querySelector('.menu__item.touch-hover') !== null){//провереряем клик вне выпадающего меню
+          removeClass('.menu__item', 'touch-hover');//удаляем у всех пунктов меню активный класс
+        }
+      }
+    }
+
+    init();
+  }
+// КОНЕЦ Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
+
+
+
 function fadeIn(el, timeout = 10, display) {
   el.style.opacity = 0;
   el.style.display = display || 'block';
@@ -224,7 +226,8 @@ function ScrollToSects(opts){
   }
   this.init();
 }
-// КОНЕЦ Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
+
+
 module.exports.siblings = siblings;
 module.exports.removeClass = removeClass;
 module.exports.addClass = addClass;
@@ -232,3 +235,5 @@ module.exports.isMobile = isMobile;
 module.exports.fadeIn = fadeIn;
 module.exports.fadeOut = fadeOut;
 module.exports.ScrollToSects = ScrollToSects;
+module.exports.multiDropdown = multiDropdown;
+module.exports.singleDropdown = singleDropdown;
