@@ -18,10 +18,10 @@
 
 // @import "_misc/smart-grid";
 // @import "_misc/_counter";
-// @import "_misc/multilevel-panel"; //только multilevel-panel
-// @import "_misc/multilevel-dropdown-panel"; //multilevel-panel совместно с multilevel-dropdown
-// @import "_misc/multilevel-dropdown";//простое многоуровневое меню/ Требует подключения libs-vanilla/multilevel-dropdown/multidropdown.js, mobileDetect.js + siblings.js
-// @import "_misc/single-dropdown";//один или несколько дропдаунов в составе обычного меню. Требует подключения service-functions/dropdown-toggle.js, mobileDetect.js + siblings.js
+// @import "_misc/multilevel-panel"; //только multilevel-panel, без разворачивания на десктоп. Требует подключения multilevel-panel/multilevel-panel.js
+// @import "_misc/multilevel-dropdown-panel"; //multilevel-panel совместно с multilevel-dropdown. Требует подключения multilevel-panel/multilevel-panel.js + /multilevel-dropdown/multidropdown.js
+// @import "_misc/multilevel-dropdown";//простое многоуровневое меню/ Требует подключения libs-vanilla/multilevel-dropdown/multidropdown.js, mobileDetect.js + siblings.js + removeClass
+// @import "_misc/single-dropdown";//один или несколько дропдаунов в составе обычного меню. Требует подключения service-functions/dropdown-toggle.js, mobileDetect.js + siblings.js + removeClass
 
 @import "_misc/_adjustment";
 @import "_misc/_ui";
