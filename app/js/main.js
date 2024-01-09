@@ -21,10 +21,10 @@
 // require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 
 //- remove-class--------------------------
-// import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
+import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
 //- siblings--------------------------
-// import {siblings} from '~/app/libs-vanilla/service-functions/all-functions.js';
+import {siblings} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
 //- fadeIn--------------------------
 // import {fadeIn} from '~/app/libs-vanilla/service-functions/all-functions.js';
@@ -36,7 +36,7 @@
 // require('./vendor/libs-vanilla/service-functions/webp-detection.js')
 
 //- dropdown-toggle on touch devices--------------------------
-//- require('./vendor/libs-vanilla/service-functions/dropdown-toggle.js')
+// require('~/app/libs-vanilla/service-functions/dropdown-toggle.js')
 
 //- isMobile--------------------------
 // import {isMobile} from '~/app/libs-vanilla/service-functions/all-functions.js';
@@ -50,12 +50,13 @@
 //- scroll-to-sects--------------------------
 // import {ScrollToSects} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
-// import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';(don't work!)
+// import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';//
+// if(document.querySelectorAll('[data-dropdowned]') != null){
+// 	multiDropdown();
+// }
 
 //- singleDropdown--------------------------
 // import {singleDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';
-// console.log(singleDropdown)
-
 // if(document.querySelectorAll('[data-single-dropdown]') != null){
 // 	singleDropdown();
 // }
