@@ -21,10 +21,10 @@
 // require ('~/app/libs-vanilla/service-functions/ibg-class.js');
 
 //- remove-class--------------------------
-import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
 //- siblings--------------------------
-import {siblings} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// import {siblings} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
 //- fadeIn--------------------------
 // import {fadeIn} from '~/app/libs-vanilla/service-functions/all-functions.js';
@@ -35,8 +35,8 @@ import {siblings} from '~/app/libs-vanilla/service-functions/all-functions.js';
 //- webp-detection--------------------------
 // require('./vendor/libs-vanilla/service-functions/webp-detection.js')
 
-//- dropdown-toggle on touch devices--------------------------
-// require('~/app/libs-vanilla/service-functions/dropdown-toggle.js')
+//- multilevel-panel--------------------------
+// require('~/app/libs-vanilla/multilevel-panel/multilevel-panel.js')
 
 //- isMobile--------------------------
 // import {isMobile} from '~/app/libs-vanilla/service-functions/all-functions.js';
