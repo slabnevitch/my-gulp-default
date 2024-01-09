@@ -26,7 +26,7 @@
 			document.addEventListener('click', function(e) {
 				var targ = e.target;
 
-				if (!targ.closest('.menu-list__item')){
+				if (!targ.closest('[data-dropdowned]')){
 					Array.prototype.slice.call(document.querySelector('.mulilevel-nav').querySelectorAll('[data-dropdowned]')).forEach(function(item) {
 						item.classList.remove('active');
 					});

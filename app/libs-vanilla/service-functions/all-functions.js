@@ -65,13 +65,8 @@ function addClass(elSelector, classToRemove) {
 // Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
 
 function singleDropdown() {
-    // var arrows = document.querySelectorAll('[data-single-dropdown]')
-    //    .querySelectorAll('.menu__arrow');
-
     init = function() {
-      console.log('piadyuk!')
       bindEvents();
-      // console.log(multiDropdown)
     }
     
     bindEvents = function() {
@@ -99,7 +94,43 @@ function singleDropdown() {
   }
 // КОНЕЦ Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
 
+function multiDropdown(){
+  if(isMobile.any()){
 
+    document.body.classList.add('touch');
+    var arrows = document.querySelectorAll('[data-dropdown-icon]');
+
+      for(var i=0; i < arrows.length; i++){
+        arrows[i].addEventListener('click', function(e) {
+          var parent = this.closest('[data-dropdowned]'),
+              mainParent = this.closest('[data-dropdowned-parent]');
+
+          parent.classList.toggle('active');
+          Array.prototype.slice.call(parent.querySelectorAll('[data-dropdowned]'))
+            .forEach(function(item) {
+              item.classList.remove('active');
+            })
+
+          siblings(mainParent).forEach(function(item) {
+            item.classList.remove('active');
+          })
+
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        var targ = e.target;
+
+        if (!targ.closest('[data-dropdowned]')){
+          Array.prototype.slice.call(document.querySelector('.mulilevel-nav').querySelectorAll('[data-dropdowned]')).forEach(function(item) {
+            item.classList.remove('active');
+          });
+        }
+      });
+  }else{
+    document.body.classList.add('mouse');
+  }
+}
 
 function fadeIn(el, timeout = 10, display) {
   el.style.opacity = 0;
@@ -236,5 +267,5 @@ module.exports.isMobile = isMobile;
 module.exports.fadeIn = fadeIn;
 module.exports.fadeOut = fadeOut;
 module.exports.ScrollToSects = ScrollToSects;
-// module.exports.multiDropdown = multiDropdown;
+module.exports.multiDropdown = multiDropdown;
 module.exports.singleDropdown = singleDropdown;
