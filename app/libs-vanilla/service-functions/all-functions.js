@@ -17,7 +17,7 @@ testWebP(function (support) {
 });
 // END .webp browser support detection
 
-const isMobile = function(){
+const isMobile = {
   Android:        function() { return navigator.userAgent.match(/Android/i) ? true : false; },
   BlackBerry:     function() { return navigator.userAgent.match(/BlackBerry/i) ? true : false; },
   iOS:            function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false; },
@@ -27,6 +27,7 @@ const isMobile = function(){
 // Use: if(isMobile.any()){ some code here }
 
 var siblings = function ( elem ) {
+
   var createSiblings = function( n, elem ) {
     var matched = [];
 
@@ -70,7 +71,7 @@ function singleDropdown() {
     init = function() {
       console.log('piadyuk!')
       bindEvents();
-      console.log(multiDropdown)
+      // console.log(multiDropdown)
     }
     
     bindEvents = function() {
@@ -83,13 +84,13 @@ function singleDropdown() {
       if(window.innerWidth > 960 && isMobile.any()){// определяем, что клик с тач-скрина
         if(targetEl.classList.contains('menu__arrow')){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
           targetEl.closest('[data-single-dropdown]').classList.toggle('touch-hover');// родительскому пункту меню вешаем класс, который делает подменю открытым   
-          var sibls = siblings(targetEl.closest('.menu__item'));
+          var sibls = siblings(targetEl.closest('[data-single-dropdown]'));
           for(var i=0; i < sibls.length; i++){
               removeClass(sibls[i], 'touch-hover');// вызов ф-ции. для удаления такого класса у соседних пунктов меню
             }
           }
-        if(!targetEl.closest('.menu__item') && document.querySelector('.menu__item.touch-hover') !== null){//провереряем клик вне выпадающего меню
-          removeClass('.menu__item', 'touch-hover');//удаляем у всех пунктов меню активный класс
+        if(!targetEl.closest('[data-single-dropdown]') && document.querySelector('[data-single-dropdown].touch-hover') !== null){//провереряем клик вне выпадающего меню
+          removeClass('[data-single-dropdown]', 'touch-hover');//удаляем у всех пунктов меню активный класс
         }
       }
     }
@@ -235,5 +236,5 @@ module.exports.isMobile = isMobile;
 module.exports.fadeIn = fadeIn;
 module.exports.fadeOut = fadeOut;
 module.exports.ScrollToSects = ScrollToSects;
-module.exports.multiDropdown = multiDropdown;
+// module.exports.multiDropdown = multiDropdown;
 module.exports.singleDropdown = singleDropdown;
