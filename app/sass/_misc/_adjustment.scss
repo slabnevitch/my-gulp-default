@@ -255,68 +255,10 @@ padding-bottom: 52.25%;
 // @import "_misc/_counter";
 // @import "_misc/multilevel-dropdown.scss";
 
-// .toggle-mnu{
-// 	position: fixed;
-// 	right: rem(30);
-// 	top: rem(15);
-//   display: block;
-//   width: rem(28);
-//   height: rem(28);
-//   margin-top: rem(14);
-//   padding: 0;
-//   background-color: transparent;
-//   border: none;
-
-//   span:after, span:before{
-
-//     content: "";
-//     position: absolute;
-//     left: 0;
-//     top: rem(9);
-//   } 
-
-//   span:after{
-
-//     top: rem(18);
-//   }
-
-//   span{
-
-//     position: relative;
-//     display: block;
-//   } 
-
-//   span, span:after, span:before{
-
-//     width: 100%;
-//     height: rem(2);
-//     background-color: #000;
-//     transition: all 0.3s;
-//     backface-visibility: hidden;
-//     border-radius: rem(2);
-//   }
-
-
-//   &.on span{
-
-//     background-color: transparent;
-//   } 
-
-//   &.on span:before{
-
-//     transform: rotate(45deg) translate(rem(-1), 0);
-//   } 
-
-//   &.on span:after{
-
-//     transform: rotate(-45deg) translate(rem(6), rem(-7));
-//   } 
-// } 
 // исправление бага отсутствия прозрачности при fade--переходах с/у слайдами
 // .swiper-container-fade{
 // 	.swiper-slide{
 // 		transition: opacity .5s !important;
 // 	}
 // }
-
 /*--------------------END adjustment----------------------*/ 

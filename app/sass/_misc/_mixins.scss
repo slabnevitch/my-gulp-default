@@ -70,7 +70,7 @@
 		}
 	}
 }
-// Use: @include flex-cols(30, 4, ($lg: 3, $md: 2, $sm: 1));
+// Use: @include flex-cols(40, 30, 4, ($lg: 3, $md: 2, $sm: 1), 'product-card');
 // $gap - расс-е. м/у колонками, $width - кол-во. колонок в ряду
 @mixin flex-cols($gap, $width: 1, $points: ($lg: '',
 $md: '',
@@ -79,29 +79,111 @@ $xs: '',
 $xss: '',
 $xsss: '',
 $min: '',
-$mins: '')) {
+$mins: ''),
+$columnClass: '') {
   display: flex;
   flex-wrap: wrap;
   margin-left: rem(-$gap);
   margin-right: rem(-$gap);
   
-  ._flex-col{
-    width: calc(100%/$width - rem($gap));
-    margin-left: rem(math.div($gap,2));
-  	margin-right: rem(math.div($gap,2));
+  @if $columnClass == ''{
+  	._flex-col{
+  		width: calc(100%/$width - rem($gap));
+  		margin-left: rem(math.div($gap,2));
+  		margin-right: rem(math.div($gap,2));
+		
+		@if $points{
+	  		@each $point, $value in $points {
+	  			@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				width: calc(100%/$value - rem($gap));
+		  			}
 
-  	@each $point, $value in $points {
-  		@if $value != ''{
-  			// background-color: red;
-  			@media only screen and (max-width: #{$point}){
-  				 width: calc(100%/$value - rem($gap));
-				}
+		  		}
 
-    	}
+		  	}
 
+		}
 	  }
-  }
+	}@else {
+		.#{$columnClass}{
+			width: calc(100%/$width - rem($gap));
+			margin-left: rem(math.div($gap,2));
+			margin-right: rem(math.div($gap,2));
+			
+			@if $points{
+				@each $point, $value in $points {
+					@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				width: calc(100%/$value - rem($gap));
+		  			}
+
+		  		}
+
+		  	}
+
+		  }
+		}
+	}
 }
+
+@mixin flex-cols-gap($colgap, $rowgap: 0, $width: 1, $points: ($lg: '',
+$md: '',
+$sm: '',
+$xs: '',
+$xss: '',
+$xsss: '',
+$min: '',
+$mins: ''),
+$columnClass: '') {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: rem($colgap);
+  @if $rowgap != 0 {
+  	row-gap: rem($rowgap);
+  }
+  
+  @if $columnClass == ''{
+  	._flex-col{
+  		flex: 0 1 calc(100%/$width - rem($colgap));
+		
+		@if $points{
+	  		@each $point, $value in $points {
+	  			@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				flex: 0 1 calc(100%/$value - rem($colgap));
+		  			}
+
+		  		}
+
+		  	}
+
+		}
+	  }
+	}@else {
+		.#{$columnClass}{
+			flex: 0 1 calc(100%/$width - rem($colgap));
+		
+			@if $points{
+		  		@each $point, $value in $points {
+		  			@if $value != ''{
+			  			// background-color: red;
+			  			@media only screen and (max-width: #{$point}){
+			  				flex: 0 1 calc(100%/$value - rem($colgap));
+			  			}
+
+			  		}
+
+			  	}
+
+			}
+		}
+	}
+}
+
 @mixin video(){
 	position: relative;
 	padding-bottom: 56.25%;
@@ -144,28 +226,29 @@ $mins: '')) {
 	
 	display: flex;
 	align-items: center;
-	column-gap: rem(#{$gap});
+	column-gap: rem($gap);
 
 	.pagination__arrow {
 		@include but-null;
 		color: $arrowColor;
+		text-decoration: none;
 
 		&[disabled]{
 			color: rgba(#000, .12);
 		}
 	}
 
-	.pagination__arrow--prev {
-		transform: rotate(90deg);
-	}
-	.pagination__arrow--next {
-		transform: rotate(-90deg);
-	}
+	// .pagination__arrow--prev {
+	// 	transform: rotate(90deg);
+	// }
+	// .pagination__arrow--next {
+	// 	transform: rotate(-90deg);
+	// }
 
 	.pagination__list {
 		display: flex;
 		align-items: center;
-		column-gap: rem(#{$gap});
+		column-gap: rem($gap);
 	}
 
 	.pagination__item{
@@ -176,9 +259,9 @@ $mins: '')) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: rem(#{$width});
-		height: rem(#{$width});
-		font-size:rem(#{$fontSize});
+		width: rem($width);
+		height: rem($width);
+		font-size:rem($fontSize);
 		@if $round != false { 
 			border-radius: $round;
 	  }

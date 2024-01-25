@@ -1,3 +1,92 @@
 /*--------------------ui----------------------*/
+.btn{
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: rem(50);
+//   border: none;
+//   color: #fff;
+//   text-decoration: none;
+//   background-color: $accent;
+//   padding: rem(5) rem(15);
+//   font-size: rem(13);
+//   text-transform: uppercase;
+//   border-radius: rem(2);
+//   text-align: center;
+//   position: relative;
+//   outline: none;
+//   transition: background-color .1s ease;
+	
+//   &:hover{
+//      background-color: lighten($accent, 5%);
+//   }
+		
+//   &:active{
+//    background-color: darken($accent, 5%);
+//   }
+  
+//   &-fw{
+//    width: 100%;
+//   }
+   
+// }
+
+// .toggle-mnu{
+// 	position: fixed;
+// 	right: rem(30);
+// 	top: rem(15);
+//   display: block;
+//   width: rem(28);
+//   height: rem(28);
+//   margin-top: rem(14);
+//   padding: 0;
+//   background-color: transparent;
+//   border: none;
+
+//   span:after, span:before{
+
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: rem(9);
+//   } 
+
+//   span:after{
+
+//     top: rem(18);
+//   }
+
+//   span{
+
+//     position: relative;
+//     display: block;
+//   } 
+
+//   span, span:after, span:before{
+
+//     width: 100%;
+//     height: rem(2);
+//     background-color: #000;
+//     transition: all 0.3s;
+//     backface-visibility: hidden;
+//     border-radius: rem(2);
+//   }
+
+
+//   &.on span{
+
+//     background-color: transparent;
+//   } 
+
+//   &.on span:before{
+
+//     transform: rotate(45deg) translate(rem(-1), 0);
+//   } 
+
+//   &.on span:after{
+
+//     transform: rotate(-45deg) translate(rem(6), rem(-7));
+//   } 
+// } 
 
 /*--------------------END ui----------------------*/ 
