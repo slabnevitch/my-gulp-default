@@ -79,28 +79,105 @@ $xs: '',
 $xss: '',
 $xsss: '',
 $min: '',
-$mins: '')) {
+$mins: ''),
+$columnClass: '') {
   display: flex;
   flex-wrap: wrap;
   margin-left: -#{$gap} + 'px';
   margin-right: -#{$gap} + 'px';
   
-  ._flex-col{
-    width: calc(100%/#{$width} - #{$gap + 'px'});
-    margin-left: #{$gap/2 + 'px'};
-  	margin-right: #{$gap/2 + 'px'};
+   @if $columnClass == ''{
+	  ._flex-col{
+	    width: calc(100%/#{$width} - #{$gap + 'px'});
+	    margin-left: math.div($gap,2) + px;
+	  	margin-right: math.div($gap,2) + px;
 
-  	// @each $point, $value in $points {
-  	// 	@if $value != ''{
-  	// 		// background-color: red;
-  	// 		@media only screen and (max-width: #{$point}){
-  	// 			 width: calc(100%/#{$value} - #{$gap + 'px'});
-		// 		}
+	  	@if $points{
+		  	@each $point, $value in $points {
+		  		@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				 width: calc(100%/#{$value} - #{$gap + 'px'});
+						}
 
-    // 	}
+		    	}
 
-	  // }
+			  }
+	  	}
+	  }
+   }@else {
+   		.#{$columnClass}{
+		    width: calc(100%/#{$width} - #{$gap + 'px'});
+		    margin-left: #{$gap/2 + 'px'};
+		  	margin-right: #{$gap/2 + 'px'};
+
+		  	@if $points{
+			  	@each $point, $value in $points {
+			  		@if $value != ''{
+			  			// background-color: red;
+			  			@media only screen and (max-width: #{$point}){
+			  				 width: calc(100%/#{$value} - #{$gap + 'px'});
+							}
+
+			    	}
+
+				  }
+		  	}
+	  	}
+   }
+}
+
+@mixin flex-cols-gap($colgap, $rowgap: 0, $width: 1, $points: ($lg: '',
+$md: '',
+$sm: '',
+$xs: '',
+$xss: '',
+$xsss: '',
+$min: '',
+$mins: ''),
+$columnClass: '') {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: rem($colgap);
+  @if $rowgap != 0 {
+  	row-gap: rem($rowgap);
   }
+  
+   @if $columnClass == ''{
+	  ._flex-col{
+	    flex: 0 1 calc(100%/#{$width} - #{$colgap + 'px'});
+
+	  	@if $points{
+		  	@each $point, $value in $points {
+		  		@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				flex: 0 1 calc(100%/#{$value} - #{$colgap + 'px'});
+						}
+
+		    	}
+
+			  }
+	  	}
+	  }
+   }@else {
+   		.#{$columnClass}{
+		    flex: 0 1 calc(100%/$width - #{$colgap + 'px'});
+
+		  	@if $points{
+			  	@each $point, $value in $points {
+			  		@if $value != ''{
+			  			// background-color: red;
+			  			@media only screen and (max-width: #{$point}){
+			  				 flex: 0 1 calc(100%/#{$value} - #{$colgap + 'px'});
+							}
+
+			    	}
+
+				  }
+		  	}
+	  	}
+   }
 }
 @mixin video(){
 	position: relative;
@@ -149,18 +226,19 @@ $mins: '')) {
 	.pagination__arrow {
 		@include but-null;
 		color: $arrowColor;
+		text-decoration: none;
 
 		&[disabled]{
 			color: rgba(#000, .12);
 		}
 	}
 
-	.pagination__arrow--prev {
-		transform: rotate(90deg);
-	}
-	.pagination__arrow--next {
-		transform: rotate(-90deg);
-	}
+	// .pagination__arrow--prev {
+	// 	transform: rotate(90deg);
+	// }
+	// .pagination__arrow--next {
+	// 	transform: rotate(-90deg);
+	// }
 
 	.pagination__list {
 		display: flex;

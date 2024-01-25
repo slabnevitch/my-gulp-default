@@ -38,17 +38,17 @@ mixin swiper(classname, pagination, scrollbar, navigation)
 
 //- Пагинация
 //- items: Array, arrowClass: String
-//- вызов: +pagination(items, 'icon-chev-down', 'chev-left', 'chev-right')
-mixin pagination(items = [1, 2, 3, '...', 15], arrowClass = '', iconPrev = false, iconNext = false)
+//- вызов: +pagination([1, 2, 3, 4, 5], 1, 'icon-chev-down', 'chev-left', 'chev-right')
+mixin pagination(items = [1, 2, 3, '...', 15], activeIndex= 1,  arrowClass = '', iconPrev = false, iconNext = false, textPrev='Prev', textNext='Next')
 	.pagination
-		button(class=arrowClass ? "pagination__arrow pagination__arrow--prev" + ' ' + arrowClass : "pagination__arrow pagination__arrow--prev" disabled='')
+		a(href="#" class=arrowClass ? "pagination__arrow pagination__arrow--prev" + ' ' + arrowClass : "pagination__arrow pagination__arrow--prev")= texPrev != '' ? textPrev : ''
 				if iconPrev
 					+icon(iconPrev)
 		ul.pagination__list
 			each item, i in items
 				li.pagination__item
-					a(class=i==3 ? "pagination__link active" : "pagination__link" href='#')= item
-		button(class=arrowClass ? "pagination__arrow pagination__arrow--next" + ' ' + arrowClass : "pagination__arrow pagination__arrow--next")
+					a(class=i==activeIndex ? "pagination__link active" : "pagination__link" href='#')= item
+		a(href="#" class=arrowClass ? "pagination__arrow pagination__arrow--next" + ' ' + arrowClass : "pagination__arrow pagination__arrow--next")=texNext != '' ? textNext : ''
 				if iconNext
 					+icon(iconNext)
 
