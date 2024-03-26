@@ -63,3 +63,35 @@
 .form__policy {
 
 }
+// иконка глаза для скрытия пароля
+// gist - "password input eye"
+.eye-ico{
+	width: 24px;
+	height: 24px;
+	position: relative;
+	@include but-null();
+	position: absolute;
+	bottom: 12px;
+	right: 20px;
+
+	.icon{
+		@include absolute-center;
+		font-size: 14px;
+	}
+
+	&.unblind{
+		.eye-ico__show{
+			display: block;
+
+		}
+		.eye-ico__hide{
+			display: none;
+
+		}
+	}
+
+	.eye-ico__show{
+		display: none;
+	}
+
+}
