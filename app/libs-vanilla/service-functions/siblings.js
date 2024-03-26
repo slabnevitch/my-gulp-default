@@ -9,7 +9,7 @@
 // 	return siblings
 // }
 
-function siblings( elem ) {
+function siblings( elem ) {// принимает только объекты, НЕ селекторы!
 	var createSiblings = function( n, elem ) {
 		var matched = [];
 
