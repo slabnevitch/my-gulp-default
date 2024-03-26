@@ -4,6 +4,9 @@ block title
 	| Главная страница
 
 block content
+	h1(style="text-align:center;") Привет! Можно начинать
+	.wrapper
+		.wrapper-flex
 
 block page-scripts
 	//- SERVIVE FUNCTIONS==================
@@ -31,7 +34,7 @@ block page-scripts
 	//- scrollDisable(надежное отключение скролла на ios--------------------------
 	//- script(src="js/libs/service-functions/scrollDisable.js")
 
-	//- scrollWidt(фикс прыгания стр-цы. при открытии модалки--------------------------
+	//- scrollWidth(фикс прыгания стр-цы. при открытии модалки--------------------------
 	//- script(src="js/libs/service-functions/scrollWidth.js")
 
 	//- All in one file--------------------------
@@ -85,8 +88,8 @@ block page-scripts
 	//- (для lazy style="background-image:url()" data-bg="img/unnamed.jpg")
 
 	//- Основной скрипт
-	//- script(src="js/libs/lazysizes/lazysizes.min.js" async)
-	
+	//- script(src="js/libs/lazysizes/lazysizes.min.js" async)	
+		
 	//- accordion--------------------------
 	//- script(src="js/libs/accordion/vanilla-accordion.js")
 		
@@ -126,7 +129,7 @@ block page-scripts
 	//- tippy--------------------------
 	//- https://atomiks.github.io/tippyjs/
 	//- base using:  html: <button data-tippy-content="Tooltip">Text</button>; js: tippy('[data-tippy-content]');
-	//- script(src="js/libs/tippy/popper.min.js"")
+	//- script(src="js/libs/tippy/popper.min.js")
 	//- script(src="js/libs/tippy/tippy-bundle.umd.js")
 
 	//- sticky-sidebar--------------------------

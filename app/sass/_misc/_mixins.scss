@@ -34,6 +34,10 @@
 	padding: 0;
 	background-color: transparent;
 	border: none;
+
+	@media (any-hover: hover) { //только для устройств с ховером
+			cursor: pointer;
+		}
 }
 
 @mixin dots-family{
@@ -70,7 +74,7 @@
 		}
 	}
 }
-// Use: @include flex-cols(30, 4, ($lg: 3, $md: 2, $sm: 1));
+// Use: @include flex-cols(40, 30, 4, ($lg: 3, $md: 2, $sm: 1), 'product-card');
 // $gap - расс-е. м/у колонками, $width - кол-во. колонок в ряду
 @mixin flex-cols($gap, $width: 1, $points: ($lg: '',
 $md: '',
@@ -83,48 +87,50 @@ $mins: ''),
 $columnClass: '') {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -#{$gap} + 'px';
-  margin-right: -#{$gap} + 'px';
+  margin-left: rem(-$gap);
+  margin-right: rem(-$gap);
   
-   @if $columnClass == ''{
-	  ._flex-col{
-	    width: calc(100%/#{$width} - #{$gap + 'px'});
-	    margin-left: math.div($gap,2) + px;
-	  	margin-right: math.div($gap,2) + px;
-
-	  	@if $points{
-		  	@each $point, $value in $points {
-		  		@if $value != ''{
+  @if $columnClass == ''{
+  	._flex-col{
+  		width: calc(100%/$width - rem($gap));
+  		margin-left: rem(math.div($gap,2));
+  		margin-right: rem(math.div($gap,2));
+		
+		@if $points{
+	  		@each $point, $value in $points {
+	  			@if $value != ''{
 		  			// background-color: red;
 		  			@media only screen and (max-width: #{$point}){
-		  				 width: calc(100%/#{$value} - #{$gap + 'px'});
-						}
+		  				width: calc(100%/$value - rem($gap));
+		  			}
 
-		    	}
+		  		}
 
-			  }
-	  	}
-	  }
-   }@else {
-   		.#{$columnClass}{
-		    width: calc(100%/#{$width} - #{$gap + 'px'});
-		    margin-left: #{$gap/2 + 'px'};
-		  	margin-right: #{$gap/2 + 'px'};
-
-		  	@if $points{
-			  	@each $point, $value in $points {
-			  		@if $value != ''{
-			  			// background-color: red;
-			  			@media only screen and (max-width: #{$point}){
-			  				 width: calc(100%/#{$value} - #{$gap + 'px'});
-							}
-
-			    	}
-
-				  }
 		  	}
-	  	}
-   }
+
+		}
+	  }
+	}@else {
+		.#{$columnClass}{
+			width: calc(100%/$width - rem($gap));
+			margin-left: rem(math.div($gap,2));
+			margin-right: rem(math.div($gap,2));
+			
+			@if $points{
+				@each $point, $value in $points {
+					@if $value != ''{
+		  			// background-color: red;
+		  			@media only screen and (max-width: #{$point}){
+		  				width: calc(100%/$value - rem($gap));
+		  			}
+
+		  		}
+
+		  	}
+
+		  }
+		}
+	}
 }
 
 @mixin flex-cols-gap($colgap, $rowgap: 0, $width: 1, $points: ($lg: '',
@@ -143,42 +149,45 @@ $columnClass: '') {
   	row-gap: rem($rowgap);
   }
   
-   @if $columnClass == ''{
-	  ._flex-col{
-	    flex: 0 1 calc(100%/#{$width} - #{$colgap + 'px'});
-
-	  	@if $points{
-		  	@each $point, $value in $points {
-		  		@if $value != ''{
+  @if $columnClass == ''{
+  	._flex-col{
+  		flex: 0 1 calc(100%/$width - rem($colgap));
+		
+		@if $points{
+	  		@each $point, $value in $points {
+	  			@if $value != ''{
 		  			// background-color: red;
 		  			@media only screen and (max-width: #{$point}){
-		  				flex: 0 1 calc(100%/#{$value} - #{$colgap + 'px'});
-						}
+		  				flex: 0 1 calc(100%/$value - rem($colgap));
+		  			}
 
-		    	}
+		  		}
 
-			  }
-	  	}
+		  	}
+
+		}
 	  }
-   }@else {
-   		.#{$columnClass}{
-		    flex: 0 1 calc(100%/$width - #{$colgap + 'px'});
-
-		  	@if $points{
-			  	@each $point, $value in $points {
-			  		@if $value != ''{
+	}@else {
+		.#{$columnClass}{
+			flex: 0 1 calc(100%/$width - rem($colgap));
+		
+			@if $points{
+		  		@each $point, $value in $points {
+		  			@if $value != ''{
 			  			// background-color: red;
 			  			@media only screen and (max-width: #{$point}){
-			  				 flex: 0 1 calc(100%/#{$value} - #{$colgap + 'px'});
-							}
+			  				flex: 0 1 calc(100%/$value - rem($colgap));
+			  			}
 
-			    	}
+			  		}
 
-				  }
-		  	}
-	  	}
-   }
+			  	}
+
+			}
+		}
+	}
 }
+
 @mixin video(){
 	position: relative;
 	padding-bottom: 56.25%;
@@ -221,7 +230,7 @@ $columnClass: '') {
 	
 	display: flex;
 	align-items: center;
-	column-gap: #{$gap} + 'px';
+	column-gap: rem($gap);
 
 	.pagination__arrow {
 		@include but-null;
@@ -243,7 +252,7 @@ $columnClass: '') {
 	.pagination__list {
 		display: flex;
 		align-items: center;
-		column-gap: #{$gap} + 'px';
+		column-gap: rem($gap);
 	}
 
 	.pagination__item{
@@ -254,9 +263,9 @@ $columnClass: '') {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: #{$width} + 'px';
-		height: #{$width} + 'px';
-		font-size:#{$fontSize} + 'px';
+		width: rem($width);
+		height: rem($width);
+		font-size:rem($fontSize);
 		@if $round != false { 
 			border-radius: $round;
 	  }
@@ -341,8 +350,8 @@ $columnClass: '') {
 @mixin checkbox{
 	position: absolute;
   box-sizing: border-box;
-  width: 1px;
-  height: 1px;
+  width: rem(1);
+  height: rem(1);
   display: block;
   left: 50%;
   top: 100%;
@@ -368,7 +377,7 @@ $columnClass: '') {
 	box-sizing: border-box;
 }
 
-$baseFontSize : 13;
+$rootFontSize: 16px;
 @function rem($pixels, $context: $baseFontSize) {
   @if (unitless($pixels)) {
     $pixels: $pixels * 1px;
@@ -378,7 +387,7 @@ $baseFontSize : 13;
     $context: $context * 1px;
   }
 
-  @return  math.div($pixels, $context) * 1rem;
+    @return math.div($pixels, $context) * 1rem;
 }
 
 // Adaptive font-size
@@ -402,6 +411,31 @@ $baseFontSize : 13;
  		#{$property}: $pcSize + px;
  		@media (min-width: #{$maxWidthContainer + px}){
 			#{$property}: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+ 		}
+ }@else{//на всей ширине экрана
+
+ 		#{$property}: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer}));
+ }
+}
+
+@mixin adaptive-value-rem($property, $pcSize, $mobSize, $maxWidth: $maxWidth, $minWidth: $minWidth, $type) { //$type = 1 -- 
+ // $minScreenSize = $minScreenSize || 320px;
+ // $addSize: $pcSize - $mobSize;
+ 
+ 	$slope: ($pcSize - $mobSize) / ($maxWidth - $minWidth);
+	$yAxisIntersection: -$minWidth * $slope + $mobSize;
+	$preferredValue: #{rem($yAxisIntersection)}" + " #{$slope * 100}vw;
+	$propertyValue: #{"clamp(" rem($mobSize) "," $preferredValue "," rem($pcSize) ")"};
+ 
+ @if $type == 1{//использовать если ширина экрана меньше $maxWidthContainer
+ 		#{$property}: rem($pcSize);
+ 		@media (max-width: em($maxWidthContainer)){
+ 			#{$property}: #{"clamp("rem($mobSize)","$preferredValue","rem($pcSize)")"};
+ 		}
+ }@else if $type == 2{//использовать если ширина экрана больше $maxWidthContainer
+ 		#{$property}: rem($pcSize);
+ 		@media (min-width: em($maxWidthContainer)){
+			#{$property}: $propertyValue;
  		}
  }@else{//на всей ширине экрана
 

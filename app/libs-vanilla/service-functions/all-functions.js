@@ -26,7 +26,7 @@ const isMobile = {
 };
 // Use: if(isMobile.any()){ some code here }
 
-var siblings = function ( elem ) {
+var siblings = function ( elem ) {// принимает только объекты, НЕ селекторы!
 
   var createSiblings = function( n, elem ) {
     var matched = [];
