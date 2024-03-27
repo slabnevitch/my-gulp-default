@@ -17,14 +17,14 @@ html(lang='ru')
 		link(rel="stylesheet" href="css/main.css")
 	
 	body
-		include _mixins
-		include _vars
+		include ../_misc/_mixins
+		include ../_misc/_vars
 
 		//- html for use slideOut.js--------------------
-		//- include _body-html-for-slideout 
+		//- include ../_misc/_body-html-for-slideout 
 
 		//- footer-to-bottom--------------------
-		//- include _footer-to-bottom
+		//- include ../_misc/_footer-to-bottom
 		
 		//- при использовании _body-html-for-slideout или _footer-to-bottom  -- закомментировать:
 		include ../_sections/header
@@ -33,7 +33,7 @@ html(lang='ru')
 		
 
 		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
-		include _scripts
+		include ../_misc/_scripts
 
 		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
 		block page-scripts
