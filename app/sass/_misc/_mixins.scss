@@ -74,9 +74,9 @@
 		}
 	}
 }
-// Use: @include flex-cols(40, 30, 4, ($lg: 3, $md: 2, $sm: 1), 'product-card');
+// Use: @include flex-cols(40, 30, 4, ($lg: 3, $md: 2, $sm: 1), 'product-card', 1);
 // $gap - расс-е. м/у колонками, $width - кол-во. колонок в ряду
-@mixin flex-cols($gap, $width: 1, $points: ($lg: '',
+@mixin flex-cols($gap, $rowgap, $width: 1, $points: ($lg: '',
 $md: '',
 $sm: '',
 $xs: '',
@@ -84,24 +84,33 @@ $xss: '',
 $xsss: '',
 $min: '',
 $mins: ''),
-$columnClass: '') {
+$columnClass: '', $wrap: 1) {
   display: flex;
-  flex-wrap: wrap;
-  margin-left: rem(-$gap);
-  margin-right: rem(-$gap);
+  margin-left: math.div(-$gap,2) + px;
+  margin-right: math.div(-$gap,2) + px;
+
+  @if $wrap == 1{
+	  flex-wrap: wrap;
+  }
   
   @if $columnClass == ''{
   	._flex-col{
-  		width: calc(100%/$width - rem($gap));
-  		margin-left: rem(math.div($gap,2));
-  		margin-right: rem(math.div($gap,2));
+  		width: calc(100% / #{$width} - #{$gap + 'px'});
+  		margin-left: math.div($gap,2) + px;
+  		margin-right: math.div($gap,2) + px;
+
+  		@if $rowgap != 0 {
+  			&:not(:last-child){
+  				margin-bottom: #{$rowgap + 'px'};
+  			}
+		  }
 		
 		@if $points{
 	  		@each $point, $value in $points {
 	  			@if $value != ''{
 		  			// background-color: red;
 		  			@media only screen and (max-width: #{$point}){
-		  				width: calc(100%/$value - rem($gap));
+		  				width: calc(100% / #{$value} - #{$gap + 'px'});
 		  			}
 
 		  		}
@@ -112,16 +121,22 @@ $columnClass: '') {
 	  }
 	}@else {
 		.#{$columnClass}{
-			width: calc(100%/$width - rem($gap));
-			margin-left: rem(math.div($gap,2));
-			margin-right: rem(math.div($gap,2));
+			width:  calc(100% / #{$width} - #{$gap + 'px'});
+			margin-left: math.div($gap,2) + px;
+  		margin-right: math.div($gap,2) + px;
+
+			@if $rowgap != 0 {
+  			&:not(:last-child){
+  				margin-bottom: #{$rowgap + 'px'};
+  			}
+		  }
 			
 			@if $points{
 				@each $point, $value in $points {
 					@if $value != ''{
 		  			// background-color: red;
 		  			@media only screen and (max-width: #{$point}){
-		  				width: calc(100%/$value - rem($gap));
+		  				width: calc(100% / #{$value} - #{$gap + 'px'});
 		  			}
 
 		  		}
@@ -133,7 +148,8 @@ $columnClass: '') {
 	}
 }
 
-@mixin flex-cols-gap($colgap, $rowgap: 0, $width: 1, $points: ($lg: '',
+//Use: @include flex-cols-gap(30, 15, 4, ($md: 3, $sm: 2, $xs: 1), 'column-class', 1);
+@mixin flex-cols-gap($colgap, $rowgap: 0, $columns: 1, $points: ($lg: '',
 $md: '',
 $sm: '',
 $xs: '',
@@ -141,24 +157,33 @@ $xss: '',
 $xsss: '',
 $min: '',
 $mins: ''),
-$columnClass: '') {
+$columnClass: '', $wrap: 1) {
+	$gap: rem($colgap);
+	$gap-columns: calc(#{$columns} - 1);
+	$gap-count: calc(#{$gap} / #{$columns} * #{$gap-columns});
+
   display: flex;
-  flex-wrap: wrap;
   column-gap: rem($colgap);
+  
+  @if $wrap == 1{
+	  flex-wrap: wrap;
+  }
   @if $rowgap != 0 {
   	row-gap: rem($rowgap);
   }
   
   @if $columnClass == ''{
   	._flex-col{
-  		flex: 0 1 calc(100%/$width - rem($colgap));
+  		 flex-basis: calc(calc(100% / #{$columns}) - #{$gap-count});
 		
 		@if $points{
 	  		@each $point, $value in $points {
 	  			@if $value != ''{
-		  			// background-color: red;
+		  			$gap-columns: calc(#{$value} - 1);
+		  			$gap-count: calc(#{$gap} / #{$value} * #{$gap-columns});
+
 		  			@media only screen and (max-width: #{$point}){
-		  				flex: 0 1 calc(100%/$value - rem($colgap));
+		  				 flex-basis: calc(calc(100% / #{$value}) - #{$gap-count});
 		  			}
 
 		  		}
@@ -169,14 +194,16 @@ $columnClass: '') {
 	  }
 	}@else {
 		.#{$columnClass}{
-			flex: 0 1 calc(100%/$width - rem($colgap));
+			flex-basis: calc(calc(100% / #{$columns}) - #{$gap-count});
 		
 			@if $points{
 		  		@each $point, $value in $points {
 		  			@if $value != ''{
-			  			// background-color: red;
+			  			$gap-columns: calc(#{$value} - 1);
+			  			$gap-count: calc(#{$gap} / #{$value} * #{$gap-columns});
+
 			  			@media only screen and (max-width: #{$point}){
-			  				flex: 0 1 calc(100%/$value - rem($colgap));
+			  				 flex-basis: calc(calc(100% / #{$value}) - #{$gap-count});
 			  			}
 
 			  		}
