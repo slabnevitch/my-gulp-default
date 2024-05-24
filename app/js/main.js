@@ -32,6 +32,18 @@
 //- fadeOut--------------------------
 // import {fadeOut} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
+//- fadeToggle--------------------------
+// import {fadeToggle} from '~/app/libs-vanilla/service-functions/all-functions.js';
+
+//- slideIn--------------------------
+// import {slideIn} from '~/app/libs-vanilla/service-functions/all-functions.js';
+
+//- slideOut--------------------------
+// import {slideOut} from '~/app/libs-vanilla/service-functions/all-functions.js';
+
+//- slideToggle--------------------------
+// import {slideToggle} from '~/app/libs-vanilla/service-functions/all-functions.js';
+
 //- webp-detection--------------------------
 // require('./vendor/libs-vanilla/service-functions/webp-detection.js')
 
