@@ -4,6 +4,7 @@ function fadeIn(el, timeout = 10, display) {
   el.style.transition = 'opacity ' + timeout+'ms';
   setTimeout(() => {
     el.style.opacity = 1;
+
   }, 10);
 };
 
@@ -16,3 +17,13 @@ function fadeOut(el, timeout){
     el.style.display = 'none';
   }, timeout);
 };
+
+function fadeToggle(el, timeout, display){
+  console.log('fadeToggle');
+  console.log(el);
+  if(el.style.display !== 'none'){
+    fadeOut(el, timeout);
+  }else{
+    fadeIn(el, timeout, display);
+  }
+}
