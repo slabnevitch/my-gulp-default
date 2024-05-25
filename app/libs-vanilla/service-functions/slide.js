@@ -1,4 +1,4 @@
-  let slideUp = function(target, duration=500) {
+  var slideUp = function(target, duration=500) {
     target.style.transitionProperty = 'height, margin, padding';
     target.style.transitionDuration = duration + 'ms';
     target.style.boxSizing = 'border-box';
@@ -26,13 +26,13 @@
 
   var slideDown = function(target, duration=500) {
     target.style.removeProperty('display');
-    let display = window.getComputedStyle(target).display;
+    var display = window.getComputedStyle(target).display;
 
     if (display === 'none')
       display = 'block';
 
     target.style.display = display;
-    let height = target.offsetHeight;
+    var height = target.offsetHeight;
     target.style.overflow = 'hidden';
     target.style.height = 0;
     target.style.paddingTop = 0;
