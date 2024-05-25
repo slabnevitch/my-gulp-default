@@ -1,4 +1,4 @@
-  let slideUp = (target, duration=500) => {
+  let slideUp = function(target, duration=500) {
     target.style.transitionProperty = 'height, margin, padding';
     target.style.transitionDuration = duration + 'ms';
     target.style.boxSizing = 'border-box';
@@ -10,7 +10,7 @@
     target.style.paddingBottom = 0;
     target.style.marginTop = 0;
     target.style.marginBottom = 0;
-    window.setTimeout( () => {
+    window.setTimeout( function() {
       target.style.display = 'none';
       target.style.removeProperty('height');
       target.style.removeProperty('padding-top');
@@ -24,7 +24,7 @@
     }, duration);
   }
 
-  let slideDown = (target, duration=500) => {
+  var slideDown = function(target, duration=500) {
     target.style.removeProperty('display');
     let display = window.getComputedStyle(target).display;
 
@@ -48,14 +48,14 @@
     target.style.removeProperty('padding-bottom');
     target.style.removeProperty('margin-top');
     target.style.removeProperty('margin-bottom');
-    window.setTimeout( () => {
+    window.setTimeout( function() {
       target.style.removeProperty('height');
       target.style.removeProperty('overflow');
       target.style.removeProperty('transition-duration');
       target.style.removeProperty('transition-property');
     }, duration);
   }
-  var slideToggle = (target, duration = 500) => {
+  var slideToggle = function(target, duration = 500) {
     if (window.getComputedStyle(target).display === 'none') {
       return slideDown(target, duration);
     } else {
