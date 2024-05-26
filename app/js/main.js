@@ -44,6 +44,14 @@
 //- slideToggle--------------------------
 // import {slideToggle} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
+//- theme-switcher --------------------------
+// Для переключения цвет. схемы нужны 2 кнопки, с классами .switcher и .reset
+// Для .reset нужно изначально задать display: none, а при добавлении класса .active установить для него display: block
+// сама тема меняется добавлением к <html> тегу классов dark & light.
+// в соответствии с этими классами нужно менять иконки Луны и Солнца
+// Работающий пример: all layout/FarmDev
+// require('~/app/libs-vanilla/service-functions/theme-switcher.js')
+
 //- webp-detection--------------------------
 // require('./vendor/libs-vanilla/service-functions/webp-detection.js')
 
