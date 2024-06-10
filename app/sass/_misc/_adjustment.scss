@@ -147,10 +147,7 @@ textarea{
 	// @include row-flex();
 	// @include wrapper();
 }
-.wrapper-flex{
-	// padding: 0 rem(15);
-	@include flex-cols(30, 4, ($lg: 3, $md: 2, $sm: 1));
-}
+
 [class*="__wrapper"]{
 	margin: 0 auto;
 	padding-left: rem(math.div($containerPaddings, 2));
@@ -172,7 +169,7 @@ textarea{
 // }
 
 .hidden{
-	display: none;
+	display: none !important;
 }
 
 .ibg{
