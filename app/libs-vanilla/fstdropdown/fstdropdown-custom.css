@@ -1,25 +1,43 @@
 .fstdropdown{
 	position: relative;
 	overflow: visible;
+	display: flex;
+	height: 48px;
+	align-items: center;
+	border-radius: 12px;
+}
+.fstdropdown.open > .fstlist {
+    width: calc(100% + 2px); /*dropdown займет ширину селекта полностью*/ 
 }
 .fstdiv.open>.fstdropdown{
 	position: relative;
 }
 .fstdropdown>.fstselected{
-	max-width: 374px;
+	box-shadow: none;
+	width: 100%;
+	color: #C4C4C4;
+	font-size: 16px;
 }
-.fstdropdown>.fstselected{
-
-}
+/*.fstdropdown.open{// изменение углов поля
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	
+}*/
 
 .fstdropdown.open:hover{
+	outline: none;
 	box-shadow: none;
+	border-color: #C4C4C4;
 }
 .fstdropdown>.fstlist{
 	background-color: #fff;
 	position: absolute;
 	top: calc(100% + 2px);
 	box-shadow: none;
+}
+
+.fstdropdown>.fstlist div:first-child{/*удаление из dropdown первого "невидимого" пункта, которому в исходном <select> соответствует <option selected disbled hidden>*/
+/*	display: none;*/
 }
 .fstdropdown.open:hover{
 	overflow: visible;
