@@ -17,10 +17,13 @@
 //   outline: none;
 //   transition: background-color .1s ease;
 	
-//   &:hover{
-//      background-color: lighten($accent, 5%);
-//   }
-   
+   // @media (any-hover: hover) { //только для устройств с ховером
+   // 		cursor: pointer;
+   // 		&:hover{
+   //  		 background-color: lighten($accent, 5%);
+
+   // 		}
+   // 	}   
 		
 //   &:active{
 //    background-color: darken($accent, 5%);
