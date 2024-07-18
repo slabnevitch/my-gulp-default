@@ -233,7 +233,7 @@ $columnClass: '', $wrap: 1) {
 	.menu-header__body{
 		&:before{//верхняя плашка с заливкой (её может и не быть)
 			content: '';
-			height: rem($plateHeight);
+			height: #{$plateHeight + 'px'};
 			width: 100%;
 			position: fixed;
 			right: -100%;
