@@ -313,14 +313,18 @@ gulp.task('fontsConvert', function(){
 });
 
 gulp.task('imgOptim', function() {
-  return gulp.src(['!app/img/icons-svg/**', 'app/img/**/*'])
+  return gulp.src(['app/img/**/*'], {
+    ignore: ['app/img/icons-svg/**', 'app/img/favicon/**']
+    })
     .pipe(
       webp({
         quality: 70
       })
     )
-    .pipe(gulp.dest('app/img'))
-    .pipe(gulp.src([ '!app/img/icons-svg/**', 'app/img/**/*']))
+    .pipe(gulp.dest('dist/img'))
+    .pipe(gulp.src(['app/img/**/*'], {
+       ignore: ['app/img/icons-svg/**']
+    }))
     .pipe(imagemin({
       interlaced: true,
       progressive: true,
