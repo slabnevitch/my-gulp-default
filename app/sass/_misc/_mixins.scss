@@ -230,20 +230,56 @@ $columnClass: '', $wrap: 1) {
 		height: 100%;
 	}
 }
-@mixin menu-mob($media: $md){
-	@media screen and (max-width: $media){
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		// z-index: 20;
-		transition: all .4s;
-		transform: translateX(-100%);
-		overflow-y: auto;
+@mixin menu-mob($media: $md, $burgerColor: #000, $burgerOpenColor: #000, $plateBgColor: #fff, $plateHeight: 80){//вызывается для для главного блока меню
+	.menu-header__body{
+		&:before{//верхняя плашка с заливкой (её может и не быть)
+			content: '';
+			height: rem($plateHeight);
+			width: 100%;
+			position: fixed;
+			right: -100%;
+			top: 0;
+			background-color: $plateBgColor;
+			transition: right .4s ease;
+
+			.menu-opened & {
+				right: 0;
+			}
+			@include min-screen($media){
+				display: none;
+			}
+		}
+		.menu-opened & {
+			right: 0;
+		}
+		@media screen and (max-width: $media){
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 100%;
+			height: 100%;
+			transition: all .4s ease;
+			overflow-y: auto;
+		}
+
 	}
-	.menu-opened & {
-		transform: translateX(0);
+	.toggle-mnu{//задание цвета бургера, закрытого и открытого
+
+	  span, span:after, span:before{
+	    background-color: $burgerColor;
+
+	    .menu-opened & {
+	    	background-color: $burgerOpenColor;
+	    }
+	  }
+
+		&.on span{
+	    background-color: transparent;
+	  } 
+
+		@media screen and (max-width: $media){
+			display: block;
+		}
 	}
 }
 @mixin pagination($width: 34, 
