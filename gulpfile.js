@@ -1,4 +1,4 @@
-const buildMode = 'simple'; // ('simple' || 'webpack')
+const buildMode = 'webpack'; // ('simple' || 'webpack')
 
 var gulp = require('gulp');
 var sass = sass = require('gulp-sass')(require('sass'));
@@ -51,8 +51,9 @@ gulp.task('common-js', function() {
   return gulp.src([
     'app/js/common.js',
     ])
-  .pipe(concat('common.min.js'))
+  // .pipe(concat('common.min.js'))
   .pipe(uglify())
+  .pipe(rename({ suffix: ".min" }))
   .pipe(gulp.dest('app/js'));
 });
 
@@ -93,17 +94,6 @@ gulp.task('webpack-stream', function(){
     .pipe(browserSync.stream())
 });
 
-gulp.task('grid-ie9', function () {
-  return gulp.src('app/sass/grid-ie9.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({
-            browsers: ['last 15 versions', '>1%', 'ie 8', 'ie 7'],
-            cascade: true}))
-    .pipe(sourcemaps.write('maps/'))
-    .pipe(gulp.dest('app/css'));
-});
-
 gulp.task('jade', function () {
   return gulp.src('app/jade/**.jade')
     .pipe(gulpJade({
@@ -135,7 +125,12 @@ gulp.task('media-packer', async function () {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('app/sass/**.scss')
+  var processors = [
+    mqpacker({
+      sort: sortCSSmq.desktopFirst
+    })
+  ];
+  return gulp.src('app/sass/main.scss')
     .pipe(sassGlob())
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
@@ -145,10 +140,13 @@ gulp.task('sass', function () {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
+    .pipe(postcss(processors)) //группировка media-queries
+    .pipe(cssnano())
     // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
-    .pipe(webpcss({}))
+    // .pipe(webpcss({}))
 
     .pipe(sourcemaps.write('maps/'))
+    .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest('app/css'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -165,7 +163,9 @@ gulp.task('watch', function () {
   if(buildMode === 'webpack'){
     gulp.watch(['app/js/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
   }
-  // gulp.watch('app/src/js/common.js', ['babel-js']);
+  if(buildMode === 'simple'){
+    gulp.watch('app/js/common.js', gulp.series('common-js')).on('change', browserSync.reload);
+  }
   gulp.watch('app/*.html').on('change', browserSync.reload);
 });
 
@@ -388,16 +388,30 @@ gulp.task('copyCss', () => {
   // .pipe(gcmq())
   // .pipe(cssnano())
   // .pipe(gulp.dest('dist/css'))
-
-  // док-ция. про плагин https://github.com/OlehDutchenko/sort-css-media-queries/blob/master/README-UK.md
+  
   var processors = [
     mqpacker({
       sort: sortCSSmq.desktopFirst
     })
   ];
-  return gulp.src('app/css/*.css')
+
+  return gulp.src('app/sass/main.scss')
+    .pipe(sassGlob())
+    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+    .pipe(autoprefixer({
+            grid:true,
+            // grid:"autoplace",
+            browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
+            cascade: false
+          }))
+    // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
+    // .pipe(webpcss({}))
+
+  // док-ция. про плагин https://github.com/OlehDutchenko/sort-css-media-queries/blob/master/README-UK.md
   .pipe(postcss(processors))
   // .pipe(cssnano())
+  .pipe(gulp.dest('dist/css/'))
+  .pipe(gulp.src('app/css/main.min.css'))
   .pipe(gulp.dest('dist/css/'));
 });
 
@@ -423,12 +437,12 @@ gulp.task('copyJs', () => {
 });
 gulp.task('copyHtml', () => {
    return gulp.src('app/*.html') // Переносим HTML в продакшен
-            // .pipe(webphtml()) // Автозамена картинок на .webp через <picture></picture>
-            .pipe(gulp.dest('dist'));
+      .pipe(webphtml()) // Автозамена картинок на .webp через <picture></picture>
+      .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', gulp.parallel(/*'imgOptim',*/ 'watch', 'sass', /*'jade',*/ 'browser-sync'));
-gulp.task('build', gulp.series('clean', 'imgOptim', 'copyCss', 'copyFonts', /*'copySvgSprite',*/ 'copyJs', 'copyHtml'/* 'sass', 'css-min'/* 'group'*/));
+gulp.task('build', gulp.series('clean', 'sass', 'jade', 'imgOptim', 'copyCss', 'copyFonts', /*'copySvgSprite',*/ 'copyJs', 'copyHtml'/* 'sass', 'css-min'/* 'group'*/));
   
   // var buildSvg = gulp.src('app/img/icons-svg/**/*') // Переносим svg в продакшен
   // .pipe(gulp.dest('dist/img/icons-svg/'));
