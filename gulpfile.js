@@ -158,7 +158,7 @@ gulp.task('sass', function () {
 //   gulp.watch('app/*.html', browserSync.reload);
 // };
 gulp.task('watch', function () {
-  gulp.watch('app/sass/**/*.scss',  gulp.series('sass'));
+  gulp.watch(['app/sass/**/*.scss', 'app/**/*.css', '!app/css/**/*.css'],  gulp.series('sass'));
   gulp.watch('app/jade/**/*.jade',  gulp.series('jade'));
   if(buildMode === 'webpack'){
     gulp.watch(['app/js/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
