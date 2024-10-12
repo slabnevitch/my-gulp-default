@@ -47,6 +47,7 @@
 	// slideout
 // /*--slideout--*/
 // @import "../js/libs/slideout/index";
+// @import "../libs-vanilla/slideout/index";
 // /*--end slideout--*/
 	
 	// multilevel-panel
@@ -57,17 +58,20 @@
 	// micromodal
 // /*--micromodal--*/
 // @import "../js/libs/micromodal/micromodal";
+// @import "../libs-vanilla/micromodal/micromodal";
 // /*--end micromodal--*/
 
 	// swiper
 // /*--swiper--*/
 // @import "../js/libs/swiper/swiper-bundle.min";
+// @import "../libs-vanilla/swiper/swiper-bundle.min";
 // /*--end swiper--*/
 
 	// tiny-slider
-/*--tiny-slider--*/
+// /*--tiny-slider--*/
 // @import "../libs-vanilla/tiny-slider/dist/tiny-slider";
-/*--end tiny-slider--*/
+// @import "../js/libs/tiny-slider/dist/tiny-slider";
+// /*--end tiny-slider--*/
 	
 	// fstdropdown
 // /*--fstdropdown--*/
@@ -78,6 +82,7 @@
 	// noUiSlider
 // /*--noUiSlider--*/
 // @import "../js/libs/noUiSlider/nouislider.min";
+// @import "../libs-vanilla/noUiSlider/nouislider.min";
 // /*--end noUiSlider--*/
 
 	// tippy

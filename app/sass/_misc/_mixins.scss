@@ -240,6 +240,7 @@ $columnClass: '', $wrap: 1) {
 			top: 0;
 			background-color: $plateBgColor;
 			transition: right .4s ease;
+			z-index: 2;
 
 			.menu-opened & {
 				right: 0;
