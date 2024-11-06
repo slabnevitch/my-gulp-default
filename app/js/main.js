@@ -73,6 +73,10 @@
 //- scroll-to-sects--------------------------
 // import {ScrollToSects} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
+//- ScrollTabs (прокрутка длинных табов на моббильных экранах)-------------------------- 
+// import {ScrollTabs} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// new ScrollTabs();
+
 // import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';//
 // if(document.querySelectorAll('[data-dropdowned]') != null){
 // 	multiDropdown();

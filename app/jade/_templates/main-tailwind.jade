@@ -1,0 +1,56 @@
+doctype html
+html(lang='ru' class="h-full")
+	head
+		meta(charset='utf-8')
+		title
+			block title
+		meta(name="description" content="")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		
+		//- убрать "зуммирование" на safari ios:
+		//- meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no")
+		
+		//- фикс подсветки телефонов на safari ios:
+		//- meta(content="telephone=no" name="format-detection")
+		
+		link(rel="icon" href="favicon.ico" sizes="16x16")
+		link(rel="icon" href="favicon.ico" sizes="32x32")
+		link(rel="icon" href="img/favicon/favicon.svg" type="image/svg+xml")
+		link(rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png")
+		link(rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png")
+		link(rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png")
+		link(rel="manifest" href="favic.webmanifest")
+		meta(name="msapplication-TileColor" content="#da532c")
+		meta(name="theme-color" content="#ffffff")
+		link(rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5")
+		
+		//- link(rel="stylesheet" href="css/main.min.css")
+		link(rel="stylesheet" href="css/main.min.css")
+	
+	body(class="h-full")
+		include ../_misc/_mixins
+		include ../_misc/_vars
+
+		div(class="flex min-h-full flex-col overflow-hidden supports-[overflow: clip]:overflow-clip")
+			header.shrink-0.grow-0
+				include ../_sections/header
+			main(class="flex-auto shrink-1 grow-1")
+				block content
+			footer.shrink-0.grow-0
+				include ../_sections/footer
+		
+
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
+		include ../_misc/_scripts
+
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
+		block page-scripts
+		
+		//- УДАЛИТЬ если в gulpfile.js buildMode = 'webpack'
+		//- script(src='js/common.min.js')
+		
+
+		//- если в gulpfile.js buildMode = 'webpack'
+		script(src='js/main.min.js')
+		
+		//- script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_NAmCu9dm16a9i0oeX0T6rBQFgObeiZA&amp;callback=initMap" async defer>)

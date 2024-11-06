@@ -1,0 +1,58 @@
+@use "sass:math";
+
+// основные стили икомун
+// @import "../fonts/icomoon/style";
+// измеенен путь до файлов. Архив, полученный с сайта icomoon, распоковывать в fonts
+// @import "_misc/_icomoon-custom";
+@import "fonts";
+// @import "libs";
+@import "_misc/_vars.scss";
+@import "_misc/_functions.scss";
+@import "_misc/_mixins";
+@import "_misc/_rating";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+	body{
+		@apply font-poppins;
+
+		.lock & {
+			overflow: hidden;
+			touch-action: none;
+			overflow-behavior: none;
+		}
+	}
+	h2{
+		@apply mb-[.625rem] text-[2.75rem] leading-[1.4] font-semibold sm:text-4xl;
+	}
+}
+@layer components { //снижает приоритет стилей, их можно будет перебить классами в хтмл
+	.btn{
+		@apply px-[1.5rem] h-[3.125rem] flex justify-center items-center text-lg text-white rounded-xl border border-transparent;
+	}
+	// .tab.active{
+	// 	@apply border-violet text-violet text-xl font-semibold;
+	// }
+	.star-rating{
+		@include star-rating(#000000, #EBE100, 20, .5, false);
+	}
+}
+ 
+.header__link{
+	@apply font-medium text-[0.9375rem] text-white hover:underline decoration-2 underline-offset-4;
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
