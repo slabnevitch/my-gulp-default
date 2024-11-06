@@ -44,6 +44,10 @@
 //- slideToggle--------------------------
 // import {slideToggle} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
+//- ScrollTabs--------------------------
+// import {ScrollTabs} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// new ScrollTabs();
+
 //- theme-switcher --------------------------
 // Для переключения цвет. схемы нужны 2 кнопки, с классами .switcher и .reset
 // Для .reset нужно изначально задать display: none, а при добавлении класса .active установить для него display: block
@@ -69,6 +73,10 @@
 
 //- scroll-to-sects--------------------------
 // import {ScrollToSects} from '~/app/libs-vanilla/service-functions/all-functions.js';
+
+//- ScrollTabs (прокрутка длинных табов на моббильных экранах)-------------------------- 
+// import {ScrollTabs} from '~/app/libs-vanilla/service-functions/all-functions.js';
+// new ScrollTabs();
 
 // import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';//
 // if(document.querySelectorAll('[data-dropdowned]') != null){
