@@ -1,4 +1,5 @@
 const buildMode = 'webpack'; // ('simple' || 'webpack')
+const tailwindMode = true;
 
 var gulp = require('gulp');
 var sass = sass = require('gulp-sass')(require('sass'));
@@ -34,6 +35,7 @@ const fs = require("fs");
 const mqpacker = require("css-mqpacker");
 var postcss = require('gulp-postcss');
 const sortCSSmq = require('sort-css-media-queries');
+const tailwindcss = require('tailwindcss');
 
 gulp.task('browser-sync', function() {
   browserSync({
@@ -125,12 +127,14 @@ gulp.task('media-packer', async function () {
 });
 
 gulp.task('sass', function () {
+  var source = tailwindMode ? 'tailwind' : 'main';
   var processors = [
     mqpacker({
       sort: sortCSSmq.desktopFirst
     })
   ];
-  return gulp.src('app/sass/main.scss')
+  // return gulp.src('app/sass/main.scss')
+  return gulp.src('app/sass/'+source+'.scss')
     .pipe(sassGlob())
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
@@ -140,13 +144,13 @@ gulp.task('sass', function () {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
-    .pipe(postcss(processors)) //группировка media-queries
+    .pipe(postcss([tailwindcss('tailwind.config.js')]))
+    // .pipe(postcss(processors)) //группировка media-queries
     .pipe(cssnano())
-    // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
-    // .pipe(webpcss({}))
+    // .pipe(webpcss({})) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
 
     .pipe(sourcemaps.write('maps/'))
-    .pipe(rename({ suffix: ".min" }))
+    .pipe(rename('main.min.css'))
     .pipe(gulp.dest('app/css'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -161,12 +165,17 @@ gulp.task('watch', function () {
   gulp.watch(['app/sass/**/*.scss', 'app/**/*.css', '!app/css/**/*.css'],  gulp.series('sass'));
   gulp.watch('app/jade/**/*.jade',  gulp.series('jade'));
   if(buildMode === 'webpack'){
-    gulp.watch(['app/js/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
+    gulp.watch(['app/js/**/*.js', 'app/libs-vanilla/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
   }
   if(buildMode === 'simple'){
     gulp.watch('app/js/common.js', gulp.series('common-js')).on('change', browserSync.reload);
   }
-  gulp.watch('app/*.html').on('change', browserSync.reload);
+  if(tailwindMode){
+    gulp.watch('app/*.html', gulp.series('sass')).on('change', browserSync.reload);
+  }else{
+    gulp.watch('app/*.html').on('change', browserSync.reload);
+  }
+
 });
 
 gulp.task('sprite', function () {
@@ -389,13 +398,14 @@ gulp.task('copyCss', () => {
   // .pipe(cssnano())
   // .pipe(gulp.dest('dist/css'))
   
+  var source = tailwindMode ? 'tailwind' : 'main';
   var processors = [
     mqpacker({
       sort: sortCSSmq.desktopFirst
     })
   ];
 
-  return gulp.src('app/sass/main.scss')
+  return gulp.src('app/sass/'+source+'.scss')
     .pipe(sassGlob())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(autoprefixer({
@@ -404,12 +414,14 @@ gulp.task('copyCss', () => {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
+    .pipe(postcss([tailwindcss('tailwind.config.js')])) //включить, если tailwindMode = true
     // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
     // .pipe(webpcss({}))
 
   // док-ция. про плагин https://github.com/OlehDutchenko/sort-css-media-queries/blob/master/README-UK.md
-  .pipe(postcss(processors))
+  // .pipe(postcss(processors))
   // .pipe(cssnano())
+  .pipe(rename('main.css'))
   .pipe(gulp.dest('dist/css/'))
   .pipe(gulp.src('app/css/main.min.css'))
   .pipe(gulp.dest('dist/css/'));
