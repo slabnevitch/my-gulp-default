@@ -140,7 +140,7 @@
 // require('~/app/libs-vanilla/tabs-accordion-combine/tabs-accordion.js')
 	
 //- micromodal--------------------------
-// При использовании с webpack-stream - ошибка при инициализации!!
+// При подключении скрипта ScrollTrigger.js micromodal выдает ошибку при инициализации!!
 // var MicroModal = require('~/app/libs-vanilla/micromodal/micromodal.js')
 
 //- GraphModal--------------------------
