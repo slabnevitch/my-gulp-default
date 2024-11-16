@@ -20,12 +20,12 @@
 //- script(src="js/libs/service-functions/mobileDetect.js")
 
 //- fade--------------------------
+//- fadeToggle(document.querySelector('selector'), 500, 'flex');
 //- fadeIn(document.querySelector('selector'), 500, 'flex');
 //- fadeOut(document.querySelector('selector'), 500);
-//- fadeToggle(document.querySelector('selector'), 500,'flex');
 //- script(src="js/libs/service-functions/fade.js")
 
-//- slide--------------------------
+//- slide-------------------------
 //- исходное значеник display определяется автоматически
 //- slideToggle(document.querySelector('.my-shuffle'), 400); 
 //- slideUp(document.querySelector('.my-shuffle'), 400); 
@@ -45,6 +45,9 @@
 
 //- scrollWidth(фикс прыгания стр-цы. при открытии модалки--------------------------
 //- script(src="js/libs/service-functions/scrollWidth.js")
+
+//- scrollTabs(прокрутка длинных табов на мобильных--------------------------
+//- script(src="js/libs/service-functions/scrollTabs.js')
 
 //- All in one file--------------------------
 //- script(src="js/libs/service-functions/all-functions.js")
@@ -110,7 +113,18 @@
 //- script(src="js/libs/tabs-accordion-combine/tabs-accordion.js")
 	
 //- micromodal--------------------------
+//- При подключении скрипта ScrollTrigger.js micromodal выдает ошибку при инициализации!!
 //- script(src="js/libs/micromodal/micromodal.js")
+
+//- GraphModal--------------------------
+//- не требует подключения scrollWidth(фикс прыгания стр-цы. при открытии модалки)
+//- script(src="js/libs/graph-modal/dist/graph-modal.min.js")
+
+//- VenoBox--------------------------
+//- модалка для всех видов содержимого - inline, iframe, photo
+//- Внимание! Копирует, исходное содержимое в модалку в режиме inline, поэтому не подходит для отправки форм через onsubmit!
+//- Лучше вообще не использовать для форм.
+//- script(src="js/libs/VenoBox/dist/venobox.js")
 	
 //- swiper--------------------------
 //- script(src="js/libs/swiper/swiper-bundle.min.js")
