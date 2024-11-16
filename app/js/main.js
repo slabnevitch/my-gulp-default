@@ -140,7 +140,18 @@
 // require('~/app/libs-vanilla/tabs-accordion-combine/tabs-accordion.js')
 	
 //- micromodal--------------------------
+// При использовании с webpack-stream - ошибка при инициализации!!
 // var MicroModal = require('~/app/libs-vanilla/micromodal/micromodal.js')
+
+//- GraphModal--------------------------
+// не требует подключения scrollWidth(фикс прыгания стр-цы. при открытии модалки)
+// require('/app/libs-vanilla/graph-modal/dist/graph-modal.min.js')
+
+//- VenoBox--------------------------
+// модалка для всех видов содержимого - inline, iframe, photo
+// Внимание! Копирует, исходное содержимоев  модалку в режиме inline, поэтому не подходит для отправки форм через onsubmit!
+// Лучше вообще не использовать для форм.
+// var VenoBox = require('~/app/libs-vanilla/VenoBox/dist/venobox.js')
 	
 //- swiper--------------------------
 // const Swiper = require('~/app/libs-vanilla/swiper/swiper-bundle.min.js')

@@ -120,8 +120,18 @@ block page-scripts
 	//- script(src="js/libs/tabs-accordion-combine/tabs-accordion.js")
 		
 	//- micromodal--------------------------
-	//- script(src="js/libs/micromodal/micromodal.js")	
-		
+	//- script(src="js/libs/micromodal/micromodal.js")
+
+	//- GraphModal--------------------------
+	//- не требует подключения scrollWidth(фикс прыгания стр-цы. при открытии модалки)
+	//- script(src="js/libs/graph-modal/dist/graph-modal.min.js")
+
+	//- VenoBox--------------------------
+	//- модалка для всех видов содержимого - inline, iframe, photo
+	//- Внимание! Копирует, исходное содержимое в модалку в режиме inline, поэтому не подходит для отправки форм через onsubmit!
+	//- Лучше вообще не использовать для форм.
+	//- script(src="js/libs/VenoBox/dist/venobox.js")
+
 	//- swiper--------------------------
 	//- script(src="js/libs/swiper/swiper-bundle.min.js")
 
