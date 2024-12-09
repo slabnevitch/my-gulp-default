@@ -227,6 +227,9 @@ let slideToggle = (target, duration = 500) => {
   }
 }
 
+/*
+каждая ссылка навигации должны иметь атрибут data-anchor, а соответствующая ей секция - data-anchor-target  с одинаковыми значениями
+*/
 function ScrollToSects(opts){
   var _self = this,
       opts = {
@@ -235,11 +238,21 @@ function ScrollToSects(opts){
         sectsSelector: opts.sectsSelector || 'section',
         delay: opts.delay || null,
         anchorSpy: opts.anchorSpy || false,
-        activeClassAdding: opts.activeClassAdding
+        activeClassAdding: opts.activeClassAdding,
+        afterNavClick: opts.afterNavClick || null
       },
-      links = Array.prototype.slice.call(document.querySelector(opts.linksContainer)
-              .querySelectorAll('[data-anchor]')),
-      sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor]')),
+      links = (function links(query){
+        var queryArray = query.split(',');
+        var overalArr = [];
+        
+        queryArray.forEach(queryItem => {
+          var links = Array.prototype.slice.call(document.querySelectorAll(queryItem + ' [data-anchor]'));
+          overalArr = Array.prototype.concat(overalArr, links);
+        });
+
+        return overalArr;
+      })(opts.linksContainer),
+      sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor-target]')),
       pageHeader = document.querySelector('header'),
       gotoBlockValue = 0,
       observer;
@@ -264,7 +277,7 @@ function ScrollToSects(opts){
         if (entry.isIntersecting) {
           console.log(entry.target);
           links.forEach(function(link) {
-            if (link.dataset.anchor === entry.target.dataset.anchor) {
+            if (link.dataset.anchor === entry.target.dataset.anchorTarget) {
               link.classList.add('active');
 
             } else {
@@ -286,7 +299,7 @@ function ScrollToSects(opts){
   this.navClick = function(e){
       e.preventDefault();
       sects.forEach(function(sect){
-      if(sect.dataset.anchor === e.target.dataset.anchor){
+      if(sect.dataset.anchorTarget === e.target.dataset.anchor){
         gotoBlockValue = sect.getBoundingClientRect().top + pageYOffset - pageHeader.offsetHeight + opts.offset;
       }
     });
@@ -298,7 +311,10 @@ function ScrollToSects(opts){
       });
       e.target.classList.add('active');
     }
-  
+    
+    if(opts.afterNavClick){
+      opts.afterNavClick();
+    }
    if(opts.delay){
      setTimeout(function(){
        _self.scrollToTarget(gotoBlockValue);

@@ -1,5 +1,5 @@
 /*
-каждая ссылка навигации и соответствующая ей секция должны иметь атрибут data-anchor с одинаковым значением
+каждая ссылка навигации должны иметь атрибут data-anchor, а соответствующая ей секция - data-anchor-target  с одинаковыми значениями
 */
 function ScrollToSects(opts){
   var _self = this,
@@ -9,11 +9,21 @@ function ScrollToSects(opts){
         sectsSelector: opts.sectsSelector || 'section',
         delay: opts.delay || null,
         anchorSpy: opts.anchorSpy || false,
-        activeClassAdding: opts.activeClassAdding
+        activeClassAdding: opts.activeClassAdding,
+        afterNavClick: opts.afterNavClick || null
       },
-      links = Array.prototype.slice.call(document.querySelector(opts.linksContainer)
-              .querySelectorAll('[data-anchor]')),
-      sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor]')),
+      links = (function links(query){
+        var queryArray = query.split(',');
+        var overalArr = [];
+        
+        queryArray.forEach(queryItem => {
+          var links = Array.prototype.slice.call(document.querySelectorAll(queryItem + ' [data-anchor]'));
+          overalArr = Array.prototype.concat(overalArr, links);
+        });
+
+        return overalArr;
+      })(opts.linksContainer),
+      sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor-target]')),
       pageHeader = document.querySelector('header'),
       gotoBlockValue = 0,
       observer;
@@ -33,12 +43,14 @@ function ScrollToSects(opts){
     });
   },
   this.observerInit = function() {
-    observer = new IntersectionObserver(function(entries){
+    observer = new IntersectionObserver((entries) => {
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
+          console.log(entry.target);
           links.forEach(function(link) {
-            if (link.dataset.anchor === entry.target.dataset.anchor) {
+            if (link.dataset.anchor === entry.target.dataset.anchorTarget) {
               link.classList.add('active');
+
             } else {
               link.classList.remove('active');
             }
@@ -58,7 +70,7 @@ function ScrollToSects(opts){
   this.navClick = function(e){
       e.preventDefault();
       sects.forEach(function(sect){
-      if(sect.dataset.anchor === e.target.dataset.anchor){
+      if(sect.dataset.anchorTarget === e.target.dataset.anchor){
         gotoBlockValue = sect.getBoundingClientRect().top + pageYOffset - pageHeader.offsetHeight + opts.offset;
       }
     });
@@ -70,7 +82,10 @@ function ScrollToSects(opts){
       });
       e.target.classList.add('active');
     }
-  
+    
+    if(opts.afterNavClick){
+      opts.afterNavClick();
+    }
    if(opts.delay){
      setTimeout(function(){
        _self.scrollToTarget(gotoBlockValue);
@@ -106,11 +121,14 @@ function ScrollToSects(opts){
   }
   this.init();
 }
-// new ScrollToSects({
-//   linksContainer: 'header',//контейнер, в котором лежат кнопки навигации
-//   offset: 50,//отступ от верха экрана при прокрутке (если нужен)
-//   sectsSelector: '.sect',//селектор секций, если не section
-//    delay: 0,//задержка перед прокруткой. Может понадобится, елсли перед прокруткой нужно время на анимацию закрытия моб. меню, например
-    // anchorSpy: true //добавление активного класса ссылке при скролле, если соответствующая ей секция попадает в экран
-    // activeClassAdding: false //добавление классов активным ссылкам
-// });
+new ScrollToSects({
+    linksContainer: 'header',//контейнер, в котором лежат кнопки навигации. Если контейнеров несколько, перечислить ч/з запятую.
+    // offset: -50,//отступ от верха экрана при прокрутке (если нужен)
+    sectsSelector: '[data-anchor-target]',//селектор секций, default - "section"
+     // delay: 300,//задержка перед прокруткой. Может понадобится, елсли перед прокруткой нужно время на анимацию закрытия моб. меню, например
+     // anchorSpy: false, //добавление активного класса ссылке при скролле, если соответствующая ей секция попадает в экран
+     // activeClassAdding: false, //добавление классов активным ссылкам
+    afterNavClick: function(){
+      // выполнится после нажатия на любою кнопку навигации, передзадержкой, если она задана
+    }
+  });
