@@ -6,7 +6,7 @@
 // console.log($)
 
 // Swiper----------------------------
-// import Swiper, { Navigation, Mousewheel } from 'swiper';
+// import Swiper, { Navigation, Mousewheel } from 'swiper/modules';
 // Swiper.use([Navigation, Mousewheel]);
 
 // Lazysizes--------------------------
