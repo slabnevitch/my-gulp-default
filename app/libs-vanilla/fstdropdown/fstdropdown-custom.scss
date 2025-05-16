@@ -5,6 +5,13 @@
 	height: 48px;
 	align-items: center;
 	border-radius: 12px;
+
+	cursor: default;
+	outline: none;
+
+	@media (any-hover: hover) { //только для устройств с ховером
+		cursor: pointer;
+	}
 }
 .fstdropdown.open > .fstlist {
     width: calc(100% + 2px); /*dropdown займет ширину селекта полностью*/ 
@@ -41,4 +48,22 @@
 }
 .fstdropdown.open:hover{
 	overflow: visible;
+}
+.fstlist>div{
+  padding: rem(16) rem(16) rem(16) rem(48);
+  border-bottom-color: #0A1F36;
+/*  font-family: $med;*/
+}
+.fstlist>div.selected{
+  background-color: transparent;
+  @include vertical-grad(rgba(#6485A8, .2), rgba(#20364E, .2));
+  color: #fff;
+}
+.fstdropdown>.fstselected:after{
+  right: rem(19);
+  border-color: #fff transparent transparent;
+}
+.fstlist>div:hover{
+  background-color: transparent;
+  @include vertical-grad(rgba(#6485A8, .2), rgba(#20364E, .2));
 }
