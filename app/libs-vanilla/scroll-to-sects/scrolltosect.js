@@ -25,7 +25,7 @@ function ScrollToSects(opts){
         return overalArr;
       })(opts.linksContainer),
       sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor-target]')),
-      pageHeader = document.querySelector('header'),
+      pageHeader = document.querySelector(offsetTopCountdownElem),
       gotoBlockValue = 0,
       observer;
    
