@@ -415,8 +415,8 @@ $columnClass: '', $wrap: 1) {
 @mixin checkbox{
 	position: absolute;
   box-sizing: border-box;
-  width: rem(1);
-  height: rem(1);
+  width: 1px;
+  height: 1px;
   display: block;
   left: 50%;
   top: 100%;
