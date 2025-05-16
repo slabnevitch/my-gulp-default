@@ -1,10 +1,14 @@
 /*
 каждая ссылка навигации должны иметь атрибут data-anchor, а соответствующая ей секция - data-anchor-target  с одинаковыми значениями
 */
+/*
+каждая ссылка навигации должны иметь атрибут data-anchor, а соответствующая ей секция - data-anchor-target  с одинаковыми значениями
+*/
 function ScrollToSects(opts){
   var _self = this,
       opts = {
         linksContainer: opts.linksContainer || 'header',
+        offsetTopCountdownElem: opts.offsetTopCountdownElem || 'header',
         offset: opts.offset || 0,
         sectsSelector: opts.sectsSelector || 'section',
         delay: opts.delay || null,
@@ -24,7 +28,7 @@ function ScrollToSects(opts){
         return overalArr;
       })(opts.linksContainer),
       sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor-target]')),
-      pageHeader = document.querySelector('header'),
+      pageHeader = document.querySelector(offsetTopCountdownElem),
       gotoBlockValue = 0,
       observer;
    
@@ -70,7 +74,7 @@ function ScrollToSects(opts){
   this.navClick = function(e){
       e.preventDefault();
       sects.forEach(function(sect){
-      if(sect.dataset.anchorTarget === e.target.dataset.anchor){
+      if(sect.dataset.anchorTarget === e.target.closest('[data-anchor]').dataset.anchor){
         gotoBlockValue = sect.getBoundingClientRect().top + pageYOffset - pageHeader.offsetHeight + opts.offset;
       }
     });
@@ -123,12 +127,14 @@ function ScrollToSects(opts){
 }
 new ScrollToSects({
     linksContainer: 'header',//контейнер, в котором лежат кнопки навигации. Если контейнеров несколько, перечислить ч/з запятую.
+    // offsetTopCountdownElem: 'selector', // елемент, по которому отсчитывается отступ от верхнего края экрана (в случае, если отсчитывается не от 'header')
     // offset: -50,//отступ от верха экрана при прокрутке (если нужен)
     sectsSelector: '[data-anchor-target]',//селектор секций, default - "section"
      // delay: 300,//задержка перед прокруткой. Может понадобится, елсли перед прокруткой нужно время на анимацию закрытия моб. меню, например
      // anchorSpy: false, //добавление активного класса ссылке при скролле, если соответствующая ей секция попадает в экран
      // activeClassAdding: false, //добавление классов активным ссылкам
-    afterNavClick: function(){
-      // выполнится после нажатия на любою кнопку навигации, передзадержкой, если она задана
-    }
+    // afterNavClick: function(){
+    //   // выполнится после нажатия на любою кнопку навигации, перед задержкой, если она задана
+
+    // }
   });

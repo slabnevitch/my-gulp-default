@@ -234,6 +234,7 @@ function ScrollToSects(opts){
   var _self = this,
       opts = {
         linksContainer: opts.linksContainer || 'header',
+        offsetTopCountdownElem: opts.offsetTopCountdownElem || 'header',
         offset: opts.offset || 0,
         sectsSelector: opts.sectsSelector || 'section',
         delay: opts.delay || null,
@@ -253,7 +254,7 @@ function ScrollToSects(opts){
         return overalArr;
       })(opts.linksContainer),
       sects = Array.prototype.slice.call(document.querySelectorAll(opts.sectsSelector + '[data-anchor-target]')),
-      pageHeader = document.querySelector('header'),
+      pageHeader = document.querySelector(offsetTopCountdownElem),
       gotoBlockValue = 0,
       observer;
    
@@ -299,7 +300,7 @@ function ScrollToSects(opts){
   this.navClick = function(e){
       e.preventDefault();
       sects.forEach(function(sect){
-      if(sect.dataset.anchorTarget === e.target.dataset.anchor){
+      if(sect.dataset.anchorTarget === e.target.closest('[data-anchor]').dataset.anchor){
         gotoBlockValue = sect.getBoundingClientRect().top + pageYOffset - pageHeader.offsetHeight + opts.offset;
       }
     });
