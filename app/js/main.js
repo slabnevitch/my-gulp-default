@@ -152,6 +152,9 @@
 // Внимание! Копирует, исходное содержимоев  модалку в режиме inline, поэтому не подходит для отправки форм через onsubmit!
 // Лучше вообще не использовать для форм.
 // var VenoBox = require('~/app/libs-vanilla/VenoBox/dist/venobox.js')
+
+//- bottomSheet--------------------------
+// require('/app/libs-vanilla/bottomSheet/bottomSheetES6.js')
 	
 //- swiper--------------------------
 // const Swiper = require('~/app/libs-vanilla/swiper/swiper-bundle.min.js')
