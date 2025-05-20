@@ -68,27 +68,26 @@ mixin starRating(rate)
 //- звезный рейтинг с возможностью выбора пользователем по клику, только целые числа
 //- value - велиичина рейтинга, целое число
 //- каждый такой рейтинг должен быть обернут в тег form
-mixin simpleRating(value)
+//- nameIndex - переменая для уникализации аттрибута "name" для радио кнопок в каждом отдельном рейтинге (в случае размещения нескольких рейтингов на одной странице) 
+mixin simpleRating(value, nameIndex = '1')
 	.simple-rating
 		- for (var i=5; i > 0 ; i--)
 			if value === i
-				input(id="inp" + i type='radio' checked name='rating' value=i)
-				label(for="inp" + i)
+				input(id="inp" + i + '-' + nameIndex type='radio' checked name='rating-' + nameIndex value=i)
+				label(for="inp" + i + '-' + nameIndex)
 			else
-				input(id="inp" + i type='radio' name='rating' value=i)
-				label(for="inp" + i)
+				input(id="inp" + i + '-' + nameIndex type='radio' name='rating-' + nameIndex value=i)
+				label(for="inp" + i + '-' + nameIndex)
 
 //- звезный рейтинг с возможностью выбора пользователем по клику с демонстрацией значения рейтинга, может прнимать целые и дробные числа
 //- value - велиичина рейтинга, целое или дробное число
 //- для работы нужен js-скрипт ratings.js
-mixin crystalRating(rating)
+//- nameIndex - переменая для уникализации аттрибута "name" для радио кнопок в каждом отдельном рейтинге (в случае размещения нескольких рейтингов на одной странице) 
+mixin crystalRating(rating, nameIndex = '1')
 	.crystal-rating
 		.crystal-rating__body
 			.crystal-rating__active
 			.crystal-rating__items
-				input(value='1' type='radio' name='crystal')
-				input(value='2' type='radio' name='crystal')
-				input(value='3' type='radio' name='crystal')
-				input(value='4' type='radio' name='crystal')
-				input(value='5' type='radio' name='crystal')
+				- for (var i=0; i< 5 ; i++)
+					input(value=i+1 type='radio' name='crystal-' + nameIndex)
 		.crystal-rating__value= rating
