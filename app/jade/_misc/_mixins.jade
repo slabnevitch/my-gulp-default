@@ -73,11 +73,11 @@ mixin simpleRating(value, nameIndex = '1')
 	.simple-rating
 		- for (var i=5; i > 0 ; i--)
 			if value === i
-				input(id="inp" + i type='radio' checked name='rating' + nameIndex value=i)
-				label(for="inp" + i)
+				input(id="inp" + i + '-' + nameIndex type='radio' checked name='rating-' + nameIndex value=i)
+				label(for="inp" + i + '-' + nameIndex)
 			else
-				input(id="inp" + i type='radio' name='rating' + nameIndex value=i)
-				label(for="inp" + i)
+				input(id="inp" + i + '-' + nameIndex type='radio' name='rating-' + nameIndex value=i)
+				label(for="inp" + i + '-' + nameIndex)
 
 //- звезный рейтинг с возможностью выбора пользователем по клику с демонстрацией значения рейтинга, может прнимать целые и дробные числа
 //- value - велиичина рейтинга, целое или дробное число
@@ -89,5 +89,5 @@ mixin crystalRating(rating, nameIndex = '1')
 			.crystal-rating__active
 			.crystal-rating__items
 				- for (var i=0; i< 5 ; i++)
-					input(value=i+1 type='radio' name='crystal' + nameIndex)
+					input(value=i+1 type='radio' name='crystal-' + nameIndex)
 		.crystal-rating__value= rating
