@@ -3,11 +3,14 @@ mixin icon(name,mod)
 	svg(class="icon icon-" + name + ' ' + mod)
 		use(xlink:href="img/icons-svg/symbol/sprite.svg#" + name)
 
+//- +menu('menu', [{name: 'Котакты', href: 'contacts'}, {name: 'О конторе', href: 'about'}])
+//- если нужно создавать активные ссылки при переходе по страницам - для каждой страницы нужно прописывать - var pageName = 'name', а в массиве ссылок - ключ href с таким же значением 
 mixin menu(className, items)
+	h2= href
 	ul(class=className + '__list')
 		each item in items
-			li(class=className + '__item')
-				a(href="#" class=className + '__link')= item
+			li(class=pageName && pageName == item.href ? className + '__item active' : className + '__item')
+				a(href=item.href && pageName != item.href ? item.href+".html" : pageName == item.href ? "#" :"#" class=className + '__link')= item.name + ' ' + (pageName == item.href)
 
 //- вызов: +crumbs('breadcrumbs', ['', ''], false)
 mixin crumbs(className = 'breadcrumbs', items, schema = false)
