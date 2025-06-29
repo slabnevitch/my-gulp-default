@@ -35,6 +35,7 @@
 	background-color: transparent;
 	border: none;
 	outline: none;
+	font-family: inherit;
 
 	@media (any-hover: hover) { //только для устройств с ховером
 			cursor: pointer;
