@@ -48,6 +48,7 @@
       display: none; /* убираем стандартный маркер Chrome */
     }
   }
+}
 [data-spoiler-content] {
     .js-details & {
       max-height: 0;
