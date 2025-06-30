@@ -64,7 +64,7 @@ function addClass(elSelector, classToRemove) {
 
 // Открытие и закрытие выпадающих меню на тач-устройствах(single-dropdown)
 
-function singleDropdown() {
+function singleDropdown(opts) {
     init = function() {
       bindEvents();
     }
@@ -75,9 +75,10 @@ function singleDropdown() {
       // }
     }
     docClick = function(e) {
+      if(opts.clickTarget === 'data-dropdown-link') e.preventDefault();
       var targetEl = e.target;
-      if(window.innerWidth > 960 && isMobile.any()){// определяем, что клик с тач-скрина
-        if(targetEl.hasAttribute('data-dropdown-arrow')){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
+      if(window.innerWidth > (opts.breakPoint ? opts.breakPoint : 0) && isMobile.any()){// определяем, что клик с тач-скрина
+        if(targetEl.hasAttribute(opts.clickTarget)){// убежаемся, что кликнкнули по стрелке рядом со ссылкой
           targetEl.closest('[data-single-dropdown]').classList.toggle('touch-hover');// родительскому пункту меню вешаем класс, который делает подменю открытым   
           var sibls = siblings(targetEl.closest('[data-single-dropdown]'));
           for(var i=0; i < sibls.length; i++){

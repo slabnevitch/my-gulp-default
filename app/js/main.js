@@ -85,7 +85,10 @@
 //- singleDropdown--------------------------
 // import {singleDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';
 // if(document.querySelectorAll('[data-single-dropdown]') != null){
-// 	singleDropdown();
+// 	singleDropdown({
+		// breakPoint: 960, // Number || false
+		// clickTarget: 'data-dropdown-arrow' // 'data-dropdown-arrow' || 'data-dropdown-link'
+	// });
 // }
 
 
