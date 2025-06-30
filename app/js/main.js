@@ -17,6 +17,9 @@
 
 //- SERVIVE FUNCTIONS==================
 
+//- ibg-class--------------------------
+// require ('~/app/libs-vanilla/service-functions/ibg-class.js');
+
 //- remove-class--------------------------
 // import {removeClass} from '~/app/libs-vanilla/service-functions/all-functions.js';
 
