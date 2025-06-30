@@ -1,4 +1,5 @@
 $maxWidth: 1920;//ширина макета в граф. редакторе
+$minWidth: 320;
 $maxWidthContainer: 1170;//ширина ограничивающего контейнера без паддингов
 $containerPaddings: 30;//сумма левого и правого паддингов ограничивающего контейнера
 $maxContainerWidth: $maxWidthContainer + $containerPaddings;// итоговая ширина ограничивающего контейнера
