@@ -1,8 +1,9 @@
 // Открытие и закрытие выпадающих меню на тач-устройствах
-(function singleDropdown(opts = {
-	breakPoint: 960, // Number || false
-	clickTarget: 'data-dropdown-arrow' // 'data-dropdown-arrow' || 'data-dropdown-link') {
-    }){
+(function singleDropdown(){
+    var opts = {
+      breakPoint: 960, // Number || false
+      clickTarget: 'data-dropdown-link' // 'data-dropdown-arrow' || 'data-dropdown-link')
+    }
     
     init = function() {
       bindEvents();
