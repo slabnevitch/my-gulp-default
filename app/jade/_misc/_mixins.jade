@@ -19,8 +19,20 @@ mixin menuLinks(className, items)
 			li(class=pageName && pageName == item.href ? className + '__item active' : className + '__item')
 				a(href=item.href && pageName != item.href ? item.href+".html" : pageName == item.href ? "#" :"#" class=className + '__link')= item.name + ' ' + (pageName == item.href)
 
-//- вызов: +crumbs('breadcrumbs', ['', ''], false)
-mixin crumbs(className = 'breadcrumbs', items, schema = false)
+//- вызов: +crumbs('breadcrumbs', ['', ''])
+mixin crumbs(className = 'breadcrumbs', items)
+	ul.breadcrumbs
+		each item, i in items
+			if i < items.length - 1
+				li.breadcrumbs__item
+					a(href="#").breadcrumbs__link= item
+			else
+				li.breadcrumbs__item
+					span.breadcrumbs__link= item
+
+//- вызов: +crumbs('breadcrumbs', ['', ''],  true)
+// - этот миксин включать только если требуют SEO
+mixin crumbsSchema(className = 'breadcrumbs', items, schema = true)
 	ul(class=className itemscope=schema ? true : false itemtype=schema ? "https://schema.org/BreadcrumbList" : false)
 		each item, i in items
 			li(class=className + '__item' itemprop=schema?"itemListElement":false itemscope=schema?true:false itemtype=schema?"https://schema.org/ListItem":false)
