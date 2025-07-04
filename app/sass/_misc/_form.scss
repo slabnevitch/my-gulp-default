@@ -1,14 +1,62 @@
+.form__label{
+	display: block;
+	&:not(:last-child){
+		margin-bottom: rem(24);
+	}
+
+	&--error{
+		.form__error-text{
+			display: block;
+		}
+	}
+
+}
+.form__label-inner{
+	position: relative;
+}
 .form__input {
 	height: 50px;
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left:16px;
+	padding-right:16px;
 	border: 1px solid #000;
 	padding-right: 55px;
 	background: #fff ;
-	border-radius: 3px 0 0 3px;
 	@include placecolor(rgba(#fff, 0.5));
-	color: #fff;
 	font-family: inherit;
+
+	&--error{
+		border-color: red;
+	}
+	&--active{
+		border: 2px solid rgb(1, 63, 125);
+	}
+	&:focus, &:not(:placeholder-shown){
+		padding-top: rem(18);
+
+		& ~ .form__placeholder{
+			top: 11px;
+			transform: translateY(0);
+			font-size: 12px;
+		}
+	}
+}
+.form__placeholder{
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	transform: translateY(-50%);
+	font-size: 14px;
+	line-height: 1;
+	color: #8E8E93;
+	transition: all .2s;
+	pointer-events: none;
+}
+.form__error-text{
+	display: none;
+	margin-top: rem(8px);
+	color: red;
+	font-size: rem(14px);
+	line-height: 1;
 }
 .form__custom-policy {
 	display: flex;
@@ -96,4 +144,11 @@
 		display: none;
 	}
 
+}
+.inp-reset{
+	@include but-null();
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	transform: translateY(-50%);
 }

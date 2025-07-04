@@ -30,6 +30,16 @@ mixin crumbs(className = 'breadcrumbs', items)
 				li.breadcrumbs__item
 					span.breadcrumbs__link= item
 
+//- use: + inpBlock('Город', false, false, false)
+				//- [placeholder], [value], наличие класса "form__input--error", наличие класса "form__input--active", текст ошибки - String
+mixin inpBlock(item, val = false, errorClass = false, activeClass = false, errorText = false)
+	div(class=errorClass ? "form__label form__label--error" : "form__label")
+		.form__label-inner
+			input(class=errorClass ? "form__input form__input--error" : activeClass ? "form__input form__input--active" : "form__input" type='text' name='name' placeholder=" " value=val?val:false)
+			//-button.inp-reset(type="button") x
+			label.form__placeholder= item
+		.form__error-text= errorText ? errorText : ''
+
 //- вызов: +crumbs('breadcrumbs', ['', ''],  true)
 // - этот миксин включать только если требуют SEO
 mixin crumbsSchema(className = 'breadcrumbs', items, schema = true)
