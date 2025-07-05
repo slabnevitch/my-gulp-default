@@ -75,7 +75,9 @@
 
 //- ScrollTabs (прокрутка длинных табов на моббильных экранах)-------------------------- 
 // import {ScrollTabs} from '~/app/libs-vanilla/service-functions/all-functions.js';
-// new ScrollTabs();
+// if(document.querySelectorAll('[data-scroll-tabs]') != null){
+// 	new ScrollTabs();
+// }
 
 // import {multiDropdown} from '~/app/libs-vanilla/service-functions/all-functions.js';//
 // if(document.querySelectorAll('[data-dropdowned]') != null){

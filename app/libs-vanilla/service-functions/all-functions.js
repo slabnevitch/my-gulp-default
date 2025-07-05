@@ -355,9 +355,10 @@ function ScrollToSects(opts){
 
 function ScrollTabs() {
   const tabsContainer = document.querySelector('[data-scroll-tabs]'),
-  tabsItems = tabsContainer.querySelectorAll('[data-scroll-tab]'),
-  tabsArrows = document.querySelectorAll('[data-scroll-icon]'),
-  {clientWidth, scrollWidth} = tabsContainer;
+  tabsWrapper = document.querySelector('.breadcrumbs'),
+  tabsItems = tabsWrapper.querySelectorAll('[data-scroll-tab]'),
+  tabsArrows = tabsWrapper.querySelectorAll('[data-scroll-icon]');
+  // {clientWidth, scrollWidth} = tabsContainer;
 
   this.init = () => {
     this.events();
@@ -376,10 +377,10 @@ function ScrollTabs() {
     tabsItems.forEach(tabsItem => addEventListener('click', this.tabClick));
     tabsArrows.forEach(tabsArrow => addEventListener('click', this.arrowClick));
     tabsContainer.addEventListener('scroll', this.tabsScroll);
-    tabsContainer.addEventListener('wheel', this.tabsWhell);
+    // tabsContainer.addEventListener('wheel', this.tabsWhell);
       // window.addEventListener('resize', this.resizeWatcher);
   }
-    // this.resizeWatcher = () => this.updateIcons();
+    this.resizeWatcher = () => this.updateIcons();
   this.tabClick = (e) => {
     console.log('tabClick');
     e.stopPropagation();
@@ -404,17 +405,22 @@ function ScrollTabs() {
       }else if(e.target.closest('[data-scroll-icon]').dataset.scrollIcon === 'forw'){
         tabsContainer.scrollLeft += 200;
       }
+      // this.updateIcons();
     }
   }
   this.tabsScroll = (e) => this.updateIcons(e.target.scrollLeft);
   this.updateIcons = (scrolledWidth) => {
       // console.log(scrolledWidth <= 1)
-    tabsArrows[0].classList.toggle('hidden', scrolledWidth <= 1);
-    tabsArrows[1].classList.toggle('hidden', scrollWidth - (clientWidth + scrolledWidth) <= 1);
+   var {clientWidth, scrollWidth} = tabsContainer;
+   
+   tabsWrapper.classList.toggle('back-icon-hidden', scrolledWidth <= 1);
+    // tabsArrows[0].classList.toggle('hidden', scrolledWidth <= 1);
+   tabsWrapper.classList.toggle('next-icon-hidden', scrollWidth - (clientWidth + scrolledWidth) <= 1);
+    // tabsArrows[1].classList.toggle('hidden', scrollWidth - (clientWidth + scrolledWidth) <= 1);
   }
   this.updateIconsOnLoad = (scrolledWidth) => {
       // console.log(scrolledWidth <= 1)
-    scrolledWidth <= 1 ? tabsArrows[0].classList.remove('hidden') : tabsArrows[0].classList.add('hidden');
+    scrolledWidth <= 1 ? tabsWrapper.classList.remove('back-icon-hidden') : tabsWrapper.classList.add('back-icon-hidden');
 
   }
   this.init();

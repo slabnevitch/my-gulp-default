@@ -19,16 +19,23 @@ mixin menuLinks(className, items)
 			li(class=pageName && pageName == item.href ? className + '__item active' : className + '__item')
 				a(href=item.href && pageName != item.href ? item.href+".html" : pageName == item.href ? "#" :"#" class=className + '__link')= item.name + ' ' + (pageName == item.href)
 
-//- вызов: +crumbs('breadcrumbs', ['', ''])
-mixin crumbs(className = 'breadcrumbs', items)
-	ul.breadcrumbs
-		each item, i in items
-			if i < items.length - 1
-				li.breadcrumbs__item
-					a(href="#").breadcrumbs__link= item
-			else
-				li.breadcrumbs__item
-					span.breadcrumbs__link= item
+//- вызов: +crumbs('breadcrumbs', ['', ''], false, false)
+//- параметр scroll включает прокрутку крошек по горизонтали, если они не помещаются в экран
+//- параметр arrows включает добавдение стрелок вперед-назад для прокрутки. Требует подключения ScrollTabs()
+mixin crumbs(className = 'breadcrumbs', items, scroll = false, arrows = false)
+	.breadcrumbs(data-scroll-wrapper=scroll ? true : false)
+		if scroll && arrows
+			button.breadcrumbs__arrow.breadcrumbs__arrow--prev(type="button" data-scroll-icon="back") <
+		ul.breadcrumbs__list( data-scroll-tabs=scroll ? true : false)
+			each item, i in items
+				if i < items.length - 1
+					li.breadcrumbs__item(data-scroll-tab=scroll ? true : false)
+						a(href="#" ).breadcrumbs__link= item
+				else
+					li.breadcrumbs__item
+							span.breadcrumbs__link= item
+		if scroll && arrows
+			button.breadcrumbs__arrow.breadcrumbs__arrow--next(type="button" data-scroll-icon="forw") >
 
 //- use: + inpBlock('Город', false, false, false)
 				//- [placeholder], [value], наличие класса "form__input--error", наличие класса "form__input--active", текст ошибки - String
