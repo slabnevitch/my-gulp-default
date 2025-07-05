@@ -1,5 +1,5 @@
 const buildMode = 'webpack'; // ('simple' || 'webpack')
-const tailwindMode = true;
+const tailwindMode = false;
 
 var gulp = require('gulp');
 var sass = sass = require('gulp-sass')(require('sass'));
@@ -23,7 +23,7 @@ var smartgrid = require('smart-grid');
 var gcmq = require('gulp-group-css-media-queries');
 var browserSync = require('browser-sync');
 var ttf2woff = require('gulp-ttf2woff');
-// var ttf2woff2 = require('gulp-ttf2woff2');
+var ttf2woff2 = require('gulp-ttf2woff2');
 var ttf2eot = require('gulp-ttf2eot');
 const babel = require('gulp-babel');
 const webp = require('gulp-webp');
@@ -36,6 +36,24 @@ const mqpacker = require("css-mqpacker");
 var postcss = require('gulp-postcss');
 const sortCSSmq = require('sort-css-media-queries');
 const tailwindcss = require('tailwindcss');
+var pxtorem = require('postcss-pxtorem');
+
+const source = tailwindMode ? 'tailwind' : 'main';
+
+const postcssProcessors = {
+  mediaProcessors: [
+    mqpacker({
+      sort: sortCSSmq.desktopFirst
+    })
+  ],
+  toRemProcessors: [
+     pxtorem({
+      rootValue: 16, // размер основного шрифта, по которому считаются все размеры в rem
+      propList: ['*'],
+      mediaQuery: true
+    })
+  ]
+}
 
 gulp.task('browser-sync', function() {
   browserSync({
@@ -86,7 +104,7 @@ gulp.task('webpack-stream', function(){
         ]
       },
       optimization: {
-              minimize: true
+              minimize: false
           }
     })).on('error', function handleError() {
       this.emit('end')
@@ -104,6 +122,7 @@ gulp.task('jade', function () {
     .pipe(gulp.dest('app/'))
     .pipe(browserSync.reload({stream: true}));
 });
+
 
 gulp.task('group', function () {
     gulp.src('app/css/main.css')
@@ -127,14 +146,8 @@ gulp.task('media-packer', async function () {
 });
 
 gulp.task('sass', function () {
-  var source = tailwindMode ? 'tailwind' : 'main';
-  var processors = [
-    mqpacker({
-      sort: sortCSSmq.desktopFirst
-    })
-  ];
   // return gulp.src('app/sass/main.scss')
-  return gulp.src('app/sass/'+source+'.scss')
+  return gulp.src(['app/sass/'+source+'.scss', 'app/sass/'+source+'.scss'])
     .pipe(sassGlob())
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
@@ -144,13 +157,14 @@ gulp.task('sass', function () {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
-    .pipe(postcss([tailwindcss('tailwind.config.js')]))
-    // .pipe(postcss(processors)) //группировка media-queries
-    .pipe(cssnano())
+    // .pipe(postcss([tailwindcss('tailwind.config.js')]))
+    // .pipe(postcss(postcssProcessors.mediaProcessors)) //группировка media-queries
+    // .pipe(postcss(postcssProcessors.toRemProcessors))
+    // .pipe(cssnano())
     // .pipe(webpcss({})) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
 
     .pipe(sourcemaps.write('maps/'))
-    .pipe(rename('main.min.css'))
+    // .pipe(rename('main.min.css'))
     .pipe(gulp.dest('app/css'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -162,7 +176,7 @@ gulp.task('sass', function () {
 //   gulp.watch('app/*.html', browserSync.reload);
 // };
 gulp.task('watch', function () {
-  gulp.watch(['app/sass/**/*.scss', 'app/**/*.css', '!app/css/**/*.css'],  gulp.series('sass'));
+  gulp.watch(['app/sass/**/*.scss', 'app/sass/**/*.sass', 'app/**/*.css', '!app/css/**/*.css'],  gulp.series('sass'));
   gulp.watch('app/jade/**/*.jade',  gulp.series('jade'));
   if(buildMode === 'webpack'){
     gulp.watch(['app/js/**/*.js', 'app/libs-vanilla/**/*.js', '!app/js/*.min.js', '!app/js/common.js'],  gulp.series('webpack-stream'));
@@ -198,57 +212,57 @@ gulp.task('svgSprite', function () {
   // При использовании в режиме "stack" перед каждым запуском таска
     // удалить файл "svg-sprite.svg" из папки img/icons-svg !
 
-    // .pipe(svgSprite({
-    //             mode: {
-    //                 stack: {
-    //                     sprite: "../svg-sprite.svg",  //sprite file name
-    //                     render: {
-    //                       scss: {
-    //                         dest:'../../../sass/_misc/_sprite-svg.scss',
-    //                         template: 'app/sass/_misc/_sprite_template.scss'
-    //                       }
-    //                     }
-    //                 }
-    //             },
-    //         }
-    //     ))
+    .pipe(svgSprite({
+                mode: {
+                    stack: {
+                        sprite: "../svg-sprite.svg",  //sprite file name
+                        render: {
+                          scss: {
+                            dest:'../../../sass/_misc/_sprite-svg.scss',
+                            template: 'app/sass/_misc/_sprite_template.scss'
+                          }
+                        }
+                    }
+                },
+            }
+        ))
 
   // minify svg
   // При исп-ии. в режиме symbol, если необходимо добавить иконку в спрайт вручную:
   // 1. тег <svg> исходной иконки исправить на <symbol> и добавить необходимый id
   // 2. удалить аттрибуты width и height
   // 3. добавить в sprite.svg внутрь единственного тега <svg>
-    .pipe(svgmin({
-      js2svg: {
-        pretty: true
-      }
-    }))
-    // remove all fill, style and stroke declarations in out shapes
-    .pipe(cheerio({
-      run: function ($) {
-        $('[fill]').removeAttr('fill');
-        $('[stroke]').removeAttr('stroke');
-        $('[style]').removeAttr('style');
-      },
-      parserOptions: {xmlMode: true}
-    }))
-    // cheerio plugin create unnecessary string '&gt;', so replace it.
-    .pipe(replace('&gt;', '>'))
-    // build svg sprite
-    .pipe(svgSprite({
-      mode: {
-        symbol: {
-          sprite: "sprite.svg",
-          example: true,
-          render: {
-            scss: {
-              dest:'../../../sass/_misc/_sprite-svg.scss',
-              template: 'app/sass/_misc/_sprite_template.scss'
-            }
-          }
-        }
-      }
-    }))
+    // .pipe(svgmin({
+    //   js2svg: {
+    //     pretty: true
+    //   }
+    // }))
+    // // remove all fill, style and stroke declarations in out shapes
+    // .pipe(cheerio({
+    //   run: function ($) {
+    //     $('[fill]').removeAttr('fill');
+    //     $('[stroke]').removeAttr('stroke');
+    //     $('[style]').removeAttr('style');
+    //   },
+    //   parserOptions: {xmlMode: true}
+    // }))
+    // // cheerio plugin create unnecessary string '&gt;', so replace it.
+    // .pipe(replace('&gt;', '>'))
+    // // build svg sprite
+    // .pipe(svgSprite({
+    //   mode: {
+    //     symbol: {
+    //       sprite: "sprite.svg",
+    //       example: true,
+    //       render: {
+    //         scss: {
+    //           dest:'../../../sass/_misc/_sprite-svg.scss',
+    //           template: 'app/sass/_misc/_sprite_template.scss'
+    //         }
+    //       }
+    //     }
+    //   }
+    // }))
     .pipe(gulp.dest('app/img/icons-svg'));
 });
 
@@ -397,13 +411,6 @@ gulp.task('copyCss', () => {
   // .pipe(gcmq())
   // .pipe(cssnano())
   // .pipe(gulp.dest('dist/css'))
-  
-  var source = tailwindMode ? 'tailwind' : 'main';
-  var processors = [
-    mqpacker({
-      sort: sortCSSmq.desktopFirst
-    })
-  ];
 
   return gulp.src('app/sass/'+source+'.scss')
     .pipe(sassGlob())
@@ -414,22 +421,23 @@ gulp.task('copyCss', () => {
             browsers: ['last 15 versions', '>1%'/*, 'ie 8', 'ie 7'*/],
             cascade: false
           }))
-    .pipe(postcss([tailwindcss('tailwind.config.js')])) //включить, если tailwindMode = true
+    // .pipe(postcss([tailwindcss('tailwind.config.js')])) //включить, если tailwindMode = true
     // .pipe(gcmq()) // автозамена background-image на .webp. Необходимо подключение в верстку /service-functions/webp-detection.js
-    // .pipe(webpcss({}))
+    .pipe(webpcss({}))
 
   // док-ция. про плагин https://github.com/OlehDutchenko/sort-css-media-queries/blob/master/README-UK.md
-  // .pipe(postcss(processors))
+  .pipe(postcss(postcssProcessors.mediaProcessors))
+  .pipe(postcss(postcssProcessors.toRemProcessors))
   // .pipe(cssnano())
-  .pipe(rename('main.css'))
+  // .pipe(rename('main.css'))
   .pipe(gulp.dest('dist/css/'))
-  .pipe(gulp.src('app/css/main.min.css'))
-  .pipe(gulp.dest('dist/css/'));
+  // .pipe(gulp.src('app/css/main.min.css'))
+  // .pipe(gulp.dest('dist/css/'));
 });
 
 gulp.task('copySvgSprite', function() {
-  return gulp.src(['app/img/icons-svg/symbol/sprite.svg'])
-      .pipe(gulp.dest('dist/img/icons-svg/symbol'));
+  return gulp.src(['app/img/icons-svg/svg-sprite.svg'])
+      .pipe(gulp.dest('dist/img/icons-svg'));
 });
 
 gulp.task('copyFonts', () => {

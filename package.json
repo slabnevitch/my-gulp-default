@@ -42,13 +42,17 @@
     "gulp-webp": "^4.0.1",
     "gulp-webpcss": "^1.1.1",
     "gulp.spritesmith": "^6.3.0",
+    "postcss": "^8.5.6",
+    "postcss-pxtorem": "^6.1.0",
     "smart-grid": "^2.1.2",
+    "sort-css-media-queries": "^2.2.0",
     "tailwindcss": "^3.4.4",
     "ttf2woff2": "^6.0.1",
     "webp-converter": "^2.2.3",
     "webpack-stream": "^6.1.2"
   },
   "dependencies": {
+    "bootstrap": "^5.3.6",
     "css-mqpacker": "^7.0.0",
     "del": "^2.2.2",
     "gulp-sass": "^5.1.0",
@@ -57,7 +61,6 @@
     "jquery": "^3.6.0",
     "lazysizes": "^5.3.2",
     "sass": "^1.57.0",
-    "sort-css-media-queries": "^2.2.0",
     "swiper": "^11.0.5",
     "tippy.js": "^6.3.7"
   }
