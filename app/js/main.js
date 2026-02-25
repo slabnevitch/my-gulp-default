@@ -6,7 +6,9 @@
 // console.log($)
 
 // Swiper----------------------------
-// import Swiper, { Navigation, Mousewheel } from 'swiper/modules';
+// import Swiper from "swiper";
+// import { Navigation, Mousewheel } from 'swiper/modules';
+// console.log(Swiper)
 // Swiper.use([Navigation, Mousewheel]);
 
 // Lazysizes--------------------------
@@ -107,7 +109,7 @@
 // const magnificPopup = require('~/app/libs/magnific-popup/dist/jquery.magnific-popup.min.js')
 	
 //- slick--------------------------
-// require('~/app/libs/slick/slick.min.js')
+require('~/app/libs/slick/slick.min.js')
 	
 //- slick-master (без лишних контейнеров)--------------------------
 // require('~/app/libs/slick-master/slick.js')
@@ -166,6 +168,12 @@
 
 //- tiny-slider--------------------------
 // import {tns} from '~/app/libs-vanilla/tiny-slider/dist/tiny-slider.js';
+
+//- mousemove-slider--------------------------
+// import {mouseMooveSlider} from '~/app/libs-vanilla/mousemove-slider/mousemoveSlider-module.js';
+// new mouseMooveSlider('tiny', '.tiny-mousemove', '.card', 992);
+// new mouseMooveSlider('slick', '.swiper-mousemove', '.card', 991.98);
+// new mouseMooveSlider('slick', '.slick-mousemove', '.card', 991.98);
 
 //- wNumb--------------------------
 // var wNumb = require('~/app/libs-vanilla/wnumb/wNumb.js')

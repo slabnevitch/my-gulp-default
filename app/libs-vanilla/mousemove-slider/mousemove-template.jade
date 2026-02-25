@@ -1,0 +1,24 @@
+.wrapper
+	- for(var i=0; i<3;i++)
+		- var slides = ['https://image.12storeez.com/images/414x690_90_out/uploads/images/CATALOG/skirts/120694/6437e34de89f5-07-04-202319252.jpg', 'https://image.12storeez.com/images/414x690_90_out/uploads/images/CATALOG/skirts/120694/6437e34de8edd-07-04-202319260.jpg', 'https://image.12storeez.com/images/414x690_90_out/uploads/images/CATALOG/skirts/120694/6437e34de8dd6-07-04-202319266.jpg']; 
+		 .card
+				//-tiny-slider html      
+				.tiny-mousemove(data-mousemove-slider)
+					each slide in slides
+						.card-slide
+							img.card-img(src=slide)
+				
+				//-swiper-slider html
+				//- .swiper-container.swiper.swiper-mousemove
+					.swiper-wrapper(data-mousemove-slider)
+						 each slide in slides
+							.swiper-slide
+								.card-slide
+									img.card-img(src=slide)
+					.swiper-pagination.swiper-mousemove__pagination
+					
+				//-slick slider html
+				//- .slick-mousemove(data-mousemove-slider)
+					each slide in slides
+						.card-slide
+							img.card-img(src=slide)
