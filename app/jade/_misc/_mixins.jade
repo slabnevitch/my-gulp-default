@@ -48,7 +48,7 @@ mixin inpBlock(item, val = false, errorClass = false, activeClass = false, error
 		.form__error-text= errorText ? errorText : ''
 
 //- вызов: +crumbs('breadcrumbs', ['', ''],  true)
-// - этот миксин включать только если требуют SEO
+//- этот миксин включать только если требуют SEO
 mixin crumbsSchema(className = 'breadcrumbs', items, schema = true)
 	ul(class=className itemscope=schema ? true : false itemtype=schema ? "https://schema.org/BreadcrumbList" : false)
 		each item, i in items
