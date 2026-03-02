@@ -1,4 +1,4 @@
-export const fullscrenModalHandler = function(){
+export const fullscrenModalHandler = function(scrollModalContentTopOnModalShow = false){
   var openTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-open]')),
       closeTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-close]')),
       fullScreenModals = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-target]')),
@@ -22,7 +22,9 @@ export const fullscrenModalHandler = function(){
     const fullscreenModalOpen = (e) => {
       // берем модалку, соответсвующую кнопке открытия       
       var currentModalTargetSelector = e.target.closest('[data-fullscreen-open]')
-        .getAttribute('data-fullscreen-open');
+        .getAttribute('data-fullscreen-open'),
+        currentModal = document.querySelector(`[data-fullscreen-target=${currentModalTargetSelector}]`),
+        currentModalBody = currentModal.querySelector('.fullscreen-modal__body');
       
       //получаем верт. прокрутку страницы       
       currentDocScroll = window.pageYOffset;
@@ -31,10 +33,12 @@ export const fullscrenModalHandler = function(){
          document.documentElement.style.scrollBehavior = 'auto';
       } 
      
-      document.querySelector(`[data-fullscreen-target=${currentModalTargetSelector}]`)
-        .classList.add('active');
+      currentModal.classList.add('active');
       document.body.classList.add('modal-open');
-		 document.documentElement.classList.add('fullscreen-modal-open');
+      document.documentElement.classList.add('fullscreen-modal-open');
+
+      // При открытии модалкм прокручиваем его контент к 0.
+      if(scrollModalContentTopOnModalShow) currentModalBody.scrollTo(0,0);
     };
     const fullscreenModalClose = (e) => {
      document.body.classList.remove('modal-open');
@@ -45,8 +49,8 @@ export const fullscrenModalHandler = function(){
        returnDocSavedScroll(currentDocScroll);
       } 
       
-      var closeBtn = e.target.closest('[data-fullscreen-close]')
-        if(closeBtn.getAttribute('data-fullscreen-close') != null && closeBtn.getAttribute('data-fullscreen-close') != '' && !closeBtn.hasAttribute('data-fullscreen-close-all')){
+      var closeBtn = e.target.closest('[data-fullscreen-close]');
+        if(closeBtn.getAttribute('data-fullscreen-close') != null && !closeBtn.hasAttribute('data-fullscreen-close-all')){
           closeBtn.closest('[data-fullscreen-target]').classList.remove('active');
         }else if(closeBtn.hasAttribute('data-fullscreen-close-all') && fullScreenModals.length > 0){
             fullScreenModals.forEach(modal => modal.classList.remove('active'));

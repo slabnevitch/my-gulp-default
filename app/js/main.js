@@ -161,11 +161,12 @@ require('~/app/libs/slick/slick.min.js')
 // var VenoBox = require('~/app/libs-vanilla/VenoBox/dist/venobox.js')
 
 //- fullscreen-modal--------------------------
-import {fullscrenModalHandler} from '~/app/libs-vanilla/fullscreen-modal/fullscreenModal-module.js'; 
+// import {fullscrenModalHandler} from '~/app/libs-vanilla/fullscreen-modal/fullscreenModal-module.js'; 
 
-if(document.querySelectorAll('[data-fullscreen-open]') != null && document.querySelectorAll('[data-fullscreen-close]') != null){
-     fullscrenModalHandler().init();                     
-}
+// if(document.querySelectorAll('[data-fullscreen-open]') != null && document.querySelectorAll('[data-fullscreen-close]') != null && document.querySelectorAll('[data-fullscreen-target]') != null){
+//      fullscrenModalHandler().init();                     
+// }
+
 //- bottomSheet--------------------------
 // require('/app/libs-vanilla/bottomSheet/bottomSheetES6.js')
 	

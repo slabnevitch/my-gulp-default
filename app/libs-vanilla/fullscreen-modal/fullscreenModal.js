@@ -1,12 +1,12 @@
-var fullscrenModalHandler = function(){
-  var openTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-open]')),
+var fullscrenModalHandler = function(scrollModalContentTopOnModalShow = false){
+   var openTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-open]')),
       closeTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-close]')),
       fullScreenModals = Array.prototype.slice.call(document.querySelectorAll('[data-fullscreen-target]')),
       isMobile = {
         iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false; }
       },
       currentDocScroll = 0;
-  console.log(this);
+
   const events = () => {
       if(openTriggers.length > 0){
         openTriggers.forEach((item) => {
@@ -22,7 +22,9 @@ var fullscrenModalHandler = function(){
     const fullscreenModalOpen = (e) => {
       // берем модалку, соответсвующую кнопке открытия       
       var currentModalTargetSelector = e.target.closest('[data-fullscreen-open]')
-        .getAttribute('data-fullscreen-open');
+        .getAttribute('data-fullscreen-open'),
+        currentModal = document.querySelector(`[data-fullscreen-target=${currentModalTargetSelector}]`),
+        currentModalBody = currentModal.querySelector('.fullscreen-modal__body');
       
       //получаем верт. прокрутку страницы       
       currentDocScroll = window.pageYOffset;
@@ -31,35 +33,37 @@ var fullscrenModalHandler = function(){
          document.documentElement.style.scrollBehavior = 'auto';
       } 
      
-      document.querySelector(`[data-fullscreen-target=${currentModalTargetSelector}]`)
-        .classList.add('active');
+      currentModal.classList.add('active');
       document.body.classList.add('modal-open');
-		 document.documentElement.classList.add('fullscreen-modal-open');
+      document.documentElement.classList.add('fullscreen-modal-open');
+
+      // При открытии модалкм прокручиваем его контент к 0.
+      if(scrollModalContentTopOnModalShow) currentModalBody.scrollTo(0,0);
     };
     const fullscreenModalClose = (e) => {
      document.body.classList.remove('modal-open');
-		 document.documentElement.classList.remove('fullscreen-modal-open');
+     document.documentElement.classList.remove('fullscreen-modal-open');
       
       if(currentDocScroll){//если при открытии модалки была прокрутка страницы
         // вызываем прокрутку страницы в положение, которое было при открытии модалки
        returnDocSavedScroll(currentDocScroll);
       } 
       
-      var closeBtn = e.target.closest('[data-fullscreen-close]')
-        if(closeBtn.getAttribute('data-fullscreen-close') != null && closeBtn.getAttribute('data-fullscreen-close') != '' && !closeBtn.hasAttribute('data-fullscreen-close-all')){
+      var closeBtn = e.target.closest('[data-fullscreen-close]');
+        if(closeBtn.getAttribute('data-fullscreen-close') != null && !closeBtn.hasAttribute('data-fullscreen-close-all')){
           closeBtn.closest('[data-fullscreen-target]').classList.remove('active');
         }else if(closeBtn.hasAttribute('data-fullscreen-close-all') && fullScreenModals.length > 0){
             fullScreenModals.forEach(modal => modal.classList.remove('active'));
         }
     };
    const returnDocSavedScroll = (value) => {
-				// после закрытия модалки прокручиваем страницу к тому месту, на котором был скролл во время открытия модалки
-				window.scrollTo(0,value);
+        // после закрытия модалки прокручиваем страницу к тому месту, на котором был скролл во время открытия модалки
+        window.scrollTo(0,value);
       // обнуляем значение скролла страницы, на котором было открыта модалка
-				currentDocScroll = 0;
+        currentDocScroll = 0;
       // возвращаем плавную прокрутку страницы       
-				document.documentElement.style.scrollBehavior = 'smooth';
-			};
+        document.documentElement.style.scrollBehavior = 'smooth';
+      };
   return{
     init(){
       if(isMobile.iOS()){document.documentElement.classList.add('is-os-ios');}
@@ -67,6 +71,6 @@ var fullscrenModalHandler = function(){
     }
   }
 };
-if(document.querySelectorAll('[data-fullscreen-open]') != null && document.querySelectorAll('[data-fullscreen-close]') != null){
+if(document.querySelectorAll('[data-fullscreen-open]') != null && document.querySelectorAll('[data-fullscreen-close]') != null && document.querySelectorAll('[data-fullscreen-target]') != null){
      fullscrenModalHandler().init();                     
 }
