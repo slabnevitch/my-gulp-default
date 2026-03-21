@@ -168,7 +168,15 @@ require('~/app/libs/slick/slick.min.js')
 // }
 
 //- bottomSheet--------------------------
-// require('/app/libs-vanilla/bottomSheet/bottomSheetES6.js')
+// import {myBottomSheet} from '~/app/libs-vanilla/bottomSheet/bottomSheetES6.js'
+// Можно создавать несколько разных bottomSheet на стр-це., для каждого нужен отдельный экзеипляр со своими настройками
+// if(document.querySelector('#bottomsheet') !== null){
+// 	var varsSheet = new myBottomSheet('#bottomsheet', '#open', 58, true, 54, false);
+// }
+// Для программного закрытия нужной модалки:
+// if(varsSheet) varsSheet.hideBottomSheet();
+// или
+// if(varsSheet) varsSheet.hideBottomSheetFade();
 	
 //- swiper--------------------------
 // const Swiper = require('~/app/libs-vanilla/swiper/swiper-bundle.min.js')

@@ -8,11 +8,10 @@ function myBottomSheet(id, openTrigger, basetHeight, heightFixed, dragTreshold, 
 		var hideModalBtn = document.querySelector(id).querySelector("#bottom-sheet-hide");
 		var sheetOverlay = bottomSheet.querySelector(".bottom-sheet__sheet-overlay");
 		var sheetContent = bottomSheet.querySelector(".bottom-sheet__content");
+		var sheetBody = bottomSheet.querySelector(".bottom-sheet__body");
 		var dragIcon = bottomSheet.querySelector(".bottom-sheet__header");
 		var isDragging = false, startY, startHeight;
 		var openFlag = false;
-
-		console.log(isBodyTouch)
 
 		this.init = ()=>{
 			this.events();
@@ -28,12 +27,21 @@ function myBottomSheet(id, openTrigger, basetHeight, heightFixed, dragTreshold, 
 			sheetOverlay.addEventListener("click", this.hideBottomSheet);
 			hideModalBtn.addEventListener("click", this.hideBottomSheet);
 			showModalBtn.addEventListener("click", this.showBottomSheet);
+
+			if(isBodyTouch){//если нужно закрытие модалки при протяжке за ее контеньную часть
+				// добавляем слушатели для контентной части
+				sheetBody.addEventListener("mousedown", this.dragStart);
+				sheetBody.addEventListener("touchstart", this.dragStart);
+			}
 		}
 
 		this.showBottomSheet = ()=>{
 			// setTimeout(() => {
 			// $(bottomSheet).show(20);
-			    bottomSheet.classList.add("show");
+			    bottomSheet.classList.remove("hidden");
+			    setTimeout(() => {
+		    		bottomSheet.classList.add("show");
+			    }, 10);
 		    // bottomSheet.style.visibility = 'visible';
 		    // }, 100);
 		    setTimeout(() => {
@@ -65,6 +73,8 @@ function myBottomSheet(id, openTrigger, basetHeight, heightFixed, dragTreshold, 
 		    // $(bottomSheet).hide(20);
 
 		    // setTimeout(() => {
+				// bottomSheet.style.display = 'none';
+	    		bottomSheet.classList.add("hidden");
 	    		bottomSheet.classList.remove("show");
 		    // }, 1000);
 		    setTimeout(() => {
@@ -98,31 +108,8 @@ function myBottomSheet(id, openTrigger, basetHeight, heightFixed, dragTreshold, 
 		    isDragging = false;
 		    bottomSheet.classList.remove("dragging");
 		    var sheetHeight = parseInt(sheetContent.style.height);
-		    if(!isBodyTouch){
-			    	console.log(e.target.closest('.bottom-sheet__body'))
-			    if(e.target.closest('.bottom-sheet__body') == null){
-			    	sheetHeight < dragTreshold ? this.hideBottomSheet() : sheetHeight > basetHeight ? this.updateSheetHeight(100) : this.updateSheetHeight(basetHeight);
-			    	// if(	sheetHeight < 55 ){
-			    	// 	this.hideBottomSheet()
-			    	// }else if( sheetHeight > 55 && sheetHeight < basetHeight){
-			    	// 	this.updateSheetHeight(basetHeight);
 
-			    	// }else if( sheetHeight > basetHeight){
-			    	// 	this.updateSheetHeight(basetHeight);
-			    	// }
-
-			    }else{
-			    	if(	sheetHeight < dragTreshold ){
-			    		// console.log('sheetHeight < basetHeight - 3')
-			    		this.hideBottomSheet()
-			    	}else if( sheetHeight > dragTreshold && sheetHeight < basetHeight){
-			    		this.updateSheetHeight(basetHeight);
-
-			    	}else if( sheetHeight > basetHeight){
-			    		this.updateSheetHeight(basetHeight);
-			    	}
-			    }
-		    }
+	    	sheetHeight < dragTreshold ? this.hideBottomSheet() : sheetHeight > basetHeight ? this.updateSheetHeight(100) : this.updateSheetHeight(basetHeight);    
 		}
 		this.openTriggerClassToggle = (e) => {//установка/снятие активного класса у кнопки открытия bottomSheet при открытой модалке
 			if(showModalBtn.hasAttribute('data-bottomsheet-trigger')){
@@ -147,6 +134,7 @@ function myBottomSheet(id, openTrigger, basetHeight, heightFixed, dragTreshold, 
 	 }
 
 	 // Можно создавать несколько разных bottomSheet на стр-це., для каждого нужен отдельный экзеипляр со своими настройками
-	if(document.querySelector('#bottomsheet') !== null){
-		var varsSheet = new myBottomSheet('#bottomsheet', '#open', 58, true, 50, true);
-	}
+	// if(document.querySelector('#bottomsheet') !== null){
+	// 	var varsSheet = new myBottomSheet('#bottomsheet', '#open', 58, true, 54, true);
+	// }
+ module.exports.myBottomSheet = myBottomSheet;
