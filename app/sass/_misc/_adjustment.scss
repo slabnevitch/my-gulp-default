@@ -14,9 +14,9 @@ html{
 }
 body{
 	font-family: $reg;
-	font-weight: normal;
 	font-size: $baseFontSize;
-	min-width: $minWidth;
+	font-weight: normal;
+	min-width: #{$minWidth} + 'px';
 	position: relative;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
