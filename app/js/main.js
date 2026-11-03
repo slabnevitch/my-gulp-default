@@ -8,8 +8,11 @@
 // Swiper----------------------------
 // import Swiper from "swiper";
 // import { Navigation, Mousewheel } from 'swiper/modules';
-// console.log(Swiper)
 // Swiper.use([Navigation, Mousewheel]);
+
+//- showmore-------------------------
+// import {ReadMore} from '~/app/libs-vanilla/showmore/more-less.js';
+// const readMore = new ReadMore();
 
 // Lazysizes--------------------------
 // import 'lazysizes'; //основной скрипт
@@ -109,7 +112,7 @@
 // const magnificPopup = require('~/app/libs/magnific-popup/dist/jquery.magnific-popup.min.js')
 	
 //- slick--------------------------
-require('~/app/libs/slick/slick.min.js')
+// require('~/app/libs/slick/slick.min.js')
 	
 //- slick-master (без лишних контейнеров)--------------------------
 // require('~/app/libs/slick-master/slick.js')
@@ -139,7 +142,7 @@ require('~/app/libs/slick/slick.min.js')
 
 //- spoilers-------------------------
 // require('~/app/libs-vanilla/spoilers/spoilers.js')
-	
+
 //- tabs--------------------------
 // require('~/app/libs-vanilla/tabs/tabs-pure.js')
 

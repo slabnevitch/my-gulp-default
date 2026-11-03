@@ -137,6 +137,17 @@
 // @import "../js/libs/dlmenu/css/component";
 ///*--end dl-menu--*/
 
+	//- spoilers
+// /*--spoilers-*/
+// @import "../js/libs/spoilers/spoilers";
+// /*--spoilers--*/
+
+	//- showmore
+/*--readmore-*/
+// @import "../libs-vanilla/showmore/more-less";
+//@import "../js/libs/more-less-original";
+///*--showmore--*/ 
+
 // ==== END NO WEBPACK import =====
 
 
@@ -242,8 +253,14 @@
 ///*--end dl-menu--*/
 
 	//- spoilers
-/*--spoilers-*/
+// /*--spoilers-*/
 // @import "../libs-vanilla/spoilers/spoilers";
 // /*--spoilers--*/
+
+	//- showmore
+/*--readmore-*/
+// @import "../libs-vanilla/showmore/more-less";
+@import "../libs-vanilla/showmore/more-less-original";
+/*--showmore--*/
 
 // ==== END WEBPACK import =====

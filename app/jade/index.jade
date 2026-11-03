@@ -6,6 +6,36 @@ block title
 
 block content
 	h1(style="text-align:center;") Привет! Можно начинать
+
+	.read-more(data-more='')
+		.read-more__content(data-more-content='', data-more-height='150')
+			p
+				| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum autem similique debitis, quam officia ipsa
+				| consequuntur, eos voluptates sint temporibus ullam qui, commodi id harum veritatis exercitationem! Non, est
+				| possimus?
+			p
+				| Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam tenetur perferendis, distinctio sequi fuga
+				| vero. Labore, velit! Atque minima minus, fugit non dolor repellat provident est consequatur blanditiis,
+				| temporibus magnam?
+			p
+				| Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, asperiores voluptate voluptatem atque iure
+				| quasi! Mollitia soluta corrupti officiis id corporis ut. Labore aperiam est nemo autem, debitis error
+				| similique.
+			p
+				| Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem maxime a sapiente fuga, quae, voluptas
+				| mollitia laudantium, facilis neque animi praesentium? Et nobis provident eaque dicta quidem alias maxime
+				| neque.
+				.read-more__footer(data-more-footer='')
+					a.read-more__btn(href='#', data-more-trigger='', data-more-text-more='Read more', data-more-text-less='Read less')
+						| Read more
+	
+	.read-more(data-more='')
+		.read-more__content(data-more-content='', data-more-height='80')
+			p
+				| Shorter content, no need to show &quot;Read more&quot; button.
+		.read-more__footer(data-more-footer='')
+			a.read-more__btn(href='#', data-more-trigger='', data-more-text-more='Show me more', data-more-text-less='Show me less')
+				| Show me more
 	
 	include _sections/example-sections
 block page-scripts
@@ -111,6 +141,12 @@ block page-scripts
 		
 	//- accordion--------------------------
 	//- script(src="js/libs/accordion/vanilla-accordion.js")
+
+	//- spoilers нативные--------------------------
+	//- script(src="js/libs/spoilers/spoilers.js")
+
+	//- showmore--------------------------
+	//- script(src="js/libs/showmore/more-less-func.js")
 		
 	//- tabs--------------------------
 	//- script(src="js/libs/tabs/tabs-pure.js")
