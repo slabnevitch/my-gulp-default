@@ -239,6 +239,7 @@
 // autosize - динамическая высота textarea. Docs: https://www.jacklmoore.com/autosize/
 // const autosize = require('~/app/libs-vanilla/autosize/autosize.js');
 // autosize(document.querySelectorAll('[data-autosize]'));
+//- для textarea нужно задавать autocomplete="off"
 	
 //- end VANILLA JS===================================
 
