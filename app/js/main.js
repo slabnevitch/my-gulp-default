@@ -235,6 +235,10 @@
 
 //- counter--------------------------
 // require('./vendor/libs-vanilla/counter/counter.js')
+
+// autosize - динамическая высота textarea. Docs: https://www.jacklmoore.com/autosize/
+// const autosize = require('~/app/libs-vanilla/autosize/autosize.js');
+// autosize(document.querySelectorAll('[data-autosize]'));
 	
 //- end VANILLA JS===================================
 
