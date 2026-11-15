@@ -1,5 +1,8 @@
 /*--------------------header----------------------*/
 .header{
-
+	// .disable-scroll &{//fix смещения sticky или fixed шапки при открытии модыльных окон. ".disable-scroll" заменить на класс, который добавляется к body при открытии мрдалки
+	// требует подключения /service-functions/scrollWidth.js
+		padding-right: var(--scroll-width);
+	}
 }
 /*--------------------END header----------------------*/ 
